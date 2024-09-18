@@ -3,6 +3,7 @@
 ## Introduction
 
 Author: Kushagra Sharma
+
 This is a personal project created as a part of CPSC 210: Software Construction at the University of British Columbia. The project is developed in Java, employing various software design principles and concepts taught in class. The application aims to provide a practical and optimal solution for anyone ranging from fitness enthusiasts to absolute beginners, by providing tailored solutions to meet a wide range of fitness goals and preferences.
 
 ## About the App
