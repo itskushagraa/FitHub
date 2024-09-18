@@ -1,4 +1,4 @@
-# My Personal Project
+# FitHub
 
 ## Introduction
 
