@@ -48,4 +48,4 @@ FitHub is a fitness partner built for individuals looking to establish a structu
 - As a user, I want to be able to join a community within the app where I can share my progress
 
 ## References and citations
-- *soon to come*
+- soon to come
