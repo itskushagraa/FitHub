@@ -56,27 +56,27 @@ public class UserProfile {
     /*
      * SETTER METHODS: 
      */
-    public void setName() {
+    public void setName(String name) {
         //STUB TODO
     }
 
-    public void setHeight() {
+    public void setHeight(double height) {
         //STUB TODO
     }
 
-    public void setWeight() {
+    public void setWeight(double weight) {
         //STUB TODO
     }
 
-    public void setAge() {
+    public void setAge(int age) {
         //STUB TODO
     }
 
-    public void setIntensity() {
+    public void setIntensity(int intensity) {
         //STUB TODO
     }
 
-    public void setGoal() {
+    public void setGoal(String goal) {
         //STUB TODO
     }
 
