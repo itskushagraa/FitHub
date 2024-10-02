@@ -30,38 +30,26 @@ public class Exercise {
 
 
     /*
-     * REQUIRES: 
-     *  - 0 <= setIndex <= sets.size()
+     * REQUIRES:
      *  - reps > 0
      *  - weight > 0
      * MODIFIES: this.sets
-     * EFFECTS: adds a set to the list of sets at the specified index with the given reps and weight
+     * EFFECTS: adds a set to the list of sets with the given reps and weight
      */
-    public void addSet(int setIndex, int reps, int weight) {
+    public void addSet(int reps, int weight) {
         // STUB TODO
     }
 
     /*
      * REQUIRES: 
-     *  - 0 <= setIndex < sets.size()
+     *  - sets.size() > 0
      * MODIFIES: this.sets
-     * EFFECTS: removes the set at the specified index from the list of sets
+     * EFFECTS: removes the most recent set completed in the list of sets
      */
-    public void removeSet(int setIndex) {
+    public void removeSet() {
         // STUB TODO
     }
-
-    /*
-     * REQUIRES: 
-     *  - 0 <= setIndex < sets.size()
-     *  - reps > 0
-     *  - weight > 0
-     * MODIFIES: this.sets
-     * EFFECTS: updates the set at the specified index in the list of sets with the given reps and weight
-     */
-    public void updateSet(int setIndex, int reps, int weight) {
-        // STUB TODO
-    }
+    
 
     /*
      * MODIFIES: this.sets
