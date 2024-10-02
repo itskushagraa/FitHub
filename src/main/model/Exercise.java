@@ -25,7 +25,10 @@ public class Exercise {
      *    with initial completion status set to false
      */
     public Exercise(String name, List<String> musclesWorked, List<ExerciseSet> sets) {
-        // STUB TODO
+        this.name = name;
+        this.musclesWorked = musclesWorked;
+        this.sets = sets;
+        this.isCompleted = false;
     }
 
 
@@ -37,7 +40,8 @@ public class Exercise {
      * EFFECTS: adds a set to the list of sets with the given reps and weight
      */
     public void addSet(int reps, int weight) {
-        // STUB TODO
+        ExerciseSet setToAdd = new ExerciseSet(reps, weight);
+        this.sets.add(setToAdd);
     }
 
     /*
@@ -47,27 +51,39 @@ public class Exercise {
      * EFFECTS: removes the most recent set completed in the list of sets
      */
     public void removeSet() {
-        // STUB TODO
+        this.sets.remove(this.sets.size() - 1);
     }
-    
+
 
     /*
      * MODIFIES: this.sets
      * EFFECTS: clears all ExerciseSets from the list of sets
      */
     public void clearSets() {
-        // STUB TODO
+        while(!this.sets.isEmpty()) {
+            this.sets.remove(0);
+        }
     }
 
 
     //EFFECTS: returns the sum of the total reps completed across all sets
     public int calculateTotalReps() {
-        return 0; // STUB TODO
+        int totalReps = 0;
+        for(int i = 0; i < this.sets.size(); i++) {
+            totalReps += this.sets.get(i).getReps();
+        }
+
+        return totalReps;
     }
 
     //EFFECTS: returns the sum of the total weight lifted across all sets
     public int calculateTotalWeightLifted() {
-        return 0; // STUB TODO
+        int totalWeight = 0;
+        for(int i = 0; i < this.sets.size(); i++) {
+            totalWeight += (this.sets.get(i).getReps() * this.sets.get(i).getWeight());
+        }
+
+        return totalWeight;
     }
 
 
@@ -75,15 +91,15 @@ public class Exercise {
      * SETTER METHODS:
      */
     public void setName(String name) {
-        // STUB TODO
+        this.name = name;
     }
 
     public void setMusclesWorked(List<String> musclesWorked) {
-        // STUB TODO
+        this.musclesWorked = musclesWorked;
     }
 
     public void setCompletionStatus(boolean completionStatus) {
-        // STUB TODO
+        this.isCompleted = completionStatus;
     }
 
     
@@ -91,18 +107,18 @@ public class Exercise {
      * GETTER METHODS:
      */
     public String getName() {
-        return ""; // STUB TODO
+        return this.name;
     }
 
     public List<String> getMusclesWorked() {
-        return null; // STUB TODO
+        return this.musclesWorked;
     }
 
     public List<ExerciseSet> getSets() {
-        return null; // STUB TODO
+        return this.sets;
     }
 
     public boolean isCompleted() {
-        return false; // STUB TODO
+        return this.isCompleted;
     }
 }

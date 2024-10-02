@@ -31,7 +31,7 @@ public class TestExercise {
     void testConstructor() {
         assertEquals("Barbell Bench Press", testExercise.getName());
         assertEquals("Chest", testExercise.getMusclesWorked().get(0));
-        assertEquals("Front Deltss", testExercise.getMusclesWorked().get(1));
+        assertEquals("Front Delts", testExercise.getMusclesWorked().get(1));
         assertEquals("Triceps", testExercise.getMusclesWorked().get(2));
         assertEquals(set1, testExercise.getSets().get(0));
         assertFalse(testExercise.isCompleted());
