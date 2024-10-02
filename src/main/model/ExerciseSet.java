@@ -18,18 +18,19 @@ public class ExerciseSet {
      *  - Initializes this ExerciseSet with the provided reps and weight lifted
      */
     public ExerciseSet(int reps, int weight) {
-        // STUB TODO
+        this.reps = reps;
+        this.weight = weight;
     }
 
     /*
      * SETTER METHODS: 
      */
     public void setReps(int reps) {
-        // STUB TODO
+        this.reps = reps;
     }
 
     public void setWeight(int weight) {
-        // STUB TODO
+        this.weight = weight;
     }
 
 
@@ -37,10 +38,10 @@ public class ExerciseSet {
      * GETTER METHODS: 
      */
     public int getReps() {
-        return 0; // STUB TODO
+        return this.reps;
     }
 
     public int getWeight() {
-        return 0; // STUB TODO
+        return this.weight;
     }
 }
