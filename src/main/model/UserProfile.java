@@ -62,12 +62,13 @@ public class UserProfile {
         double intensityMultiplier = 1.2 + ((this.intensity - 1) * (0.4 / 6));
         double adjustedBmr = bmr * intensityMultiplier;
         
-        if(this.goal.equals("cut")) {
+        if (this.goal.equals("cut")) {
             return (int) (adjustedBmr * 0.85);
-        } else if(this.goal.equals("bulk")) {
+        } else if (this.goal.equals("bulk")) {
             return (int) (adjustedBmr * 1.15);
-        } else
+        } else {
             return (int) adjustedBmr;
+        }
     }
 
 

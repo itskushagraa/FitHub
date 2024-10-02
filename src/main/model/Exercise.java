@@ -60,7 +60,7 @@ public class Exercise {
      * EFFECTS: clears all ExerciseSets from the list of sets
      */
     public void clearSets() {
-        while(!this.sets.isEmpty()) {
+        while (!this.sets.isEmpty()) {
             this.sets.remove(0);
         }
     }
@@ -69,7 +69,7 @@ public class Exercise {
     //EFFECTS: returns the sum of the total reps completed across all sets
     public int calculateTotalReps() {
         int totalReps = 0;
-        for(int i = 0; i < this.sets.size(); i++) {
+        for (int i = 0; i < this.sets.size(); i++) {
             totalReps += this.sets.get(i).getReps();
         }
 
@@ -79,7 +79,7 @@ public class Exercise {
     //EFFECTS: returns the sum of the total weight lifted across all sets
     public int calculateTotalWeightLifted() {
         int totalWeight = 0;
-        for(int i = 0; i < this.sets.size(); i++) {
+        for (int i = 0; i < this.sets.size(); i++) {
             totalWeight += (this.sets.get(i).getReps() * this.sets.get(i).getWeight());
         }
 
