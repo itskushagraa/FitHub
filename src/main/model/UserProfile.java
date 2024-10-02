@@ -31,7 +31,14 @@ public class UserProfile {
      *  - Sets targetCalories and BMI based on the parameters provided
      */
     public UserProfile(String name, double height, double weight, int age, int intensity, String goal) {
-        // STUB TODO
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.bmi = calculateBMI();
+        this.age = age;
+        this.intensity = intensity;
+        this.goal = goal;
+        this.targetCalories = calculateTargetCalories();
     }
 
 
@@ -40,7 +47,9 @@ public class UserProfile {
      *  - returns the BMI based on height and weight
      */
     public double calculateBMI() {
-        return 0.0; //STUB TODO
+        double heightInMeters = this.height / 100.0;
+        double bmi = this.weight / (heightInMeters * heightInMeters);
+        return Math.round(bmi * 10.0) / 10.0;
     }
 
 
@@ -49,7 +58,16 @@ public class UserProfile {
      *  - returns the estimated daily caloric intake based on the user's metrics and fitness goal
      */
     public int calculateTargetCalories() {
-        return 0; //STUB TODO
+        double bmr = 10 * this.weight + 6.25 * this.height - 5 * this.age + 5;
+        double intensityMultiplier = 1.2 + ((this.intensity - 1) * (0.4 / 6));
+        double adjustedBmr = bmr * intensityMultiplier;
+        
+        if(this.goal.equals("cut")) {
+            return (int) (adjustedBmr * 0.85);
+        } else if(this.goal.equals("bulk")) {
+            return (int) (adjustedBmr * 1.15);
+        } else
+            return (int) adjustedBmr;
     }
 
 
@@ -57,27 +75,35 @@ public class UserProfile {
      * SETTER METHODS: 
      */
     public void setName(String name) {
-        //STUB TODO
+        this.name = name;
     }
 
     public void setHeight(double height) {
-        //STUB TODO
+        this.height = height;
     }
 
     public void setWeight(double weight) {
-        //STUB TODO
+        this.weight = weight;
+    }
+
+    public void setBmi() {
+        this.bmi = calculateBMI();
     }
 
     public void setAge(int age) {
-        //STUB TODO
+        this.age = age;
     }
 
     public void setIntensity(int intensity) {
-        //STUB TODO
+        this.intensity = intensity;
     }
 
     public void setGoal(String goal) {
-        //STUB TODO
+        this.goal = goal;
+    }
+
+    public void setTargetCalories() {
+        this.targetCalories = calculateTargetCalories();
     }
 
     
@@ -85,34 +111,34 @@ public class UserProfile {
      * GETTER METHODS:
      */
     public String getName() {
-        return ""; //STUB TODO
+        return this.name;
     }
 
     public double getHeight() {
-        return 0.0; //STUB TODO
+        return this.height;
     }
 
     public double getWeight() {
-        return 0.0; //STUB TODO
+        return this.weight;
     }
 
     public double getBmi() {
-        return 0.0; //STUB TODO
+        return this.bmi;
     }
 
     public int getAge() {
-        return 0; //STUB TODO
+        return this.age;
     }
 
     public int getIntensity() {
-        return 0; //STUB TODO
+        return this.intensity;
     }
 
     public String getGoal() {
-        return ""; //STUB TODO
+        return this.goal;
     }
 
     public int getTargetCalories() {
-        return 0; //STUB TODO
+        return this.targetCalories;
     }
 }

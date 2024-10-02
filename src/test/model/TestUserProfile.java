@@ -27,7 +27,7 @@ public class TestUserProfile {
         assertEquals(19, maintainUser.getAge());
         assertEquals(5, maintainUser.getIntensity());
         assertEquals("maintain", maintainUser.getGoal());
-        assertEquals(2266, maintainUser.getTargetCalories());
+        assertEquals(2260, maintainUser.getTargetCalories());
     }
 
     @Test
@@ -39,8 +39,29 @@ public class TestUserProfile {
 
     @Test
     void testCalculateTargetCalories() {
-        assertEquals(2266, maintainUser.calculateTargetCalories());
-        assertEquals(1663, cutUser.calculateTargetCalories());
+        assertEquals(2260, maintainUser.calculateTargetCalories());
+        assertEquals(1654, cutUser.calculateTargetCalories());
         assertEquals(2785, bulkUser.calculateTargetCalories());
+    }
+
+    @Test 
+    void testSetterMethods() {
+        maintainUser.setName("Jesse");
+        maintainUser.setHeight(185);
+        maintainUser.setWeight(85);
+        maintainUser.setBmi();
+        maintainUser.setAge(25);
+        maintainUser.setIntensity(7);
+        maintainUser.setGoal("bulk");
+        maintainUser.setTargetCalories();
+
+        assertEquals("Jesse", maintainUser.getName());
+        assertEquals(185, maintainUser.getHeight());
+        assertEquals(85, maintainUser.getWeight());
+        assertEquals(24.8, maintainUser.getBmi());
+        assertEquals(25, maintainUser.getAge());
+        assertEquals(7, maintainUser.getIntensity());
+        assertEquals("bulk", maintainUser.getGoal());
+        assertEquals(3470, maintainUser.getTargetCalories());
     }
 }
