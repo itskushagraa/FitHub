@@ -20,8 +20,7 @@ public class Workout {
      * REQUIRES: 
      *  - name.length() > 0
      *  - dateCompleted != null
-     *  - exercises.size() > 0
-     *  - duration > 0
+     *  - duration >= 0
      * EFFECTS: 
      *  - initializes the workout with a name, list of exercises completed, date, duration
      *  - sets the initial completion status of the workout as false
@@ -30,7 +29,6 @@ public class Workout {
         // STUB TODO
     }
 
-    
     /*
      * MODIFIES: this.exercises
      * EFFECTS:
