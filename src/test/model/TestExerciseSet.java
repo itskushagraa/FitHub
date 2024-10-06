@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestExerciseSet {
     private ExerciseSet testSet;
-    
+
     @BeforeEach
     void runBefore() {
         testSet = new ExerciseSet(10, 100);

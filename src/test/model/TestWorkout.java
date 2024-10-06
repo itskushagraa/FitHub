@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +23,7 @@ public class TestWorkout {
         exercises.add(TemporaryData.BENCH_PRESS);
         testWorkout = new Workout("FBD", exercises, LocalDate.now(), 60);
     }
-    
+
     @Test
     void testConstructor() {
         assertEquals("FBD", testWorkout.getName());

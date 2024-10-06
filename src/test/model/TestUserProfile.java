@@ -10,7 +10,6 @@ public class TestUserProfile {
     private UserProfile bulkUser;
     private UserProfile cutUser;
 
-
     @BeforeEach
     void runBefore() {
         maintainUser = new UserProfile("Ellie", 165.0, 60.0, 19, 5, "maintain");
@@ -44,7 +43,7 @@ public class TestUserProfile {
         assertEquals(2785, bulkUser.calculateTargetCalories());
     }
 
-    @Test 
+    @Test
     void testSetterMethods() {
         maintainUser.setName("Jesse");
         maintainUser.setHeight(185);
