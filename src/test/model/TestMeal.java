@@ -2,23 +2,27 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import data.TemporaryData;
-
 public class TestMeal {
     private Meal testMeal;
 
     @BeforeEach
     void runBefore() {
+        List<String> ingredients = new ArrayList<>();
+        ingredients.add("Spaghetti");
+        ingredients.add("Ground Beef");
+        ingredients.add("Tomato Sauce");
+        ingredients.add("Parmesan Cheese");
         testMeal = new Meal(
             "Spaghetti Bolognese",
             "Dinner",
-            Arrays.asList("Spaghetti", "Ground Beef", "Tomato Sauce", "Parmesan Cheese"),
+            ingredients,
             700,
             350.0,
             25.0,
@@ -80,9 +84,9 @@ public class TestMeal {
     @Test
     void testCalculateMethods() {
         assertEquals(2, testMeal.calculateCaloriesPerGram());
-        assertEquals(0.07142857143, testMeal.calculateProteinPerGram());
-        assertEquals(0.08571428571, testMeal.calculateFatPerGram());
-        assertEquals(0.2428571429, testMeal.calculateCarbPerGram());
+        assertEquals(0.07142857142857142, testMeal.calculateProteinPerGram());
+        assertEquals(0.08571428571428572, testMeal.calculateFatPerGram());
+        assertEquals(0.24285714285714285, testMeal.calculateCarbPerGram());
     }
 
     @Test

@@ -35,7 +35,14 @@ public class Meal {
      */
     public Meal(String name, String type, List<String> ingredients, int calories, double quantity, double protein,
             double fat, double carb) {
-        // STUB TODO
+        this.name = name;
+        this.type = type;
+        this.ingredients = ingredients;
+        this.calories = calories;
+        this.quantity = quantity;
+        this.protein = protein;
+        this.fat = fat;
+        this.carb = carb;
     }
 
     /*
@@ -44,7 +51,7 @@ public class Meal {
      * EFFECTS: adds the given ingredient to the list of ingredients
      */
     public void addIngredient(String ingredient) {
-        // STUB TODO
+        this.ingredients.add(ingredient);
     }
 
     /*
@@ -56,46 +63,50 @@ public class Meal {
      * EFFECTS: removes the given ingredient from the list of ingredients
      */
     public void removeIngredient(String ingredient) {
-        // STUB TODO
+        for (int i = 0; i < this.ingredients.size(); i++) {
+            if (this.ingredients.get(i).equalsIgnoreCase(ingredient)) {
+                this.ingredients.remove(i);
+            }
+        }
     }
 
     /*
      * EFFECTS: returns the number of calories per gram of the meal
      */
     public int calculateCaloriesPerGram() {
-        return 0; // STUB TODO
+        return (int) (this.calories / this.quantity);
     }
 
     /*
      * EFFECTS: returns the number of grams of protein per gram of the meal
      */
     public double calculateProteinPerGram() {
-        return 0.0; // STUB TODO
+        return this.protein / this.quantity;
     }
 
     /*
      * EFFECTS: returns the number of grams of protein per gram of the meal
      */
     public double calculateFatPerGram() {
-        return 0.0; // STUB TODO
+        return this.fat / this.quantity;
     }
 
     /*
      * EFFECTS: returns the number of grams of carbohydrates per gram of the meal
      */
     public double calculateCarbPerGram() {
-        return 0.0; // STUB TODO
+        return this.carb / this.quantity;
     }
 
     /*
      * SETTERS:
      */
     public void setName(String name) {
-        // STUB TODO
+        this.name = name;
     }
 
     public void setType(String type) {
-        // STUB TODO
+        this.type = type;
     }
 
     /*
@@ -110,41 +121,46 @@ public class Meal {
      * - updates calories and macro quantities accordingly
      */
     public void setQuantity(double quantity) {
-        // STUB TODO
+        double ratio = quantity / this.quantity;
+        this.quantity = quantity;
+        this.calories = (int) (this.calories * ratio);
+        this.protein *= ratio;
+        this.fat *= ratio;
+        this.carb *= ratio;
     }
 
     /*
      * GETTERS:
      */
     public String getName() {
-        return ""; // STUB TODO
+        return this.name;
     }
 
     public String getType() {
-        return ""; // STUB TODO
+        return this.type;
     }
 
     public List<String> getIngredients() {
-        return null; // STUB TODO
+        return this.ingredients;
     }
 
     public int getCalories() {
-        return 0; // STUB TODO
+        return this.calories;
     }
 
     public double getQuantity() {
-        return 0.0; // STUB TODO
+        return this.quantity;
     }
 
     public double getProtein() {
-        return 0.0; // STUB TODO
+        return this.protein;
     }
 
     public double getFat() {
-        return 0.0; // STUB TODO
+        return this.fat;
     }
 
     public double getCarb() {
-        return 0.0; // STUB TODO
+        return this.carb;
     }
 }
