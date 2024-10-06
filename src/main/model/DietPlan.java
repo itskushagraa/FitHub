@@ -22,8 +22,8 @@ public class DietPlan {
      * - each List<Meal> must have exactly 3 meals: Breakfast, Lunch, Dinner
      * EFFECTS: Initializes the diet plan with the given weekly meal plan
      */
-    public DietPlan(Map<String, List<Meal>> weeklyPlan) {
-        // STUB TODO
+    public DietPlan(Map<String, List<Meal>> meals) {
+        this.meals = meals;
     }
 
     /*
@@ -37,8 +37,18 @@ public class DietPlan {
      * - If a meal already exists for the given day and meal type, it will be
      * replaced
      */
-    public void addMeal(String day, String mealType, Meal meal) {
-        // STUB TODO
+    public void addMeal(String day, String mealType, Meal mealToAdd) {
+        List<Meal> dayMeals = this.meals.get(day);
+        switch (mealType) {
+            case "Breakfast":
+                    dayMeals.set(0, mealToAdd);
+            case "Lunch":
+                    dayMeals.set(1, mealToAdd);
+            case "Dinner":
+                    dayMeals.set(2, mealToAdd);
+            default:
+                // Case Never Reached
+        }
     }
 
     /*
@@ -51,7 +61,17 @@ public class DietPlan {
      * - Removes the meal from the specified day and meal type by setting it to null
      */
     public void removeMeal(String day, String mealType) {
-        // STUB TODO
+        List<Meal> dayMeals = this.meals.get(day);
+        switch (mealType) {
+            case "Breakfast":
+                    dayMeals.set(0, null);
+            case "Lunch":
+                    dayMeals.set(1, null);
+            case "Dinner":
+                    dayMeals.set(2, null);
+            default:
+                // Case Never Reached
+        }
     }
 
     /*
@@ -62,7 +82,10 @@ public class DietPlan {
      * - Clears all meals for the specified day (sets them to null)
      */
     public void clearDay(String day) {
-        // STUB TODO
+        List<Meal> dayMeals = this.meals.get(day);
+        for (int i = 0; i < dayMeals.size(); i++) {
+            dayMeals.set(i, null);
+        }
     }
 
     /*
@@ -73,7 +96,15 @@ public class DietPlan {
      * - If no meals are set for the day, returns 0
      */
     public int calculateDailyCalories(String day) {
-        return 0; // STUB TODO
+        int ret = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (this.meals.get(day).get(i) != null) {
+                ret += this.meals.get(day).get(i).getCalories();
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -82,7 +113,15 @@ public class DietPlan {
      * - If no meals are set for the day, returns 0
      */
     public double calculateDailyQuantity(String day) {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (this.meals.get(day).get(i) != null) {
+                ret += this.meals.get(day).get(i).getQuantity();
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -93,7 +132,15 @@ public class DietPlan {
      * - If no meals are set for the day, returns 0
      */
     public double calculateDailyProtein(String day) {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (this.meals.get(day).get(i) != null) {
+                ret += this.meals.get(day).get(i).getProtein();
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -104,7 +151,15 @@ public class DietPlan {
      * - If no meals are set for the day, returns 0
      */
     public double calculateDailyFat(String day) {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (this.meals.get(day).get(i) != null) {
+                ret += this.meals.get(day).get(i).getFat();
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -115,16 +170,35 @@ public class DietPlan {
      * - If no meals are set for the day, returns 0
      */
     public double calculateDailyCarb(String day) {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (this.meals.get(day).get(i) != null) {
+                ret += this.meals.get(day).get(i).getCarb();
+            }
+        }
+
+        return ret;
     }
 
     /*
      * EFFECTS:
      * - Returns the total calorie count for the entire week based on all meals
-     * - If no meals are set for any day, returns 0
      */
     public int calculateWeeklyCalories() {
-        return 0; // STUB TODO
+        int ret = 0;
+
+        for (String day : this.meals.keySet()) {
+            List<Meal> dailyMeals = this.meals.get(day);
+
+            for (Meal meal : dailyMeals) {
+                if (meal != null) {
+                    ret += meal.getCalories();
+                }
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -133,7 +207,19 @@ public class DietPlan {
      * - If no meals are set for any day, returns 0
      */
     public double calculateWeeklyQuantity() {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (String day : this.meals.keySet()) {
+            List<Meal> dailyMeals = this.meals.get(day);
+
+            for (Meal meal : dailyMeals) {
+                if (meal != null) {
+                    ret += meal.getQuantity();
+                }
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -142,7 +228,19 @@ public class DietPlan {
      * - If no meals are set for any day, returns 0
      */
     public double calculateWeeklyProtein() {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (String day : this.meals.keySet()) {
+            List<Meal> dailyMeals = this.meals.get(day);
+
+            for (Meal meal : dailyMeals) {
+                if (meal != null) {
+                    ret += meal.getProtein();
+                }
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -151,7 +249,19 @@ public class DietPlan {
      * - If no meals are set for any day, returns 0
      */
     public double calculateWeeklyFat() {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (String day : this.meals.keySet()) {
+            List<Meal> dailyMeals = this.meals.get(day);
+
+            for (Meal meal : dailyMeals) {
+                if (meal != null) {
+                    ret += meal.getFat();
+                }
+            }
+        }
+
+        return ret;
     }
 
     /*
@@ -160,17 +270,37 @@ public class DietPlan {
      * - If no meals are set for any day, returns 0
      */
     public double calculateWeeklyCarb() {
-        return 0.0; // STUB TODO
+        int ret = 0;
+
+        for (String day : this.meals.keySet()) {
+            List<Meal> dailyMeals = this.meals.get(day);
+
+            for (Meal meal : dailyMeals) {
+                if (meal != null) {
+                    ret += meal.getCarb();
+                }
+            }
+        }
+
+        return ret;
     }
 
     /*
      * GETTERS:
      */
     public Map<String, List<Meal>> getCompleteWeeklyPlan() {
-        return null; // STUB TODO
+        return this.meals;
     }
 
     public Meal getSpecificMeal(String day, String type) {
-        return null; // STUB TODO
+        List<Meal> dayMeals = this.meals.get(day);
+
+        for (Meal meal : dayMeals) {
+            if (meal != null && meal.getType().equals(type)) {
+                return meal;
+            }
+        }
+
+        return null;
     }
 }

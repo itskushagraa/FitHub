@@ -53,39 +53,36 @@ public class TestDietPlan {
     @Test
     void testAddSingleMeal() {
         testPlan.removeMeal("Monday", "Lunch");
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.AVOCADO_TOAST);
-        assertEquals(TemporaryData.AVOCADO_TOAST, testPlan.getSpecificMeal("Monday", "Lunch"));
+        testPlan.addMeal("Monday", "Lunch", TemporaryData.QUINOA_BOWL);
+        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Monday", "Lunch"));
     }
 
     @Test
     void testAddMultipleMeal() {
-        testPlan.removeMeal("Monday", "Lunch");
         testPlan.removeMeal("Monday", "Dinner");
         testPlan.removeMeal("Tuesday", "Breakfast");
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.AVOCADO_TOAST);
-        testPlan.addMeal("Monday", "Dinner", TemporaryData.STEAK);
+        testPlan.addMeal("Monday", "Dinner", TemporaryData.BEEF_TACOS);
         testPlan.addMeal("Tuesday", "Breakfast", TemporaryData.SIMPLE_PBJ);
-        assertEquals(TemporaryData.AVOCADO_TOAST, testPlan.getSpecificMeal("Monday", "Lunch"));
-        assertEquals(TemporaryData.STEAK, testPlan.getSpecificMeal("Monday", "Dinner"));
+        assertEquals(TemporaryData.BEEF_TACOS, testPlan.getSpecificMeal("Monday", "Dinner"));
         assertEquals(TemporaryData.SIMPLE_PBJ, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
     }
 
     @Test
     void testReplaceSingleMeal() {
         assertEquals(TemporaryData.CHICKEN_SALAD, testPlan.getSpecificMeal("Monday", "Lunch"));
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.AVOCADO_TOAST);
-        assertEquals(TemporaryData.AVOCADO_TOAST, testPlan.getSpecificMeal("Monday", "Lunch"));
+        testPlan.addMeal("Monday", "Lunch", TemporaryData.QUINOA_BOWL);
+        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Monday", "Lunch"));
     }
 
     @Test
     void testReplaceMultipleMeal() {
         assertEquals(TemporaryData.CHICKEN_SALAD, testPlan.getSpecificMeal("Monday", "Lunch"));
         assertEquals(TemporaryData.GRILLED_FISH_VEGGIES, testPlan.getSpecificMeal("Monday", "Dinner"));
-        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.AVOCADO_TOAST);
+        assertEquals(TemporaryData.OATMEAL_BANANA, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
+        testPlan.addMeal("Monday", "Lunch", TemporaryData.QUINOA_BOWL);
         testPlan.addMeal("Monday", "Dinner", TemporaryData.STEAK);
         testPlan.addMeal("Tuesday", "Breakfast", TemporaryData.SIMPLE_PBJ);
-        assertEquals(TemporaryData.AVOCADO_TOAST, testPlan.getSpecificMeal("Monday", "Lunch"));
+        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Monday", "Lunch"));
         assertEquals(TemporaryData.STEAK, testPlan.getSpecificMeal("Monday", "Dinner"));
         assertEquals(TemporaryData.SIMPLE_PBJ, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
     }
