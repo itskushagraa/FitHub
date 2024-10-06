@@ -1,7 +1,11 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /** 
  * Represents the workout session for a day
@@ -25,8 +29,12 @@ public class Workout {
      *  - initializes the workout with a name, list of exercises completed, date, duration
      *  - sets the initial completion status of the workout as false
      */
-    public Workout(String name, List<Exercise> exercises, LocalDate dateCompleted, int duration) {
-        // STUB TODO
+    public Workout(String name, List<Exercise> exercises, LocalDate date, int duration) {
+        this.name = name;
+        this.exercises = exercises;
+        this.date = date;
+        this.duration = duration;
+        this.isCompleted = false;
     }
 
     /*
@@ -35,7 +43,7 @@ public class Workout {
      *  - adds the given exercises to the list of exercises in the workout
      */
     public void addExercise(Exercise exercise) {
-        // STUB TODO
+        this.exercises.add(exercise);
     }
 
     /*
@@ -44,7 +52,7 @@ public class Workout {
      * EFFECTS: removes the most recently completed exercise from the list of exercises
      */
     public void removeExercise() {
-        // STUB TODO
+        this.exercises.remove(this.exercises.size() - 1);
     }
 
     /*
@@ -53,32 +61,61 @@ public class Workout {
      * EFFECTS: removes all exercises from the workout
      */
     public void clearWorkout() {
-        // STUB TODO
+        this.exercises.clear();
     }
 
     //EFFECTS: returns the total weight lifted across all exercises completed
     public int calculateTotalVolume() {
-        return 0; // STUB TODO
+        int totalVolume = 0;
+
+        for(int i = 0; i < this.exercises.size(); i++) {
+            totalVolume += this.exercises.get(i).calculateTotalWeightLifted();
+        }
+
+        return totalVolume;
     }
 
     //EFFECTS: returns the sum of all sets completed across all exercises
     public int calculateTotalSets() {
-        return 0; // STUB TODO
+        int totalSets = 0;
+
+        for(int i = 0; i < this.exercises.size(); i++) {
+            totalSets += this.exercises.get(i).getSets().size();
+        }
+
+        return totalSets;
     }
 
     //EFFECTS: returns the sum of all reps completed across all exercises
     public int calculateTotalReps() {
-        return 0; // STUB TODO
+        int totalReps = 0;
+
+        for(int i = 0; i < this.exercises.size(); i++) {
+            totalReps += this.exercises.get(i).calculateTotalReps();
+        }
+
+        return totalReps;
     }
 
     //EFFECTS: returns a list of all unique muscle groups trained in a workout
     public List<String> calculateMusclesWorked() {
-        return null; //STUB TODO
+        Set<String> uniqueMuscles = new LinkedHashSet<>();
+
+        for (Exercise exercise : this.exercises) {
+            uniqueMuscles.addAll(exercise.getMusclesWorked());
+        }
+
+        return new ArrayList<>(uniqueMuscles);
     }
 
     //EFFECTS: returns the given exercise if found in the workout, null otherwise
     public Exercise findExerciseByName(String name) {
-        return null; //STUB TODO
+        for (int i = 0; i < this.exercises.size(); i++) {
+            if (this.exercises.get(i).getName().equalsIgnoreCase(name)) {
+                return this.exercises.get(i);
+            }
+        }
+        return null;
     }
 
 
@@ -86,19 +123,19 @@ public class Workout {
      * SETTERS:
      */
     public void setName(String name) {
-        //STUB TODO
+        this.name = name;
     }
 
     public void setDuration(int duration) {
-        //STUB TODO
+        this.duration = duration;
     }
 
     public void setDate(LocalDate date) {
-        //STUB TODO
+        this.date = date;
     }
 
     public void setCompletionStatus(boolean completionStatus) {
-        //STUB TODO
+        this.isCompleted = completionStatus;
     }
 
 
@@ -106,22 +143,22 @@ public class Workout {
      * GETTERS: 
      */
     public String getName() {
-        return ""; //STUB TODO
+        return this.name;
     }
 
     public List<Exercise> getExercises() {
-        return null; //STUB TODO
+        return this.exercises;
     }
 
     public LocalDate getDate() {
-        return null; //STUB TODO
+        return this.date;
     }
 
     public int getDuration() {
-        return 0; // STUB TODO
+        return this.duration;
     }
 
     public boolean isCompleted() {
-        return false; //STUB TODO
+        return this.isCompleted;
     }
 }

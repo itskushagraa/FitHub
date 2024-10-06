@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,11 +20,9 @@ public class TestWorkout {
 
     @BeforeEach
     void runBefore() {
-        testWorkout = new Workout("FBD", Arrays.asList(TemporaryData.BENCH_PRESS), LocalDate.now(), 60);
-        for(int i = 0; i < testWorkout.getExercises().size(); i++) {
-            testWorkout.getExercises().get(i).addSet(10, 20);
-            testWorkout.getExercises().get(i).addSet(10, 20);
-        }
+        List<Exercise> exercises = new ArrayList<>();
+        exercises.add(TemporaryData.BENCH_PRESS);
+        testWorkout = new Workout("FBD", exercises, LocalDate.now(), 60);
     }
     
     @Test
@@ -97,8 +97,10 @@ public class TestWorkout {
     void testCalculateTotalSets() {
         assertEquals(1, testWorkout.calculateTotalSets());
         testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.getExercises().get(1).addSet(10, 10);
-        assertEquals(3, testWorkout.calculateTotalSets());
+        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TemporaryData.SQUAT);
+        assertEquals(5, testWorkout.calculateTotalSets());
     }
 
     @Test
@@ -131,7 +133,7 @@ public class TestWorkout {
         assertEquals("Side Delts", testWorkout.calculateMusclesWorked().get(7));
         assertEquals("Lats", testWorkout.calculateMusclesWorked().get(8));
         assertEquals("Biceps", testWorkout.calculateMusclesWorked().get(9));
-        assertEquals(10, testWorkout.getExercises().size());
+        assertEquals(10, testWorkout.calculateMusclesWorked().size());
     }
 
     @Test
