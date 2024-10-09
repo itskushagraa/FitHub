@@ -292,7 +292,7 @@ public class DietPlan {
         return this.meals;
     }
 
-    public Meal getSpecificMeal(String day, String type) {
+    public Meal getMeal(String day, String type) {
         List<Meal> dayMeals = this.meals.get(day);
 
         for (Meal meal : dayMeals) {

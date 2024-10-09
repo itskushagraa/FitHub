@@ -13,7 +13,7 @@ import model.Meal;
  *   REPRESENTED USING JSON FILES
  */
 
-public class TemporaryData {
+public class TestData {
 
     /*
      * EXERCISE OBJECTS FOR TESTING
@@ -164,6 +164,6 @@ public class TemporaryData {
             Arrays.asList("Potatoes", "Carrot", "Celery", "Tomato Paste", "Olive Oil"),
             400, 400.0, 8.0, 15.0, 65.0);
 
-    private TemporaryData() {
+    private TestData() {
     }
 }

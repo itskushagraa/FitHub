@@ -12,7 +12,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import data.TemporaryData;
+import data.TestData;
 
 public class TestDietPlan {
     private DietPlan testPlan;
@@ -20,20 +20,20 @@ public class TestDietPlan {
 
     @BeforeEach
     void runBefore() {
-        List<Meal> mon = new ArrayList<>(Arrays.asList(TemporaryData.SCRAMBLED_EGGS_TOAST, TemporaryData.CHICKEN_SALAD,
-                TemporaryData.GRILLED_FISH_VEGGIES));
-        List<Meal> tue = new ArrayList<>(Arrays.asList(TemporaryData.OATMEAL_BANANA, TemporaryData.QUINOA_BOWL,
-                TemporaryData.SPAGHETTI_BOLOGNESE));
-        List<Meal> wed = new ArrayList<>(Arrays.asList(TemporaryData.AVOCADO_TOAST, TemporaryData.TURKEY_SANDWICH,
-                TemporaryData.STEAK));
-        List<Meal> thu = new ArrayList<>(Arrays.asList(TemporaryData.SMOOTHIE, TemporaryData.CHICKEN_RICE,
-                TemporaryData.CHICKEN_CURRY));
-        List<Meal> fri = new ArrayList<>(Arrays.asList(TemporaryData.PANCAKES, TemporaryData.VEGGIE_SALAD,
-                TemporaryData.SHRIMP_STIRFRY));
-        List<Meal> sat = new ArrayList<>(Arrays.asList(TemporaryData.GREEK_YOGURT, TemporaryData.PASTA_PRIMAVERA,
-                TemporaryData.BEEF_TACOS));
-        List<Meal> sun = new ArrayList<>(Arrays.asList(TemporaryData.SIMPLE_PBJ, TemporaryData.SALMON_RICE,
-                TemporaryData.VEGGIE_STEW));
+        List<Meal> mon = new ArrayList<>(Arrays.asList(TestData.SCRAMBLED_EGGS_TOAST, TestData.CHICKEN_SALAD,
+                TestData.GRILLED_FISH_VEGGIES));
+        List<Meal> tue = new ArrayList<>(Arrays.asList(TestData.OATMEAL_BANANA, TestData.QUINOA_BOWL,
+                TestData.SPAGHETTI_BOLOGNESE));
+        List<Meal> wed = new ArrayList<>(Arrays.asList(TestData.AVOCADO_TOAST, TestData.TURKEY_SANDWICH,
+                TestData.STEAK));
+        List<Meal> thu = new ArrayList<>(Arrays.asList(TestData.SMOOTHIE, TestData.CHICKEN_RICE,
+                TestData.CHICKEN_CURRY));
+        List<Meal> fri = new ArrayList<>(Arrays.asList(TestData.PANCAKES, TestData.VEGGIE_SALAD,
+                TestData.SHRIMP_STIRFRY));
+        List<Meal> sat = new ArrayList<>(Arrays.asList(TestData.GREEK_YOGURT, TestData.PASTA_PRIMAVERA,
+                TestData.BEEF_TACOS));
+        List<Meal> sun = new ArrayList<>(Arrays.asList(TestData.SIMPLE_PBJ, TestData.SALMON_RICE,
+                TestData.VEGGIE_STEW));
         meals.put("Monday", mon);
         meals.put("Tuesday", tue);
         meals.put("Wednesday", wed);
@@ -53,44 +53,44 @@ public class TestDietPlan {
     @Test
     void testAddSingleMeal() {
         testPlan.removeMeal("Monday", "Lunch");
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.QUINOA_BOWL);
-        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Monday", "Lunch"));
+        testPlan.addMeal("Monday", "Lunch", TestData.QUINOA_BOWL);
+        assertEquals(TestData.QUINOA_BOWL, testPlan.getMeal("Monday", "Lunch"));
     }
 
     @Test
     void testAddMultipleMeal() {
         testPlan.removeMeal("Monday", "Dinner");
         testPlan.removeMeal("Tuesday", "Breakfast");
-        testPlan.addMeal("Monday", "Dinner", TemporaryData.BEEF_TACOS);
-        testPlan.addMeal("Tuesday", "Breakfast", TemporaryData.SIMPLE_PBJ);
-        assertEquals(TemporaryData.BEEF_TACOS, testPlan.getSpecificMeal("Monday", "Dinner"));
-        assertEquals(TemporaryData.SIMPLE_PBJ, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
+        testPlan.addMeal("Monday", "Dinner", TestData.BEEF_TACOS);
+        testPlan.addMeal("Tuesday", "Breakfast", TestData.SIMPLE_PBJ);
+        assertEquals(TestData.BEEF_TACOS, testPlan.getMeal("Monday", "Dinner"));
+        assertEquals(TestData.SIMPLE_PBJ, testPlan.getMeal("Tuesday", "Breakfast"));
     }
 
     @Test
     void testReplaceSingleMeal() {
-        assertEquals(TemporaryData.CHICKEN_SALAD, testPlan.getSpecificMeal("Monday", "Lunch"));
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.QUINOA_BOWL);
-        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Monday", "Lunch"));
+        assertEquals(TestData.CHICKEN_SALAD, testPlan.getMeal("Monday", "Lunch"));
+        testPlan.addMeal("Monday", "Lunch", TestData.QUINOA_BOWL);
+        assertEquals(TestData.QUINOA_BOWL, testPlan.getMeal("Monday", "Lunch"));
     }
 
     @Test
     void testReplaceMultipleMeal() {
-        assertEquals(TemporaryData.CHICKEN_SALAD, testPlan.getSpecificMeal("Monday", "Lunch"));
-        assertEquals(TemporaryData.GRILLED_FISH_VEGGIES, testPlan.getSpecificMeal("Monday", "Dinner"));
-        assertEquals(TemporaryData.OATMEAL_BANANA, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
-        testPlan.addMeal("Monday", "Lunch", TemporaryData.QUINOA_BOWL);
-        testPlan.addMeal("Monday", "Dinner", TemporaryData.STEAK);
-        testPlan.addMeal("Tuesday", "Breakfast", TemporaryData.SIMPLE_PBJ);
-        assertEquals(TemporaryData.QUINOA_BOWL, testPlan.getSpecificMeal("Monday", "Lunch"));
-        assertEquals(TemporaryData.STEAK, testPlan.getSpecificMeal("Monday", "Dinner"));
-        assertEquals(TemporaryData.SIMPLE_PBJ, testPlan.getSpecificMeal("Tuesday", "Breakfast"));
+        assertEquals(TestData.CHICKEN_SALAD, testPlan.getMeal("Monday", "Lunch"));
+        assertEquals(TestData.GRILLED_FISH_VEGGIES, testPlan.getMeal("Monday", "Dinner"));
+        assertEquals(TestData.OATMEAL_BANANA, testPlan.getMeal("Tuesday", "Breakfast"));
+        testPlan.addMeal("Monday", "Lunch", TestData.QUINOA_BOWL);
+        testPlan.addMeal("Monday", "Dinner", TestData.STEAK);
+        testPlan.addMeal("Tuesday", "Breakfast", TestData.SIMPLE_PBJ);
+        assertEquals(TestData.QUINOA_BOWL, testPlan.getMeal("Monday", "Lunch"));
+        assertEquals(TestData.STEAK, testPlan.getMeal("Monday", "Dinner"));
+        assertEquals(TestData.SIMPLE_PBJ, testPlan.getMeal("Tuesday", "Breakfast"));
     }
 
     @Test
     void testRemoveSingleMeal() {
         testPlan.removeMeal("Thursday", "Breakfast");
-        assertNull(testPlan.getSpecificMeal("Thursday", "Breakfast"));
+        assertNull(testPlan.getMeal("Thursday", "Breakfast"));
     }
 
     @Test
@@ -98,17 +98,17 @@ public class TestDietPlan {
         testPlan.removeMeal("Thursday", "Breakfast");
         testPlan.removeMeal("Thursday", "Lunch");
         testPlan.removeMeal("Thursday", "Dinner");
-        assertNull(testPlan.getSpecificMeal("Thursday", "Breakfast"));
-        assertNull(testPlan.getSpecificMeal("Thursday", "Lunch"));
-        assertNull(testPlan.getSpecificMeal("Thursday", "Dinner"));
+        assertNull(testPlan.getMeal("Thursday", "Breakfast"));
+        assertNull(testPlan.getMeal("Thursday", "Lunch"));
+        assertNull(testPlan.getMeal("Thursday", "Dinner"));
     }
 
     @Test
     void clearSingleDay() {
         testPlan.clearDay("Tuesday");
-        assertNull(testPlan.getSpecificMeal("Tuesday", "Breakfast"));
-        assertNull(testPlan.getSpecificMeal("Tuesday", "Lunch"));
-        assertNull(testPlan.getSpecificMeal("Tuesday", "Dinner"));
+        assertNull(testPlan.getMeal("Tuesday", "Breakfast"));
+        assertNull(testPlan.getMeal("Tuesday", "Lunch"));
+        assertNull(testPlan.getMeal("Tuesday", "Dinner"));
     }
 
     @Test
@@ -116,15 +116,15 @@ public class TestDietPlan {
         testPlan.clearDay("Tuesday");
         testPlan.clearDay("Wednesday");
         testPlan.clearDay("Sunday");
-        assertNull(testPlan.getSpecificMeal("Tuesday", "Breakfast"));
-        assertNull(testPlan.getSpecificMeal("Tuesday", "Lunch"));
-        assertNull(testPlan.getSpecificMeal("Tuesday", "Dinner"));
-        assertNull(testPlan.getSpecificMeal("Wednesday", "Breakfast"));
-        assertNull(testPlan.getSpecificMeal("Wednesday", "Lunch"));
-        assertNull(testPlan.getSpecificMeal("Wednesday", "Dinner"));
-        assertNull(testPlan.getSpecificMeal("Sunday", "Breakfast"));
-        assertNull(testPlan.getSpecificMeal("Sunday", "Lunch"));
-        assertNull(testPlan.getSpecificMeal("Sunday", "Dinner"));
+        assertNull(testPlan.getMeal("Tuesday", "Breakfast"));
+        assertNull(testPlan.getMeal("Tuesday", "Lunch"));
+        assertNull(testPlan.getMeal("Tuesday", "Dinner"));
+        assertNull(testPlan.getMeal("Wednesday", "Breakfast"));
+        assertNull(testPlan.getMeal("Wednesday", "Lunch"));
+        assertNull(testPlan.getMeal("Wednesday", "Dinner"));
+        assertNull(testPlan.getMeal("Sunday", "Breakfast"));
+        assertNull(testPlan.getMeal("Sunday", "Lunch"));
+        assertNull(testPlan.getMeal("Sunday", "Dinner"));
     }
 
     @Test

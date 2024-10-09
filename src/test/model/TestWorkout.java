@@ -12,7 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import data.TemporaryData;
+import data.TestData;
 
 public class TestWorkout {
     private Workout testWorkout;
@@ -20,14 +20,14 @@ public class TestWorkout {
     @BeforeEach
     void runBefore() {
         List<Exercise> exercises = new ArrayList<>();
-        exercises.add(TemporaryData.BENCH_PRESS);
+        exercises.add(TestData.BENCH_PRESS);
         testWorkout = new Workout("FBD", exercises, LocalDate.now(), 60);
     }
 
     @Test
     void testConstructor() {
         assertEquals("FBD", testWorkout.getName());
-        assertEquals(TemporaryData.BENCH_PRESS, testWorkout.getExercises().get(0));
+        assertEquals(TestData.BENCH_PRESS, testWorkout.getExercises().get(0));
         assertEquals(1, testWorkout.getExercises().size());
         assertEquals(LocalDate.now(), testWorkout.getDate());
         assertEquals(60, testWorkout.getDuration());
@@ -37,23 +37,23 @@ public class TestWorkout {
     @Test
     void testAddSingleExercise() {
         assertEquals(1, testWorkout.getExercises().size());
-        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
         assertEquals(2, testWorkout.getExercises().size());
-        assertEquals(TemporaryData.SQUAT, testWorkout.getExercises().get(1));
+        assertEquals(TestData.SQUAT, testWorkout.getExercises().get(1));
     }
 
     @Test
     void testAddMultipleExercise() {
         assertEquals(1, testWorkout.getExercises().size());
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.FACE_PULL);
-        testWorkout.addExercise(TemporaryData.LATERAL_RAISE);
-        testWorkout.addExercise(TemporaryData.LAT_PULLDOWN);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.FACE_PULL);
+        testWorkout.addExercise(TestData.LATERAL_RAISE);
+        testWorkout.addExercise(TestData.LAT_PULLDOWN);
         assertEquals(5, testWorkout.getExercises().size());
-        assertEquals(TemporaryData.SQUAT, testWorkout.getExercises().get(1));
-        assertEquals(TemporaryData.FACE_PULL, testWorkout.getExercises().get(2));
-        assertEquals(TemporaryData.LATERAL_RAISE, testWorkout.getExercises().get(3));
-        assertEquals(TemporaryData.LAT_PULLDOWN, testWorkout.getExercises().get(4));
+        assertEquals(TestData.SQUAT, testWorkout.getExercises().get(1));
+        assertEquals(TestData.FACE_PULL, testWorkout.getExercises().get(2));
+        assertEquals(TestData.LATERAL_RAISE, testWorkout.getExercises().get(3));
+        assertEquals(TestData.LAT_PULLDOWN, testWorkout.getExercises().get(4));
     }
 
     @Test
@@ -66,8 +66,8 @@ public class TestWorkout {
     @Test
     void testRemoveMultipleExercise() {
         assertEquals(1, testWorkout.getExercises().size());
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
         testWorkout.removeExercise();
         testWorkout.removeExercise();
         testWorkout.removeExercise();
@@ -76,10 +76,10 @@ public class TestWorkout {
 
     @Test
     void testClearWorkout() {
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.FACE_PULL);
-        testWorkout.addExercise(TemporaryData.LATERAL_RAISE);
-        testWorkout.addExercise(TemporaryData.LAT_PULLDOWN);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.FACE_PULL);
+        testWorkout.addExercise(TestData.LATERAL_RAISE);
+        testWorkout.addExercise(TestData.LAT_PULLDOWN);
         assertEquals(5, testWorkout.getExercises().size());
         testWorkout.clearWorkout();
         assertEquals(0, testWorkout.getExercises().size());
@@ -88,27 +88,27 @@ public class TestWorkout {
     @Test
     void calculateTotalVolume() {
         assertEquals(300, testWorkout.calculateTotalVolume());
-        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
         assertEquals(900, testWorkout.calculateTotalVolume());
     }
 
     @Test
     void testCalculateTotalSets() {
         assertEquals(1, testWorkout.calculateTotalSets());
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
         assertEquals(5, testWorkout.calculateTotalSets());
     }
 
     @Test
     void testCalculateTotalReps() {
         assertEquals(15, testWorkout.calculateTotalReps());
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
         assertEquals(55, testWorkout.calculateTotalReps());
     }
 
@@ -118,16 +118,16 @@ public class TestWorkout {
         assertEquals("Front Delts", testWorkout.calculateMusclesWorked().get(1));
         assertEquals("Triceps", testWorkout.calculateMusclesWorked().get(2));
         assertEquals(3, testWorkout.calculateMusclesWorked().size());
-        testWorkout.addExercise(TemporaryData.BENCH_PRESS);
-        testWorkout.addExercise(TemporaryData.SQUAT);
-        testWorkout.addExercise(TemporaryData.SQUAT);
+        testWorkout.addExercise(TestData.BENCH_PRESS);
+        testWorkout.addExercise(TestData.SQUAT);
+        testWorkout.addExercise(TestData.SQUAT);
         assertEquals("Quads", testWorkout.calculateMusclesWorked().get(3));
         assertEquals("Hamstrings", testWorkout.calculateMusclesWorked().get(4));
         assertEquals("Glutes", testWorkout.calculateMusclesWorked().get(5));
         assertEquals(6, testWorkout.calculateMusclesWorked().size());
-        testWorkout.addExercise(TemporaryData.FACE_PULL);
-        testWorkout.addExercise(TemporaryData.LATERAL_RAISE);
-        testWorkout.addExercise(TemporaryData.LAT_PULLDOWN);
+        testWorkout.addExercise(TestData.FACE_PULL);
+        testWorkout.addExercise(TestData.LATERAL_RAISE);
+        testWorkout.addExercise(TestData.LAT_PULLDOWN);
         assertEquals("Rear Delts", testWorkout.calculateMusclesWorked().get(6));
         assertEquals("Side Delts", testWorkout.calculateMusclesWorked().get(7));
         assertEquals("Lats", testWorkout.calculateMusclesWorked().get(8));
@@ -137,8 +137,8 @@ public class TestWorkout {
 
     @Test
     void testFindExerciseByName() {
-        testWorkout.addExercise(TemporaryData.FACE_PULL);
-        assertEquals(TemporaryData.FACE_PULL, testWorkout.findExerciseByName("Face Pull (Cable)"));
+        testWorkout.addExercise(TestData.FACE_PULL);
+        assertEquals(TestData.FACE_PULL, testWorkout.findExerciseByName("Face Pull (Cable)"));
         assertNull(testWorkout.findExerciseByName("Squat (Barbell)"));
     }
 
