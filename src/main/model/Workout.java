@@ -8,9 +8,8 @@ import java.util.Set;
 
 /**
  * Represents the workout session for a day
- * Stores the workout name, list of exercises completed, the date of completion
- * and duration (in minutes)
- * Methods include: !!! TODO
+ * Stores the workout name, list of exercises completed, the date of completion,
+ * duration (in minutes), and completion status
  **/
 
 public class Workout {

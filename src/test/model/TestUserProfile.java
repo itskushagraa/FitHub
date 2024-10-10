@@ -157,8 +157,9 @@ public class TestUserProfile {
         Set<Meal> breakfasts = new HashSet<>();
         Set<Meal> lunches = new HashSet<>();
         Set<Meal> dinners = new HashSet<>();
-        List<String> daysOfWeek = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
-        
+        List<String> daysOfWeek = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+                "Sunday");
+
         for (String day : daysOfWeek) {
             breakfasts.add(testDietPlan.getMeal(day, "Breakfast"));
             lunches.add(testDietPlan.getMeal(day, "Lunch"));

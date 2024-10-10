@@ -20,14 +20,14 @@ public class TestMeal {
         ingredients.add("Tomato Sauce");
         ingredients.add("Parmesan Cheese");
         testMeal = new Meal(
-            "Spaghetti Bolognese",
-            "Dinner",
-            ingredients,
-            700,
-            350.0,
-            25.0,
-            30.0,
-            85.0);
+                "Spaghetti Bolognese",
+                "Dinner",
+                ingredients,
+                700,
+                350.0,
+                25.0,
+                30.0,
+                85.0);
     }
 
     @Test

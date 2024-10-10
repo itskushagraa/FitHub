@@ -41,11 +41,11 @@ public class DietPlan {
         List<Meal> dayMeals = this.meals.get(day);
         switch (mealType) {
             case "Breakfast":
-                    dayMeals.set(0, mealToAdd);
+                dayMeals.set(0, mealToAdd);
             case "Lunch":
-                    dayMeals.set(1, mealToAdd);
+                dayMeals.set(1, mealToAdd);
             case "Dinner":
-                    dayMeals.set(2, mealToAdd);
+                dayMeals.set(2, mealToAdd);
             default:
                 // Case Never Reached
         }
@@ -64,11 +64,11 @@ public class DietPlan {
         List<Meal> dayMeals = this.meals.get(day);
         switch (mealType) {
             case "Breakfast":
-                    dayMeals.set(0, null);
+                dayMeals.set(0, null);
             case "Lunch":
-                    dayMeals.set(1, null);
+                dayMeals.set(1, null);
             case "Dinner":
-                    dayMeals.set(2, null);
+                dayMeals.set(2, null);
             default:
                 // Case Never Reached
         }

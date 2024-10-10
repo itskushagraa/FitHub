@@ -5,8 +5,7 @@ import java.util.List;
 /**
  * Represents an Exercise at the gym
  * Stores information about an exercise such as: name, muscles worked, sets
- * completed
- * Allows user to add/remove sets/reps, change weights lifted, and etc !!! TODO
+ * completed, completion status of the exercise
  **/
 
 public class Exercise {

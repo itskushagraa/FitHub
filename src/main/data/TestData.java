@@ -46,8 +46,9 @@ public class TestData {
 
     /*
      * MEAL OBJECTS FOR TESTING
-     * NOTE: I DONT ACTUALLY EAT THESE MEALS EVERYDAY (I wish my meals were this diverse). 
-     *       THIS IS A SAMPLE COLLECTION TAKEN FROM THE INTERNET.
+     * NOTE: I DONT ACTUALLY EAT THESE MEALS EVERYDAY (I wish my meals were this
+     * diverse).
+     * THIS IS A SAMPLE COLLECTION TAKEN FROM THE INTERNET.
      */
 
     // Breakfast Meals

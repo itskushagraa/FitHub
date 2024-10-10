@@ -26,7 +26,7 @@ public class TestExercise {
         sets.add(set1);
         testExercise = new Exercise("Barbell Bench Press", musclesWorked, sets);
     }
-    
+
     @Test
     void testConstructor() {
         assertEquals("Barbell Bench Press", testExercise.getName());
@@ -58,7 +58,7 @@ public class TestExercise {
         assertEquals(120, testExercise.getSets().get(2).getWeight());
     }
 
-    @Test 
+    @Test
     void testRemoveSingleSet() {
         assertEquals(1, testExercise.getSets().size());
         testExercise.removeSet();
@@ -108,12 +108,12 @@ public class TestExercise {
         assertEquals(28, testExercise.calculateTotalReps());
     }
 
-    @Test 
+    @Test
     void testCalculateTotalWeightSingle() {
         assertEquals(300, testExercise.calculateTotalWeightLifted());
     }
 
-    @Test 
+    @Test
     void testCalculateTotalWeightMultiple() {
         testExercise.addSet(12, 60);
         testExercise.addSet(1, 120);

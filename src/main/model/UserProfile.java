@@ -12,23 +12,22 @@ import data.ModelMealData;
 
 /**
  * Represents a user profile in FitHub
- * Stores personal data such as height, weight, age, fitness goal, weekly
- * workout intensity
- * Methods include: calculating metrics like BMI, calorie intake etc !!! TODO
+ * Stores personal data such as name, height, weight, age, fitness goal, weekly
+ * workout intensity, bmi, daily calorie consumption, workout split, diet plan
  **/
 
 public class UserProfile {
-    private String name; // user's name
-    private double height; // user's height (in cm)
-    private double weight; // user's weight (in kg)
-    private double bmi; // user's BMI
-    private int age; // user's age (in yrs)
-    private int intensity; // user's weekly workout intensity (Integer[1,7] in days per week)
-    private String goal; // user's fitness goal (one of: "bulk", "cut", "maintain")
-    private double targetCalories; // user's daily recommended calorie intake (based on goal)
+    private String name;
+    private double height;
+    private double weight;
+    private double bmi;
+    private int age;
+    private int intensity;
+    private String goal;
+    private double targetCalories;
 
-    private List<Workout> userWorkoutSplit; // workout split tailored to user attributes
-    private DietPlan userDietPlan; // dietPlan tailored to user attributes
+    private List<Workout> userWorkoutSplit;
+    private DietPlan userDietPlan;
 
     /*
      * REQUIRES:
