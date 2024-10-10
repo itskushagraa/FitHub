@@ -65,7 +65,11 @@ public class UserProfile {
      * three workouts: Push, Pull, and Legs.
      */
     public List<Workout> generateWorkoutList() {
-        return null; // STUB TODO
+        userWorkoutSplit = new ArrayList<>();
+        userWorkoutSplit.add(generatePush());
+        userWorkoutSplit.add(generatePull());
+        userWorkoutSplit.add(generateLegs());
+        return userWorkoutSplit;
     }
 
     /*
@@ -74,7 +78,17 @@ public class UserProfile {
      * chest, front delts, triceps and side delts
      */
     public Workout generatePush() {
-        return null; // STUB TODO
+        Workout pushDay = new Workout("Push Day", new ArrayList<>(), null, 0);
+
+        List<Exercise> chest = selectRandomExercises(ModelExerciseData.CHEST_LIST, 4);
+        List<Exercise> triceps = selectRandomExercises(ModelExerciseData.TRICEP_LIST, 2);
+        List<Exercise> sideDelts = selectRandomExercises(ModelExerciseData.SIDE_DELT_LIST, 1);
+
+        pushDay.getExercises().addAll(chest);
+        pushDay.getExercises().addAll(triceps);
+        pushDay.getExercises().addAll(sideDelts);
+
+        return pushDay;
     }
 
     /*
@@ -83,7 +97,21 @@ public class UserProfile {
      * upper back, lower back, biceps, lats, rear delts
      */
     public Workout generatePull() {
-        return null; // STUB TODO
+        Workout pullDay = new Workout("Pull Day", new ArrayList<>(), null, 0);
+
+        List<Exercise> upperBack = selectRandomExercises(ModelExerciseData.UPPER_BACK_LIST, 2);
+        List<Exercise> lowerBack = selectRandomExercises(ModelExerciseData.LOWER_BACK_LIST, 1);
+        List<Exercise> biceps = selectRandomExercises(ModelExerciseData.BICEP_LIST, 2);
+        List<Exercise> lats = selectRandomExercises(ModelExerciseData.LAT_LIST, 1);
+        List<Exercise> rearDelts = selectRandomExercises(ModelExerciseData.REAR_DELT_LIST, 1);
+
+        pullDay.getExercises().addAll(upperBack);
+        pullDay.getExercises().addAll(lowerBack);
+        pullDay.getExercises().addAll(biceps);
+        pullDay.getExercises().addAll(lats);
+        pullDay.getExercises().addAll(rearDelts);
+
+        return pullDay;
     }
 
     /*
@@ -92,7 +120,15 @@ public class UserProfile {
      * quads, hams, glutes, calves, abs
      */
     public Workout generateLegs() {
-        return null; // STUB TODO
+        Workout legDay = new Workout("Leg Day", new ArrayList<>(), null, 0);
+
+        List<Exercise> legs = selectRandomExercises(ModelExerciseData.LEGS_LIST, 4);
+        List<Exercise> abs = selectRandomExercises(ModelExerciseData.ABS_LIST, 1);
+
+        legDay.getExercises().addAll(legs);
+        legDay.getExercises().addAll(abs);
+
+        return legDay;
     }
 
     /*
@@ -101,7 +137,9 @@ public class UserProfile {
      * EFFECTS: picks 'count' amount of random exercises from the exercise list
      */
     public List<Exercise> selectRandomExercises(List<Exercise> exercises, int count) {
-        return null; // STUB TODO
+        List<Exercise> shuffledExercises = new ArrayList<>(exercises);
+        Collections.shuffle(shuffledExercises);
+        return shuffledExercises.subList(0, count);
     }
 
     /*
@@ -109,7 +147,30 @@ public class UserProfile {
      * EFFECTS: generates a list of workouts for the user based on user attributes
      */
     public DietPlan generateDietPlan() {
-        return null; // STUB TODO
+        List<String> daysOfWeek = new ArrayList<>(
+                Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
+        Map<String, List<Meal>> dietPlanMap = new HashMap<>();
+
+        List<Meal> randomizedBreakfasts = new ArrayList<>((ModelMealData.BREAKFAST_LIST));
+        List<Meal> randomizedLunches = new ArrayList<>(ModelMealData.LUNCH_LIST);
+        List<Meal> randomizedDinners = new ArrayList<>(ModelMealData.DINNER_LIST);
+
+        Collections.shuffle(randomizedBreakfasts);
+        Collections.shuffle(randomizedLunches);
+        Collections.shuffle(randomizedDinners);
+
+        for (int i = 0; i < daysOfWeek.size(); i++) {
+            List<Meal> dailyMeals = new ArrayList<>(
+                    Arrays.asList(randomizedBreakfasts.get(i), randomizedLunches.get(i), randomizedDinners.get(i)));
+            dietPlanMap.put(daysOfWeek.get(i), dailyMeals);
+        }
+
+        for (String day : daysOfWeek) {
+            adjustQuantities(dietPlanMap, day);
+        }
+
+        userDietPlan = new DietPlan(dietPlanMap);
+        return userDietPlan;
     }
 
     /*
@@ -119,7 +180,15 @@ public class UserProfile {
      * in accordance to the user's attributes
      */
     public void adjustQuantities(Map<String, List<Meal>> map, String day) {
-        // STUB TODO
+        List<Meal> dailyMeals = map.get(day);
+
+        Meal breakfast = dailyMeals.get(0);
+        Meal lunch = dailyMeals.get(1);
+        Meal dinner = dailyMeals.get(2);
+
+        breakfast.setQuantity((this.calculateCalories() * 0.3) / breakfast.calculateCaloriesPerGram());
+        lunch.setQuantity((this.calculateCalories() * 0.3) / lunch.calculateCaloriesPerGram());
+        dinner.setQuantity((this.calculateCalories() * 0.4) / dinner.calculateCaloriesPerGram());
     }
 
     /*
@@ -187,6 +256,11 @@ public class UserProfile {
 
     public void setTargetCalories(double cals) {
         this.targetCalories = cals;
+        List<String> daysOfWeek = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+                "Sunday");
+        for (String day : daysOfWeek) {
+            adjustQuantities(userDietPlan.getCompleteWeeklyPlan(), day);
+        }
     }
 
     /*
