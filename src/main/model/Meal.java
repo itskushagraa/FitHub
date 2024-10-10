@@ -18,7 +18,7 @@ public class Meal {
     private String name;
     private String type;
     private List<String> ingredients;
-    private int calories;
+    private double calories;
     private double quantity;
     private double protein;
     private double fat;
@@ -33,7 +33,7 @@ public class Meal {
      * - 0 <= [protein, fat, carb] <= quantity
      * - 0 <= (protein + fat + carb) <= quantity
      */
-    public Meal(String name, String type, List<String> ingredients, int calories, double quantity, double protein,
+    public Meal(String name, String type, List<String> ingredients, double calories, double quantity, double protein,
             double fat, double carb) {
         this.name = name;
         this.type = type;
@@ -73,8 +73,8 @@ public class Meal {
     /*
      * EFFECTS: returns the number of calories per gram of the meal
      */
-    public int calculateCaloriesPerGram() {
-        return (int) (this.calories / this.quantity);
+    public double calculateCaloriesPerGram() {
+        return (this.calories / this.quantity);
     }
 
     /*
@@ -123,7 +123,7 @@ public class Meal {
     public void setQuantity(double quantity) {
         double ratio = quantity / this.quantity;
         this.quantity = quantity;
-        this.calories = (int) (this.calories * ratio);
+        this.calories = this.calories * ratio;
         this.protein *= ratio;
         this.fat *= ratio;
         this.carb *= ratio;
@@ -144,8 +144,8 @@ public class Meal {
         return this.ingredients;
     }
 
-    public int getCalories() {
-        return this.calories;
+    public double getCalories() {
+        return Math.round(this.calories * 100.0) / 100.0;
     }
 
     public double getQuantity() {
