@@ -22,7 +22,30 @@ public class FitHubCommandUI {
         currentState = AppState.WELCOME;
     }
 
-    
+    public void run() throws IOException {
+        while (true) {
+            switch (currentState) {
+                case WELCOME:
+                    displayWelcomeScreen();
+                    break;
+                case USER_SETUP:
+                    configureUserScreen();
+                    break;
+                case MAIN_MENU:
+                    displayMenu();
+                    break;
+                case WORKOUT_PLANNER:
+                    displayWorkoutPlanner();
+                    break;
+                case DIET_PLANNER: 
+                    displayDietPlanner();
+                    break;
+                case USER_PROFILE:
+                    displayUserProfile();
+                    break;
+            }
+        }
+    }
 
     public void displayWelcomeScreen() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -66,7 +89,47 @@ public class FitHubCommandUI {
         currentState = AppState.WELCOME;
     }
 
+    public void displayMenu() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Welcome to your FitHub dashboard!");
+        System.out.println("1 -> Access Workout Planner\n2 -> Access Diet Planner\n3 -> Access User Profile");
+        System.out.println("4 -> Exit FitHub\nEnter a number to choose:");
+        int input = 0;
+        do {
+            try {
+                input = Integer.parseInt(reader.readLine());
+                if (input < 1 || input > 4) {
+                    System.out.println("Please choose from the given options: ");
+                } else if (input == 1) {
+                    currentState = AppState.WORKOUT_PLANNER;
+                } else if (input == 2) {
+                    currentState = AppState.DIET_PLANNER;
+                } else if (input == 3) {
+                    currentState = AppState.USER_PROFILE;
+                } else if (input == 4) {
+                    exitApp();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please enter a number: ");
+            }
+        } while (input < 1 || input > 4);
+    }
 
+    public void displayWorkoutPlanner() {
+        // STUB TODO
+    }
+
+    public void displayDietPlanner() {
+        // STUB TODO
+    }
+
+    public void displayUserProfile() {
+        // STUB TODO
+    }
+
+    /*
+     * HELPER FUNCTIONS FOR THE APP STATES
+     */
     private String getValidName(BufferedReader reader) throws IOException {
         String name = "";
         System.out.println("Enter your name: ");
@@ -86,12 +149,14 @@ public class FitHubCommandUI {
             try {
                 height = Double.parseDouble(reader.readLine());
                 if (height <= 0) {
-                    System.out.println("Please enter a positive non-zero height");
+                    System.out.println("Please enter a positive non-zero height:");
+                } else if (height > 250) {
+                    System.out.println("That's a bit too much! Please enter a height under 250 cm:");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid Input. Please enter a valid number");
+                System.out.println("Invalid Input. Please enter a number:");
             }
-        } while (height <= 0.0);
+        } while (height <= 0.0 || height > 250);
         return height;
     }
 
@@ -103,11 +168,13 @@ public class FitHubCommandUI {
                 weight = Double.parseDouble(reader.readLine());
                 if (weight <= 0) {
                     System.out.println("Please enter a positive non-zero weight");
+                } else if (weight > 250) {
+                    System.out.println("That's a bit too much! Please enter a weight under 250 kg:");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid Input. Please enter a number number");
             }
-        } while (weight <= 0.0);
+        } while (weight <= 0.0 || weight > 250);
         return weight;
     }
 
@@ -116,14 +183,16 @@ public class FitHubCommandUI {
         System.out.println("Enter your age (in years): ");
         do {
             try {
-                age = Integer.parseInt(reader.readLine());
+                age = (int) (Double.parseDouble(reader.readLine()));
                 if (age <= 0) {
                     System.out.println("Please enter a positive non-zero age");
+                } else if (age > 100) {
+                    System.out.println("That's a bit too much! Please enter an age under 100 years:");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number");
+                System.out.println("Invalid input. Please enter a number:");
             }
-        } while (age <= 0);
+        } while (age <= 0 || age > 100);
         return age;
     }
 
@@ -165,5 +234,10 @@ public class FitHubCommandUI {
     public void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public void exitApp() {
+        clearConsole();
+        System.exit(0);
     }
 }
