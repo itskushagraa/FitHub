@@ -17,9 +17,11 @@ import model.UserProfile;
 
 public class FitHubCommandUI {
     private AppState currentState;
+    private UserProfile mainUser;
 
-    public FitHubCommandUI() {
+    public FitHubCommandUI() throws Exception {
         currentState = AppState.WELCOME;
+        run();
     }
 
     public void run() throws IOException {
@@ -37,10 +39,11 @@ public class FitHubCommandUI {
                 case WORKOUT_PLANNER:
                     displayWorkoutPlanner();
                     break;
-                case DIET_PLANNER: 
+                case DIET_PLANNER:
                     displayDietPlanner();
                     break;
                 case USER_PROFILE:
+                    clearConsole();
                     displayUserProfile();
                     break;
             }
@@ -69,7 +72,7 @@ public class FitHubCommandUI {
         int age = getValidAge(reader);
         int intensity = getValidIntensity(reader);
         String goal = getValidGoal(reader);
-        UserProfile mainUser = new UserProfile(name, height, weight, age, intensity, goal);
+        mainUser = new UserProfile(name, height, weight, age, intensity, goal);
 
         System.out.println("Based on your inputs, your daily recommended calorie intake is "
                 + String.format("%.2f", mainUser.getTargetCalories()) + ".");
@@ -86,7 +89,7 @@ public class FitHubCommandUI {
             System.out.println("IOException occured");
         }
 
-        currentState = AppState.WELCOME;
+        currentState = AppState.MAIN_MENU;
     }
 
     public void displayMenu() throws IOException {
@@ -123,13 +126,72 @@ public class FitHubCommandUI {
         // STUB TODO
     }
 
-    public void displayUserProfile() {
-        // STUB TODO
+    public void displayUserProfile() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("This is your current user profile");
+        showProfile();
+        System.out.println("Choose from the given options to edit your user profile: ");
+        System.out.println("1 -> Name\n2 -> Height\n3 -> Weight\n4 -> Age\n5 -> Workout Intensity\n6 -> Fitness Goal");
+        System.out.println("7 -> Back to main menu\n8 -> Exit App");
+        int input = 0;
+        do {
+            try {
+                input = Integer.parseInt(reader.readLine());
+                if (input < 1 || input > 8) {
+                    System.out.println("Please choose from the given options.");
+                } else {
+                    executeUserProfileInput(input, reader);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please enter a number.");
+            }
+        } while (input < 1 || input > 8);
     }
 
     /*
      * HELPER FUNCTIONS FOR THE APP STATES
      */
+
+    public void showProfile() {
+        System.out.println("Name: " + mainUser.getName());
+        System.out.println("Height: " + String.format("%.2f", mainUser.getHeight()) + " cm");
+        System.out.println("Weight: " + String.format("%.2f", mainUser.getWeight()) + " kg");
+        System.out.println("BMI: " + String.format("%.1f", mainUser.getBmi()));
+        System.out.println("Age: " + mainUser.getAge() + " years");
+        System.out.println("Workout Intensity: " + mainUser.getIntensity() + " days a week");
+        if (mainUser.getGoal().equals("bulk")) {
+            System.out.println("Fitness Goal: Gain Muscle (bulk)");
+        } else if (mainUser.getGoal().equals("cut")) {
+            System.out.println("Fitness Goal: Lose Weight (cut)");
+        } else if (mainUser.getGoal().equals("maintain")) {
+            System.out.println("Fitness Goal: Maintain Weight");
+        }
+        System.out.println("Daily calorie consumption: "
+                + String.format("%.2f", mainUser.getTargetCalories()) + " kcal");
+    }
+
+    public void executeUserProfileInput(int input, BufferedReader reader) throws IOException {
+        if (input == 1) {
+            mainUser.setName(getValidName(reader));
+        } else if (input == 2) {
+            mainUser.setHeight(getValidHeight(reader));
+        } else if (input == 3) {
+            mainUser.setWeight(getValidWeight(reader));
+        } else if (input == 4) {
+            mainUser.setAge(getValidAge(reader));
+        } else if (input == 5) {
+            mainUser.setIntensity(getValidIntensity(reader));
+        } else if (input == 6) {
+            mainUser.setGoal(getValidGoal(reader));
+        } else if (input == 7) {
+            clearConsole();
+            currentState = AppState.MAIN_MENU;
+        } else if (input == 8) {
+            exitApp();
+        }
+        clearConsole();
+    }
+
     private String getValidName(BufferedReader reader) throws IOException {
         String name = "";
         System.out.println("Enter your name: ");
@@ -228,7 +290,13 @@ public class FitHubCommandUI {
             }
         } while (!validGoals.contains(goal));
 
-        return goal;
+        if (goal.equals("b")) {
+            return "bulk";
+        } else if (goal.equals("c")) {
+            return "cut";
+        } else {
+            return "maintain";
+        }
     }
 
     public void clearConsole() {

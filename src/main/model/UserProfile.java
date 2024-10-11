@@ -228,12 +228,14 @@ public class UserProfile {
 
     public void setHeight(double height) {
         this.height = height;
-        this.bmi = calculateBMI();
+        setBmi();
+        this.targetCalories = calculateCalories();
     }
 
     public void setWeight(double weight) {
         this.weight = weight;
-        this.bmi = calculateBMI();
+        setBmi();
+        this.targetCalories = calculateCalories();
     }
 
     public void setBmi() {
@@ -242,14 +244,17 @@ public class UserProfile {
 
     public void setAge(int age) {
         this.age = age;
+        this.targetCalories = calculateCalories();
     }
 
     public void setIntensity(int intensity) {
         this.intensity = intensity;
+        this.targetCalories = calculateCalories();
     }
 
     public void setGoal(String goal) {
         this.goal = goal;
+        this.targetCalories = calculateCalories();
         userDietPlan = generateDietPlan();
     }
 
