@@ -5,14 +5,13 @@ import java.util.List;
 /**
  * Represents an Exercise at the gym
  * Stores information about an exercise such as: name, muscles worked, sets
- * completed, completion status of the exercise
+ * completed
  **/
 
 public class Exercise {
     private String name; // name of the exercise
     private List<String> musclesWorked; // list of muscles worked
     private List<ExerciseSet> sets; // sets completed in the exercise
-    private boolean isCompleted; // completion status of the exercise
 
     /*
      * REQUIRES:
@@ -28,7 +27,6 @@ public class Exercise {
         this.name = name;
         this.musclesWorked = musclesWorked;
         this.sets = sets;
-        this.isCompleted = false;
     }
 
     /*
@@ -94,10 +92,6 @@ public class Exercise {
         this.musclesWorked = musclesWorked;
     }
 
-    public void setCompletionStatus(boolean completionStatus) {
-        this.isCompleted = completionStatus;
-    }
-
     /*
      * GETTER METHODS:
      */
@@ -111,9 +105,5 @@ public class Exercise {
 
     public List<ExerciseSet> getSets() {
         return this.sets;
-    }
-
-    public boolean isCompleted() {
-        return this.isCompleted;
     }
 }

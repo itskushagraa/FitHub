@@ -10,8 +10,6 @@ import java.util.List;
  * - Calorific value (in kcal)
  * - Quantity (in grams)
  * - Macronutrient information (Protein, Fat, Carbohydrates)
- * Allows the user to add or remove ingredients and modify attributes, including
- * calories, quantity, and macronutrients.
  */
 
 public class Meal {
@@ -110,13 +108,13 @@ public class Meal {
     }
 
     /*
-     * MODIFIES: 
-     * - this.quantity 
+     * MODIFIES:
+     * - this.quantity
      * - this.calories
      * - this.protein
-     * - this.fat 
+     * - this.fat
      * - this.carb
-     * EFFECTS: 
+     * EFFECTS:
      * - changes this.quantity to the given quantity
      * - updates calories and macro quantities accordingly
      */

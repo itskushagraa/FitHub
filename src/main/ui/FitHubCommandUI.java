@@ -28,12 +28,15 @@ public class FitHubCommandUI {
     private AppState currentState;
     private UserProfile mainUser;
 
+    // EFFECTS: clears whatever was on the console screen and runs the UI
     public FitHubCommandUI() throws Exception {
         currentState = AppState.WELCOME;
         clearConsole();
         run();
     }
 
+    // EFFECTS: runs the state machine, toggles app states according to the user's
+    // navigation of the app screens
     private void run() throws IOException {
         while (true) {
             switch (currentState) {
@@ -60,6 +63,7 @@ public class FitHubCommandUI {
         }
     }
 
+    // EFFECTS: displays WELCOME screen for the user
     private void displayWelcomeScreen() {
         System.out.println("Welcome to FitHub! Press any key to get started!");
 
@@ -73,6 +77,7 @@ public class FitHubCommandUI {
         currentState = AppState.USER_SETUP;
     }
 
+    // EFFECTS: configures the USER_SETUP portion of FitHub
     private void configureUserScreen() throws IOException {
         String name = getValidName(reader);
         double height = getValidHeight(reader);
@@ -99,6 +104,7 @@ public class FitHubCommandUI {
         currentState = AppState.MAIN_MENU;
     }
 
+    // EFFECTS: display the FitHub MAIN_MENU
     private void displayMenu() throws IOException {
         System.out.println("Welcome to your FitHub dashboard!");
         System.out.println("1 -> Access Workout Planner\n2 -> Access Diet Planner\n3 -> Access User Profile");
@@ -124,12 +130,14 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 4);
     }
 
+    // EFFECTS: displays and executes the USER_PROFILE portion of FitHub
     private void displayWorkoutPlanner() throws IOException {
         clearConsole();
         System.out.println("Here is your workout split!");
         showWorkoutSplit(reader);
     }
 
+    // EFFECTS: displays and executes the USER_PROFILE
     private void displayUserProfile() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("This is your current user profile");
@@ -152,6 +160,7 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 8);
     }
 
+    // EFFECTS: displays and executes the DIET_PLANNER portion of FitHub
     private void displayDietPlanner() throws IOException {
         clearConsole();
         DietPlan mainPlan = mainUser.getDietPlan();
@@ -174,6 +183,7 @@ public class FitHubCommandUI {
      * HELPER FUNCTIONS FOR THE APP STATES
      */
 
+    // EFFECTS: peforms the task chosen from the diet plan screen
     private void executeDietPlanInput() throws IOException {
         int input = 0;
         do {
@@ -200,6 +210,7 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 5);
     }
 
+    // EFFECTS: displays statistics for a given day of the diet plan
     private void showDayStatistics() throws IOException {
         System.out.println("Choose the day whose statistics you want to view: ");
         System.out.println(
@@ -220,6 +231,7 @@ public class FitHubCommandUI {
         } while (!input.equals("x"));
     }
 
+    // EFFECTS: displays the diet plan statistics of all 7 days combined
     private void showWeekStatistics() throws IOException {
         System.out.println("Total Calories: " + (mainUser.getDietPlan().calculateWeeklyCalories()) + "kcal");
         System.out.println("Total Quantity: " + (mainUser.getDietPlan().calculateWeeklyQuantity()) + "g");
@@ -236,6 +248,8 @@ public class FitHubCommandUI {
         } while (!input.equals("x"));
     }
 
+    // EFFECTS: displays the specified meal's name, macronutrient and calorie
+    // information, and list of ingredients
     private void showMeal() throws IOException {
         System.out.println("Enter the type of meal you want to view: \nb -> Breakfast\nl -> Lunch\nd -> Dinner");
         String mealType = getValidMealType();
@@ -253,6 +267,7 @@ public class FitHubCommandUI {
         executeMealInput(meal, day);
     }
 
+    // EFFECTS: performs the option chosen in the list of meal options
     private void executeMealInput(Meal meal, String day) throws IOException {
         int input = 0;
         do {
@@ -277,6 +292,8 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 5);
     }
 
+    // EFFECTS: creates a newMeal with user-chosen parameters and replaces the
+    // current meal with the new meal
     private void createMeal(Meal meal, String day) throws NumberFormatException, IOException {
         String mealName = getValidMealName();
         double mealQuantity = getValidQuantity();
@@ -294,6 +311,8 @@ public class FitHubCommandUI {
         mainUser.getDietPlan().addMeal(day, meal.getType(), newMeal);
     }
 
+    // EFFECTS: returns a double value thats higher than 0, forces the user to input
+    // a valid value
     private double getValidDouble() throws IOException {
         double ret = 0.0;
         do {
@@ -309,6 +328,7 @@ public class FitHubCommandUI {
         return ret;
     }
 
+    // EFFECTS: returns a list of string of ingredients for a meal
     private List<String> getValidIngredients() throws IOException {
         List<String> ingredients = new ArrayList<>();
         System.out.println("Enter list of ingredients (type in 'done' to finish adding): ");
@@ -320,6 +340,8 @@ public class FitHubCommandUI {
         return ingredients;
     }
 
+    // EFFECTS: returns a double type quantity greater than 0 for a meal, forces
+    // user to input valid values
     private double getValidQuantity() throws IOException {
         System.out.println("Enter quantity (in grams): ");
         double ret = 0.0;
@@ -336,6 +358,8 @@ public class FitHubCommandUI {
         return ret;
     }
 
+    // EFFECTS: returns a valid (non-empty) meal name, forces user to enter valid
+    // name
     private String getValidMealName() throws IOException {
         String name = "";
         System.out.println("Enter new meal name: ");
@@ -348,6 +372,7 @@ public class FitHubCommandUI {
         return name;
     }
 
+    // EFFECTS: displays the attributes of a meal object
     private void showMealInfo(Meal meal) {
         System.out.println("Ingredients Required: " + String.join(", ", meal.getIngredients()));
         System.out.println("Quantity: " + String.format("%.2f", meal.getQuantity()) + "g");
@@ -357,6 +382,7 @@ public class FitHubCommandUI {
         System.out.println("Calories: " + String.format("%.2f", meal.getCalories()) + "kcals");
     }
 
+    // EFFECTS: returns a valid day of the week falling between monday to sunday
     private String getValidDayOfWeek() throws IOException {
         int dayNum = 0;
         String day = "";
@@ -376,6 +402,7 @@ public class FitHubCommandUI {
         return day;
     }
 
+    // EFFECTS: returns the corresponding day for a number (1 = monday, 7 = sunday)
     private String getDayFromNumber(int dayNum) {
         switch (dayNum) {
             case 1:
@@ -397,6 +424,7 @@ public class FitHubCommandUI {
         }
     }
 
+    // EFFECTS: returns one of 3 valid meal types (breakfast, lunch, dinner)
     private String getValidMealType() throws IOException {
         Set<String> validTypes = new HashSet<>(Arrays.asList("b", "l", "d"));
         String type;
@@ -416,6 +444,7 @@ public class FitHubCommandUI {
         }
     }
 
+    // EFFECTS: displays the workout split
     private void showWorkoutSplit(BufferedReader reader) throws IOException {
         List<Workout> workoutSplit = mainUser.getWorkoutList();
         for (int i = 0; i < workoutSplit.size(); i++) {
@@ -427,6 +456,7 @@ public class FitHubCommandUI {
         executeWorkoutSplitInput(workoutSplit, reader);
     }
 
+    // EFFECTS: performs option chosen from the list of workout split options
     private void executeWorkoutSplitInput(List<Workout> workoutSplit, BufferedReader reader) throws IOException {
         int input = 0;
         do {
@@ -451,6 +481,7 @@ public class FitHubCommandUI {
         } while (input < 1 || input > workoutSplit.size() + 4);
     }
 
+    // EFFECTS: shows all workout statistics for the overall workout split
     private void showOverallStatistics(List<Workout> workoutSplit, BufferedReader reader, int totalSets, int totalReps,
             int totalVolume) throws IOException {
         List<String> muscles = new ArrayList<>();
@@ -478,6 +509,7 @@ public class FitHubCommandUI {
         } while (!input.equals("x"));
     }
 
+    // EFFECTS: shows a workout with its list of exercises and other options
     private void showWorkout(int input, List<Workout> workoutSplit, BufferedReader reader) throws IOException {
         clearConsole();
         Workout workout = workoutSplit.get(input);
@@ -494,6 +526,7 @@ public class FitHubCommandUI {
         executeWorkoutInput(workout, reader);
     }
 
+    // EFFECTS: performs option chosen from the list of workout options
     private void executeWorkoutInput(Workout workout, BufferedReader reader) throws IOException {
         int input = 0;
         do {
@@ -505,6 +538,8 @@ public class FitHubCommandUI {
         } while (input < 1 || input > workout.getExercises().size() + 5);
     }
 
+    // HELPER METHOD ADDED FOR METHOD-LENGTH REDUCTION PURPOSES
+    // EFFECTS: does literally what executeWorkoutInput() does
     private int performSpecifiedWorkoutOperation(int input, BufferedReader reader, Workout workout)
             throws IOException {
         input = Integer.parseInt(reader.readLine());
@@ -527,6 +562,7 @@ public class FitHubCommandUI {
         return input;
     }
 
+    // EFFECTS: renames a workout according to the user's preferences
     private void renameWorkout(Workout workout, BufferedReader reader) throws IOException {
         String newName = "";
         System.out.println("Enter Workout Name: ");
@@ -540,6 +576,7 @@ public class FitHubCommandUI {
         } while (newName.length() == 0);
     }
 
+    // EFFECTS: displays statistics for a single workout session
     private void showWorkoutStatistics(Workout workout, BufferedReader reader) throws IOException {
         int totalReps = workout.calculateTotalReps();
         int totalWeight = workout.calculateTotalVolume();
@@ -565,6 +602,7 @@ public class FitHubCommandUI {
         } while (input != 1);
     }
 
+    // EFFECTS: creates a new exercise object to add to a workout
     private void createExercise(BufferedReader reader, Workout workout) throws IOException {
         String name = getValidExerciseName(reader);
         List<String> musclesWorked = new ArrayList<>();
@@ -580,6 +618,8 @@ public class FitHubCommandUI {
         showWorkout(mainUser.getWorkoutList().indexOf(workout), mainUser.getWorkoutList(), reader);
     }
 
+    // EFFECTS: displays an exercise with its name and all its sets and other
+    // options
     private void showExercise(int input, Workout workout, BufferedReader reader) throws IOException {
         clearConsole();
         Exercise exercise = workout.getExercises().get(input);
@@ -597,6 +637,7 @@ public class FitHubCommandUI {
         executeExerciseInput(exercise, reader, workout);
     }
 
+    // EFFECTS: performs option chosen from the list of exercise options
     private void executeExerciseInput(Exercise exercise, BufferedReader reader, Workout workout) throws IOException {
         int input = 0;
         do {
@@ -608,6 +649,8 @@ public class FitHubCommandUI {
         } while (input < 1 || input > exercise.getSets().size() + 5);
     }
 
+    // HELPER METHOD ADDED FOR METHOD-LENGTH REDUCTION PURPOSES
+    // EFFECTS: does literally what executeExerciseInput() does
     private int performSpecificExerciseOperation(int input, BufferedReader reader, Exercise exercise, Workout workout)
             throws IOException {
         input = Integer.parseInt(reader.readLine());
@@ -632,6 +675,7 @@ public class FitHubCommandUI {
         return input;
     }
 
+    // EFFECTS: produces a unique list of muscle groups worked in an exercise
     private void showMusclesWorked(Exercise exercise, BufferedReader reader, Workout workout) throws IOException {
         List<String> musclesWorked = exercise.getMusclesWorked();
         for (String muscle : musclesWorked) {
@@ -653,6 +697,7 @@ public class FitHubCommandUI {
         } while (input != 1);
     }
 
+    // EFFECTS: creates a new set to add to an exercise
     private void createExerciseSet(BufferedReader reader, Exercise exercise, Workout workout) throws IOException {
         int weightLifted = getValidWeightLifted(reader);
         int reps = getValidReps(reader);
@@ -660,6 +705,8 @@ public class FitHubCommandUI {
         showExercise(workout.getExercises().indexOf(exercise), workout, reader);
     }
 
+    // EFFECTS: shows an exercise set with its given weight and reps, along with
+    // other options
     private void showExerciseSet(int setIndex, Exercise exercise, BufferedReader reader, Workout workout)
             throws IOException {
         displayExerciseSetOptions();
@@ -688,6 +735,8 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 5);
     }
 
+    // EFFECTS: forces user to input Strings till a valid (non-empty) name for an
+    // exercise is returned
     private String getValidExerciseName(BufferedReader reader) throws IOException {
         String name = "";
         System.out.println("Enter exercise name: ");
@@ -701,6 +750,7 @@ public class FitHubCommandUI {
 
     }
 
+    // EFFECTS: forces user to input integers till a valid weight is returned
     private int getValidWeightLifted(BufferedReader reader) throws IOException {
         int weightLifted = 0;
         System.out.println("Enter weight lifted:");
@@ -717,6 +767,7 @@ public class FitHubCommandUI {
         return weightLifted;
     }
 
+    // EFFECTS: forces user to input integers till a valid rep amount is returned
     private int getValidReps(BufferedReader reader) throws IOException {
         int reps = 0;
         System.out.println("Enter reps completed: ");
@@ -733,12 +784,15 @@ public class FitHubCommandUI {
         return reps;
     }
 
+    // HELPER METHOD ADDED FOR METHOD-LENGTH REDUCTION PURPOSES
+    // EFFECTS: displays list of options to be executed on an ExerciseSet object
     private void displayExerciseSetOptions() {
         System.out.println("Pick one of the options below: ");
         System.out.println("1 -> Delete this set\n2 -> Change weight lifted\n3 -> Change reps");
         System.out.println("4 -> Back to set list\n5 -> Exit app");
     }
 
+    // EFFECTS: shows user's profile with all the attributes
     private void showProfile() {
         System.out.println("Name: " + mainUser.getName());
         System.out.println("Height: " + String.format("%.2f", mainUser.getHeight()) + " cm");
@@ -757,6 +811,7 @@ public class FitHubCommandUI {
                 + String.format("%.2f", mainUser.getTargetCalories()) + " kcal");
     }
 
+    // EFFECTS: performs option chosen to edit user profile
     private void executeUserProfileInput(int input, BufferedReader reader) throws IOException {
         if (input == 1) {
             mainUser.setName(getValidName(reader));
@@ -778,6 +833,12 @@ public class FitHubCommandUI {
         }
         clearConsole();
     }
+
+    /*
+     * GETTERS METHODS
+     * EFFECTS: These methods all return certain user attributes after validating
+     * user inputs so as to not cause errors or exceptions
+     */
 
     private String getValidName(BufferedReader reader) throws IOException {
         String name = "";
@@ -886,11 +947,13 @@ public class FitHubCommandUI {
         }
     }
 
+    // EFFECTS: clears console
     private void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    // EFFECTS: closes the app
     private void exitApp() {
         clearConsole();
         System.exit(0);

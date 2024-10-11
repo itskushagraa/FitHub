@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
@@ -34,7 +32,6 @@ public class TestExercise {
         assertEquals("Front Delts", testExercise.getMusclesWorked().get(1));
         assertEquals("Triceps", testExercise.getMusclesWorked().get(2));
         assertEquals(set1, testExercise.getSets().get(0));
-        assertFalse(testExercise.isCompleted());
     }
 
     @Test
@@ -133,12 +130,5 @@ public class TestExercise {
         testExercise.setMusclesWorked(musclesWorked);
         assertEquals("Barbell Squat", testExercise.getName());
         assertEquals(musclesWorked, testExercise.getMusclesWorked());
-
-        testExercise.setCompletionStatus(false);
-        assertFalse(testExercise.isCompleted());
-        testExercise.setCompletionStatus(true);
-        assertTrue(testExercise.isCompleted());
-        testExercise.setCompletionStatus(true);
-        assertTrue(testExercise.isCompleted());
     }
 }

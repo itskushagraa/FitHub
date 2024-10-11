@@ -20,6 +20,7 @@ public class TestDietPlan {
 
     @BeforeEach
     void runBefore() {
+        // creating a sample HashMap of days and meals per day for testing purposes
         List<Meal> mon = new ArrayList<>(Arrays.asList(TestData.SCRAMBLED_EGGS_TOAST, TestData.CHICKEN_SALAD,
                 TestData.GRILLED_FISH_VEGGIES));
         List<Meal> tue = new ArrayList<>(Arrays.asList(TestData.OATMEAL_BANANA, TestData.QUINOA_BOWL,
@@ -161,6 +162,5 @@ public class TestDietPlan {
         assertEquals(0, testPlan.calculateWeeklyProtein());
         assertEquals(0, testPlan.calculateWeeklyFat());
         assertEquals(0, testPlan.calculateWeeklyCarb());
-
     }
 }
