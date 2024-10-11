@@ -301,4 +301,8 @@ public class UserProfile {
     public double getTargetCalories() {
         return this.targetCalories;
     }
+
+    public List<Workout> getWorkoutList() {
+        return this.userWorkoutSplit;
+    }
 }

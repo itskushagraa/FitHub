@@ -15,9 +15,6 @@ import java.util.Set;
 public class Workout {
     private String name;
     private List<Exercise> exercises;
-    private LocalDate date;
-    private int duration;
-    private boolean isCompleted;
 
     /*
      * REQUIRES:
@@ -25,16 +22,11 @@ public class Workout {
      * - dateCompleted != null
      * - duration >= 0
      * EFFECTS:
-     * - initializes the workout with a name, list of exercises completed, date,
-     * duration
-     * - sets the initial completion status of the workout as false
+     * - initializes the workout with a name, list of exercises completed
      */
     public Workout(String name, List<Exercise> exercises, LocalDate date, int duration) {
         this.name = name;
         this.exercises = exercises;
-        this.date = date;
-        this.duration = duration;
-        this.isCompleted = false;
     }
 
     /*
@@ -126,18 +118,6 @@ public class Workout {
         this.name = name;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setCompletionStatus(boolean completionStatus) {
-        this.isCompleted = completionStatus;
-    }
-
     /*
      * GETTERS:
      */
@@ -147,17 +127,5 @@ public class Workout {
 
     public List<Exercise> getExercises() {
         return this.exercises;
-    }
-
-    public LocalDate getDate() {
-        return this.date;
-    }
-
-    public int getDuration() {
-        return this.duration;
-    }
-
-    public boolean isCompleted() {
-        return this.isCompleted;
     }
 }

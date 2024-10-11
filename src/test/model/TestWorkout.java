@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,9 +27,6 @@ public class TestWorkout {
         assertEquals("FBD", testWorkout.getName());
         assertEquals(TestData.BENCH_PRESS, testWorkout.getExercises().get(0));
         assertEquals(1, testWorkout.getExercises().size());
-        assertEquals(LocalDate.now(), testWorkout.getDate());
-        assertEquals(60, testWorkout.getDuration());
-        assertFalse(testWorkout.isCompleted());
     }
 
     @Test
@@ -143,15 +138,8 @@ public class TestWorkout {
     }
 
     @Test
-    void testSetterMethods() {
+    void testSetName() {
         testWorkout.setName("random workout");
         assertEquals("random workout", testWorkout.getName());
-        testWorkout.setDuration(1000);
-        assertEquals(1000, testWorkout.getDuration());
-        testWorkout.setDate(LocalDate.of(2024, 10, 1));
-        assertEquals(LocalDate.of(2024, 10, 1), testWorkout.getDate());
-        testWorkout.setCompletionStatus(true);
-        assertTrue(testWorkout.isCompleted());
-
     }
 }
