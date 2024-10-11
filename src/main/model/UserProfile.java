@@ -305,4 +305,8 @@ public class UserProfile {
     public List<Workout> getWorkoutList() {
         return this.userWorkoutSplit;
     }
+
+    public DietPlan getDietPlan() {
+        return this.userDietPlan;
+    }
 }

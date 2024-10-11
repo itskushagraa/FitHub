@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import model.DietPlan;
 import model.Exercise;
 import model.ExerciseSet;
+import model.Meal;
 import model.UserProfile;
 import model.Workout;
 
@@ -22,15 +24,17 @@ import model.Workout;
 */
 
 public class FitHubCommandUI {
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private AppState currentState;
     private UserProfile mainUser;
 
     public FitHubCommandUI() throws Exception {
         currentState = AppState.WELCOME;
+        clearConsole();
         run();
     }
 
-    public void run() throws IOException {
+    private void run() throws IOException {
         while (true) {
             switch (currentState) {
                 case WELCOME:
@@ -56,8 +60,7 @@ public class FitHubCommandUI {
         }
     }
 
-    public void displayWelcomeScreen() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private void displayWelcomeScreen() {
         System.out.println("Welcome to FitHub! Press any key to get started!");
 
         try {
@@ -70,8 +73,7 @@ public class FitHubCommandUI {
         currentState = AppState.USER_SETUP;
     }
 
-    public void configureUserScreen() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private void configureUserScreen() throws IOException {
         String name = getValidName(reader);
         double height = getValidHeight(reader);
         double weight = getValidWeight(reader);
@@ -97,8 +99,7 @@ public class FitHubCommandUI {
         currentState = AppState.MAIN_MENU;
     }
 
-    public void displayMenu() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private void displayMenu() throws IOException {
         System.out.println("Welcome to your FitHub dashboard!");
         System.out.println("1 -> Access Workout Planner\n2 -> Access Diet Planner\n3 -> Access User Profile");
         System.out.println("4 -> Exit FitHub\nEnter a number to choose:");
@@ -123,14 +124,13 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 4);
     }
 
-    public void displayWorkoutPlanner() throws IOException {
+    private void displayWorkoutPlanner() throws IOException {
         clearConsole();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Here is the workout split generated for you!");
+        System.out.println("Here is your workout split!");
         showWorkoutSplit(reader);
     }
 
-    public void displayUserProfile() throws IOException {
+    private void displayUserProfile() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("This is your current user profile");
         showProfile();
@@ -152,15 +152,271 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 8);
     }
 
-    public void displayDietPlanner() {
-        // STUB TODO
+    private void displayDietPlanner() throws IOException {
+        clearConsole();
+        DietPlan mainPlan = mainUser.getDietPlan();
+        List<String> daysOfWeek = new ArrayList<>(
+                Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
+        System.out.println("Here's your Diet Plan!\n");
+        System.out.printf("%-13s %-35s %-35s %-35s%n", "DAY", "BREAKFAST", "LUNCH", "DINNER");
+        System.out.println();
+        for (String day : daysOfWeek) {
+            System.out.printf("%-13s %-35s %-35s %-35s%n", day, mainPlan.getMeal(day, "Breakfast").getName(),
+                    mainPlan.getMeal(day, "Lunch").getName(), mainPlan.getMeal(day, "Dinner").getName());
+        }
+        System.out.println("\nChoose from the options below: ");
+        System.out.println("1 -> View a meal\n2 -> View stats for a day");
+        System.out.println("3 -> View weekly stats\n4 -> Go back to main menu\n5 -> Exit App");
+        executeDietPlanInput();
     }
 
     /*
      * HELPER FUNCTIONS FOR THE APP STATES
      */
 
-    public void showWorkoutSplit(BufferedReader reader) throws IOException {
+    private void executeDietPlanInput() throws IOException {
+        int input = 0;
+        do {
+            try {
+                input = Integer.parseInt(reader.readLine());
+                if (input < 1 || input > 5) {
+                    System.out.println("Please choose a valid option.");
+                } else if (input == 1) {
+                    showMeal();
+                } else if (input == 2) {
+                    showDayStatistics();
+                } else if (input == 3) {
+                    showWeekStatistics();
+                } else if (input == 4) {
+                    clearConsole();
+                    currentState = AppState.MAIN_MENU;
+                    return;
+                } else if (input == 5) {
+                    exitApp();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please choose a valid option");
+            }
+        } while (input < 1 || input > 5);
+    }
+
+    private void showDayStatistics() throws IOException {
+        System.out.println("Choose the day whose statistics you want to view: ");
+        System.out.println(
+                "1 -> Monday\n2 -> Tuesday\n3 -> Wednesday\n4 -> Thursday\n5 -> Friday\n6 -> Saturday\n7 -> Sunday");
+        String day = getValidDayOfWeek();
+        System.out.println("Total Calories: " + (mainUser.getDietPlan().calculateDailyCalories(day)) + "kcal");
+        System.out.println("Total Quantity: " + (mainUser.getDietPlan().calculateDailyQuantity(day)) + "g");
+        System.out.println("Total Protein: " + (mainUser.getDietPlan().calculateDailyProtein(day)) + "g");
+        System.out.println("Total Fat: " + (mainUser.getDietPlan().calculateDailyFat(day)) + "g");
+        System.out.println("Total Carbs: " + (mainUser.getDietPlan().calculateDailyCarb(day)) + "g");
+        System.out.println("Enter 'x' to go back: ");
+        String input = "";
+        do {
+            input = reader.readLine().toLowerCase();
+            if (!input.equals("x")) {
+                System.out.println("Invalid Input. Enter 'x' to go back to the Diet Plan");
+            }
+        } while (!input.equals("x"));
+    }
+
+    private void showWeekStatistics() throws IOException {
+        System.out.println("Total Calories: " + (mainUser.getDietPlan().calculateWeeklyCalories()) + "kcal");
+        System.out.println("Total Quantity: " + (mainUser.getDietPlan().calculateWeeklyQuantity()) + "g");
+        System.out.println("Total Protein: " + (mainUser.getDietPlan().calculateWeeklyProtein()) + "g");
+        System.out.println("Total Fat: " + (mainUser.getDietPlan().calculateWeeklyFat()) + "g");
+        System.out.println("Total Carbs: " + (mainUser.getDietPlan().calculateWeeklyCarb()) + "g");
+        System.out.println("Enter 'x' to go back: ");
+        String input = "";
+        do {
+            input = reader.readLine().toLowerCase();
+            if (!input.equals("x")) {
+                System.out.println("Invalid Input. Enter 'x' to go back to the Diet Plan");
+            }
+        } while (!input.equals("x"));
+    }
+
+    private void showMeal() throws IOException {
+        System.out.println("Enter the type of meal you want to view: \nb -> Breakfast\nl -> Lunch\nd -> Dinner");
+        String mealType = getValidMealType();
+        System.out.println("Choose the day whose " + mealType + " you want to view: ");
+        System.out.println(
+                "1 -> Monday\n2 -> Tuesday\n3 -> Wednesday\n4 -> Thursday\n5 -> Friday\n6 -> Saturday\n7 -> Sunday");
+        String day = getValidDayOfWeek();
+        clearConsole();
+        Meal meal = mainUser.getDietPlan().getMeal(day, mealType);
+        System.out.println(meal.getName());
+        showMealInfo(meal);
+        System.out.println("Choose from the following options: ");
+        System.out.println("1 -> Change Meal Name\n2 -> Change Meal Quantity");
+        System.out.println("3 -> Replace this meal\n4 -> Back to diet plan\n5 -> Exit App");
+        executeMealInput(meal, day);
+    }
+
+    private void executeMealInput(Meal meal, String day) throws IOException {
+        int input = 0;
+        do {
+            try {
+                input = Integer.parseInt(reader.readLine());
+                if (input < 1 || input > 5) {
+                    System.out.println("Please choose a valid option");
+                } else if (input == 1) {
+                    meal.setName(getValidMealName());
+                } else if (input == 2) {
+                    meal.setQuantity(getValidQuantity());
+                } else if (input == 3) {
+                    createMeal(meal, day);
+                } else if (input == 4) {
+                    return;
+                } else if (input == 5) {
+                    exitApp();
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please enter a valid number");
+            }
+        } while (input < 1 || input > 5);
+    }
+
+    private void createMeal(Meal meal, String day) throws NumberFormatException, IOException {
+        String mealName = getValidMealName();
+        double mealQuantity = getValidQuantity();
+        System.out.println("Enter the amount of calories in " + mealQuantity + "g of the meal: ");
+        double calories = getValidDouble();
+        System.out.println("Enter the amount of protein in " + mealQuantity + "g of the meal: ");
+        double protein = getValidDouble();
+        System.out.println("Enter the amount of fat in " + mealQuantity + "g of the meal: ");
+        double fat = getValidDouble();
+        System.out.println("Enter the amount of carbs in " + mealQuantity + "g of the meal: ");
+        double carb = getValidDouble();
+        System.out.println("Enter a list of ingredients used (type 'done' to stop): ");
+        List<String> ingredients = getValidIngredients();
+        Meal newMeal = new Meal(mealName, meal.getType(), ingredients, calories, mealQuantity, protein, fat, carb);
+        mainUser.getDietPlan().addMeal(day, meal.getType(), newMeal);
+    }
+
+    private double getValidDouble() throws IOException {
+        double ret = 0.0;
+        do {
+            try {
+                ret = Double.parseDouble(reader.readLine());
+                if (ret <= 0.0) {
+                    System.out.println("Please enter a positive non-zero value: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        } while (ret <= 0.0);
+        return ret;
+    }
+
+    private List<String> getValidIngredients() throws IOException {
+        List<String> ingredients = new ArrayList<>();
+        System.out.println("Enter list of ingredients (type in 'done' to finish adding): ");
+        String ingredientToAdd = reader.readLine();
+        while (!ingredientToAdd.equalsIgnoreCase("done")) {
+            ingredients.add(ingredientToAdd);
+            ingredientToAdd = reader.readLine();
+        }
+        return ingredients;
+    }
+
+    private double getValidQuantity() throws IOException {
+        System.out.println("Enter quantity (in grams): ");
+        double ret = 0.0;
+        do {
+            try {
+                ret = Double.parseDouble(reader.readLine());
+                if (ret <= 0.0) {
+                    System.out.println("Please enter a positive non-zero value: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please enter a valid input.");
+            }
+        } while (ret <= 0.0);
+        return ret;
+    }
+
+    private String getValidMealName() throws IOException {
+        String name = "";
+        System.out.println("Enter new meal name: ");
+        do {
+            name = reader.readLine();
+            if (name.length() == 0) {
+                System.out.println("Please enter a name");
+            }
+        } while (name.length() == 0);
+        return name;
+    }
+
+    private void showMealInfo(Meal meal) {
+        System.out.println("Ingredients Required: " + String.join(", ", meal.getIngredients()));
+        System.out.println("Quantity: " + String.format("%.2f", meal.getQuantity()) + "g");
+        System.out.println("Protein: " + String.format("%.2f", meal.getProtein()) + "g");
+        System.out.println("Fat: " + String.format("%.2f", meal.getFat()) + "g");
+        System.out.println("Carbs: " + String.format("%.2f", meal.getCarb()) + "g");
+        System.out.println("Calories: " + String.format("%.2f", meal.getCalories()) + "kcals");
+    }
+
+    private String getValidDayOfWeek() throws IOException {
+        int dayNum = 0;
+        String day = "";
+        do {
+            try {
+                dayNum = Integer.parseInt(reader.readLine());
+                if (dayNum < 1 || dayNum > 7) {
+                    System.out.println("Please enter a number between 1 and 7");
+                } else {
+                    day = getDayFromNumber(dayNum);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please enter a number between 1 and 7");
+            }
+
+        } while (dayNum < 1 || dayNum > 7);
+        return day;
+    }
+
+    private String getDayFromNumber(int dayNum) {
+        switch (dayNum) {
+            case 1:
+                return "Monday";
+            case 2:
+                return "Tuesday";
+            case 3:
+                return "Wednesday";
+            case 4:
+                return "Thursday";
+            case 5:
+                return "Friday";
+            case 6:
+                return "Saturday";
+            case 7:
+                return "Sunday";
+            default:
+                return "";
+        }
+    }
+
+    private String getValidMealType() throws IOException {
+        Set<String> validTypes = new HashSet<>(Arrays.asList("b", "l", "d"));
+        String type;
+        do {
+            type = reader.readLine().toLowerCase();
+            if (!validTypes.contains(type)) {
+                System.out.println("Please enter a valid character (one of b, l, or d): ");
+            }
+        } while (!validTypes.contains(type));
+
+        if (type.equals("b")) {
+            return "Breakfast";
+        } else if (type.equals("l")) {
+            return "Lunch";
+        } else {
+            return "Dinner";
+        }
+    }
+
+    private void showWorkoutSplit(BufferedReader reader) throws IOException {
         List<Workout> workoutSplit = mainUser.getWorkoutList();
         for (int i = 0; i < workoutSplit.size(); i++) {
             System.out.println((i + 1) + " -> " + workoutSplit.get(i).getName());
@@ -171,7 +427,7 @@ public class FitHubCommandUI {
         executeWorkoutSplitInput(workoutSplit, reader);
     }
 
-    public void executeWorkoutSplitInput(List<Workout> workoutSplit, BufferedReader reader) throws IOException {
+    private void executeWorkoutSplitInput(List<Workout> workoutSplit, BufferedReader reader) throws IOException {
         int input = 0;
         do {
             try {
@@ -195,7 +451,7 @@ public class FitHubCommandUI {
         } while (input < 1 || input > workoutSplit.size() + 4);
     }
 
-    public void showOverallStatistics(List<Workout> workoutSplit, BufferedReader reader, int totalSets, int totalReps,
+    private void showOverallStatistics(List<Workout> workoutSplit, BufferedReader reader, int totalSets, int totalReps,
             int totalVolume) throws IOException {
         List<String> muscles = new ArrayList<>();
         for (int i = 0; i < workoutSplit.size(); i++) {
@@ -222,7 +478,7 @@ public class FitHubCommandUI {
         } while (!input.equals("x"));
     }
 
-    public void showWorkout(int input, List<Workout> workoutSplit, BufferedReader reader) throws IOException {
+    private void showWorkout(int input, List<Workout> workoutSplit, BufferedReader reader) throws IOException {
         clearConsole();
         Workout workout = workoutSplit.get(input);
         System.out.println(workout.getName());
@@ -238,7 +494,7 @@ public class FitHubCommandUI {
         executeWorkoutInput(workout, reader);
     }
 
-    public void executeWorkoutInput(Workout workout, BufferedReader reader) throws IOException {
+    private void executeWorkoutInput(Workout workout, BufferedReader reader) throws IOException {
         int input = 0;
         do {
             try {
@@ -271,7 +527,7 @@ public class FitHubCommandUI {
         return input;
     }
 
-    public void renameWorkout(Workout workout, BufferedReader reader) throws IOException {
+    private void renameWorkout(Workout workout, BufferedReader reader) throws IOException {
         String newName = "";
         System.out.println("Enter Workout Name: ");
         do {
@@ -309,7 +565,7 @@ public class FitHubCommandUI {
         } while (input != 1);
     }
 
-    public void createExercise(BufferedReader reader, Workout workout) throws IOException {
+    private void createExercise(BufferedReader reader, Workout workout) throws IOException {
         String name = getValidExerciseName(reader);
         List<String> musclesWorked = new ArrayList<>();
         System.out.println("Enter list of muscles worked (type in 'done' to finish adding): ");
@@ -324,7 +580,7 @@ public class FitHubCommandUI {
         showWorkout(mainUser.getWorkoutList().indexOf(workout), mainUser.getWorkoutList(), reader);
     }
 
-    public void showExercise(int input, Workout workout, BufferedReader reader) throws IOException {
+    private void showExercise(int input, Workout workout, BufferedReader reader) throws IOException {
         clearConsole();
         Exercise exercise = workout.getExercises().get(input);
         System.out.println(exercise.getName());
@@ -341,7 +597,7 @@ public class FitHubCommandUI {
         executeExerciseInput(exercise, reader, workout);
     }
 
-    public void executeExerciseInput(Exercise exercise, BufferedReader reader, Workout workout) throws IOException {
+    private void executeExerciseInput(Exercise exercise, BufferedReader reader, Workout workout) throws IOException {
         int input = 0;
         do {
             try {
@@ -376,7 +632,7 @@ public class FitHubCommandUI {
         return input;
     }
 
-    public void showMusclesWorked(Exercise exercise, BufferedReader reader, Workout workout) throws IOException {
+    private void showMusclesWorked(Exercise exercise, BufferedReader reader, Workout workout) throws IOException {
         List<String> musclesWorked = exercise.getMusclesWorked();
         for (String muscle : musclesWorked) {
             System.out.println((musclesWorked.indexOf(muscle) + 1) + ") " + muscle);
@@ -397,14 +653,14 @@ public class FitHubCommandUI {
         } while (input != 1);
     }
 
-    public void createExerciseSet(BufferedReader reader, Exercise exercise, Workout workout) throws IOException {
+    private void createExerciseSet(BufferedReader reader, Exercise exercise, Workout workout) throws IOException {
         int weightLifted = getValidWeightLifted(reader);
         int reps = getValidReps(reader);
         exercise.addSet(reps, weightLifted);
         showExercise(workout.getExercises().indexOf(exercise), workout, reader);
     }
 
-    public void showExerciseSet(int setIndex, Exercise exercise, BufferedReader reader, Workout workout)
+    private void showExerciseSet(int setIndex, Exercise exercise, BufferedReader reader, Workout workout)
             throws IOException {
         displayExerciseSetOptions();
         int input = 0;
@@ -432,7 +688,7 @@ public class FitHubCommandUI {
         } while (input < 1 || input > 5);
     }
 
-    public String getValidExerciseName(BufferedReader reader) throws IOException {
+    private String getValidExerciseName(BufferedReader reader) throws IOException {
         String name = "";
         System.out.println("Enter exercise name: ");
         do {
@@ -445,45 +701,45 @@ public class FitHubCommandUI {
 
     }
 
-    public int getValidWeightLifted(BufferedReader reader) throws IOException {
+    private int getValidWeightLifted(BufferedReader reader) throws IOException {
         int weightLifted = 0;
         System.out.println("Enter weight lifted:");
         do {
             try {
                 weightLifted = Integer.parseInt(reader.readLine());
-                if (weightLifted < 0) {
+                if (weightLifted <= 0) {
                     System.out.println("Please enter a positive weight");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number:");
             }
-        } while (weightLifted < 0);
+        } while (weightLifted <= 0);
         return weightLifted;
     }
 
-    public int getValidReps(BufferedReader reader) throws IOException {
+    private int getValidReps(BufferedReader reader) throws IOException {
         int reps = 0;
         System.out.println("Enter reps completed: ");
         do {
             try {
                 reps = Integer.parseInt(reader.readLine());
-                if (reps < 0) {
+                if (reps <= 0) {
                     System.out.println("Please enter a positive amount:");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number:");
             }
-        } while (reps < 0);
+        } while (reps <= 0);
         return reps;
     }
 
-    public void displayExerciseSetOptions() {
+    private void displayExerciseSetOptions() {
         System.out.println("Pick one of the options below: ");
         System.out.println("1 -> Delete this set\n2 -> Change weight lifted\n3 -> Change reps");
         System.out.println("4 -> Back to set list\n5 -> Exit app");
     }
 
-    public void showProfile() {
+    private void showProfile() {
         System.out.println("Name: " + mainUser.getName());
         System.out.println("Height: " + String.format("%.2f", mainUser.getHeight()) + " cm");
         System.out.println("Weight: " + String.format("%.2f", mainUser.getWeight()) + " kg");
@@ -501,7 +757,7 @@ public class FitHubCommandUI {
                 + String.format("%.2f", mainUser.getTargetCalories()) + " kcal");
     }
 
-    public void executeUserProfileInput(int input, BufferedReader reader) throws IOException {
+    private void executeUserProfileInput(int input, BufferedReader reader) throws IOException {
         if (input == 1) {
             mainUser.setName(getValidName(reader));
         } else if (input == 2) {
@@ -630,12 +886,12 @@ public class FitHubCommandUI {
         }
     }
 
-    public void clearConsole() {
+    private void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    public void exitApp() {
+    private void exitApp() {
         clearConsole();
         System.exit(0);
     }

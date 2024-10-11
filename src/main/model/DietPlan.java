@@ -42,12 +42,16 @@ public class DietPlan {
         switch (mealType) {
             case "Breakfast":
                 dayMeals.set(0, mealToAdd);
+                break;
             case "Lunch":
                 dayMeals.set(1, mealToAdd);
+                break;
             case "Dinner":
                 dayMeals.set(2, mealToAdd);
+                break;
             default:
-                // Case Never Reached
+                break;
+            // Case Never Reached
         }
     }
 

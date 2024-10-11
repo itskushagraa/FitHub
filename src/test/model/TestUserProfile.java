@@ -39,6 +39,18 @@ public class TestUserProfile {
         assertEquals(5, maintainUser.getIntensity());
         assertEquals("maintain", maintainUser.getGoal());
         assertEquals(2260.5, maintainUser.getTargetCalories());
+        assertEquals(3, maintainUser.getWorkoutList().size());
+        assertEquals("Push Day", maintainUser.getWorkoutList().get(0).getName());
+        assertEquals("Pull Day", maintainUser.getWorkoutList().get(1).getName());
+        assertEquals("Leg Day", maintainUser.getWorkoutList().get(2).getName());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Monday").size());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Tuesday").size());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Wednesday").size());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Thursday").size());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Friday").size());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Saturday").size());
+        assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Sunday").size());
+
     }
 
     @Test
