@@ -27,24 +27,33 @@ FitHub is a fitness partner built for individuals looking to establish a structu
 - As a user, I want to receive a workout split for the gym.
 
 *Customizable feature that the app offers to the user:*
-##### Workout Planner
+###### Workout Planner
 - As a user, I want to be able to customize my workout split in any way I might need to.
 - As a user, I want to be able to add/remove/edit an Exercise (class X) in my Workout routine (class Y).
 - As a user, I want to be able to add/remove/edit a Set (class X) completed for an Exercise (class Y).
 - As a user, I want to be able to edit weight lifted and reps completed for any Set (class X) completed.
 - As a user, I want to receive statistics about (a) my workout split and (b) the individual workouts present in the split.
 
-##### Diet Planner
+###### Diet Planner
 - As a user, I want to be able to create a specific Meal (class X) to replace with another meal in my Diet Plan (class Y).
 - As a user, I want to be able to view the calorific info, the macronutrient info and the list of ingredients for any Meal in my Diet Plan
 - As a user, I want to receive statistics about (a) my entire diet plan and (b) any specific day of the diet plan
 - As a user, I want to be able to change the name/quantity content of any Meal in my Diet Plan
 
-##### User Profile
+###### User Profile
 - As a user, I want to be able to view/edit my user profile containing my name, height, weight, age, workout intensity, fitness goal
 - As a user, I want my user profile to display my BMR and daily recommended calorie intake (calculated for me upon setting up the app)
 - As a user, I want my Diet Plan to update accordingly if I change my height, weight, age, weekly workout intensity or fitness goal.
 
+*Data Persistence: (Phase 2)*
+- As a user, when I select the quit option from the application menu, I want to be reminded to **save**: 
+  - any changes I may have made to my user profile
+  - any changes I may have made to my workout split
+  - any changes I may have made to my diet plan
+- As a user, when I start the application, I want to be given the option to **load**: 
+  - my user profile (including any changes I may or may not have made to it in the past)
+  - my workout split (including any changes I may or may not have made to it in the past)
+  - my diet plan (including any changes I may or may not have made to it in the past)
 
 *Features that are planned for FUTURE PHASES:*
 - As a user, I want to be able to add/remove diet plans I followed to my weekly food consumption log.
