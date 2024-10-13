@@ -1,0 +1,112 @@
+[
+    {
+        "name": "Push Day",
+        "exercises": [
+            {
+                "name": "Bench Press (Barbell)",
+                "musclesWorked": ["Chest", "Front Delts", "Triceps"],
+                "sets": []
+            },
+            {
+                "name": "Cable Fly Crossovers",
+                "musclesWorked": ["Chest", "Front Delts"],
+                "sets": []
+            },
+            {
+                "name": "Inclined Bench Press (Dumbbell)",
+                "musclesWorked": ["Chest", "Front Delts", "Triceps"],
+                "sets": []
+            },
+            {
+                "name": "Butterfly (Pec Deck)",
+                "musclesWorked": ["Chest", "Front Delts", "Triceps"],
+                "sets": []
+            },
+            {
+                "name": "Skullcrusher (Dumbbell)",
+                "musclesWorked": ["Triceps"],
+                "sets": []
+            },
+            {
+                "name": "Tricep Pushdown (Rope)",
+                "musclesWorked": ["Triceps"],
+                "sets": []
+            },
+            {
+                "name": "Lateral Raise (Cable)",
+                "musclesWorked": ["Side Delts"],
+                "sets": []
+            }
+        ]
+    },
+    {
+        "name": "Pull Day",
+        "exercises": [
+            {
+                "name": "Bent Over Row (Barbell)",
+                "musclesWorked": ["Upper Back", "Lats", "Traps", "Rear Delts", "Biceps"],
+                "sets": []
+            },
+            {
+                "name": "Reverse Fly (Cable)",
+                "musclesWorked": ["Upper Back", "Rear Delts", "Traps"],
+                "sets": []
+            },
+            {
+                "name": "Back Extension (Machine)",
+                "musclesWorked": ["Lower Back", "Glutes"],
+                "sets": []
+            },
+            {
+                "name": "Bicep Curl (Dumbbell)",
+                "musclesWorked": ["Biceps"],
+                "sets": []
+            },
+            {
+                "name": "Hammer Curl",
+                "musclesWorked": ["Biceps"],
+                "sets": []
+            },
+            {
+                "name": "Lat Pulldown",
+                "musclesWorked": ["Lats", "Biceps"],
+                "sets": []
+            },
+            {
+                "name": "Face Pull (Cable)",
+                "musclesWorked": ["Rear Delts", "Forearms"],
+                "sets": []
+            }
+        ]
+    },
+    {
+        "name": "Leg Day", 
+        "exercises": [
+            {
+                "name": "Squat (Barbell)",
+                "musclesWorked": ["Quads", "Hamstrings", "Glutes"],
+                "sets": []
+            },
+            {
+                "name": "Seated Leg Extension (Machine)",
+                "musclesWorked": ["Quads"],
+                "sets": []
+            },
+            {
+                "name": "Seated Leg Curl (Machine)",
+                "musclesWorked": ["Hamstrings"],
+                "sets": []
+            },
+            {
+                "name": "Seated Calf Raise",
+                "musclesWorked": ["Calves"],
+                "sets": []
+            },
+            {
+                "name": "Crunch (Machine)",
+                "musclesWorked": ["Abs"],
+                "sets": []
+            }
+        ]
+    }
+]

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import model.Exercise;
-import model.ExerciseSet;
 
 /*
  * - THIS CLASS IS A TEMPORARY REPRESENTATION OF DATA ONLY FOR PHASE 1
@@ -20,191 +19,191 @@ public class ModelExerciseData {
     public static final Exercise BENCH_PRESS_BARBELL = new Exercise(
             "Bench Press (Barbell)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise BENCH_PRESS_DUMBBELL = new Exercise(
             "Bench Press (Dumbbell)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise BENCH_PRESS_SMITH = new Exercise(
             "Bench Press (Smith Machine)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise PEC_DECK = new Exercise(
             "Butterfly (Pec Deck)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise CABLE_FLY = new Exercise(
             "Cable Fly Crossovers",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise INCLINED_PRESS_BARBELL = new Exercise(
             "Inclined Bench Press (Barbell)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise INCLINED_PRESS_DUMBBELL = new Exercise(
             "Inclined Bench Press (Dumbbell)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise INCLINED_PRESS_SMITH = new Exercise(
             "Inclined Bench Press (Smith Machine)",
             new ArrayList<>(Arrays.asList("Chest", "Front Delts", "Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // SIDE DELT EXERCISES
     public static final Exercise LATERAL_RAISE_DUMBBELL = new Exercise(
             "Lateral Raise (Dumbbell)",
             new ArrayList<>(Arrays.asList("Side Delts")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise LATERAL_RAISE_CABLE = new Exercise(
             "Lateral Raise (Cable)",
             new ArrayList<>(Arrays.asList("Side Delts")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // REAR DELT EXERCISES
     public static final Exercise FACE_PULL = new Exercise(
             "Face Pull (Cable)",
             new ArrayList<>(Arrays.asList("Rear Delts")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // TRICEP EXERCISES
     public static final Exercise SKULLCRUSHER_BARBELL = new Exercise(
             "Skullcrusher (Barbell)",
             new ArrayList<>(Arrays.asList("Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise SKULLCRUSHER_DUMBBELL = new Exercise(
             "Skullcrusher (Dumbbell)",
             new ArrayList<>(Arrays.asList("Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise TRICEP_EXTENSION_DUMBBELL = new Exercise(
             "Tricep Extension (Dumbbell)",
             new ArrayList<>(Arrays.asList("Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise TRICEP_EXTENSION_CABLE = new Exercise(
             "Tricep Extension (Cable)",
             new ArrayList<>(Arrays.asList("Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise TRICEP_PUSHDOWN_ROPE = new Exercise(
             "Tricep Pushdown (Rope)",
             new ArrayList<>(Arrays.asList("Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise TRICEP_PUSHDOWN_BAR = new Exercise(
             "Tricep Pushdown (Bar)",
             new ArrayList<>(Arrays.asList("Triceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // LATS EXERCISES
     public static final Exercise LAT_PULLDOWN = new Exercise(
             "Lat Pulldown",
             new ArrayList<>(Arrays.asList("Lats", "Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise ISOLAT_ROW = new Exercise(
             "Iso-Lateral Row (Machine)",
             new ArrayList<>(Arrays.asList("Lats", "Traps", "Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // UPPER BACK EXERCISES
     public static final Exercise ROW_BARBELL = new Exercise(
             "Bent Over Row (Barbell)",
             new ArrayList<>(Arrays.asList("Upper Back", "Lats", "Traps", "Rear Delts", "Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise ROW_DUMBBELL = new Exercise(
             "Bent Over Row (Dumbbell)",
             new ArrayList<>(Arrays.asList("Upper Back", "Lats", "Traps", "Rear Delts", "Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise SEATED_CABLE_ROW = new Exercise(
             "Seated Cable Row (Machine)",
             new ArrayList<>(Arrays.asList("Upper Back", "Lats", "Traps", "Rear Delts", "Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise REVERSE_FLY = new Exercise(
             "Reverse Fly (Cable)",
             new ArrayList<>(Arrays.asList("Upper Back", "Rear Delts", "Traps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // LOWER BACK EXERCISES
     public static final Exercise BACK_EXTENSION = new Exercise(
             "Back Extension (Machine)",
             new ArrayList<>(Arrays.asList("Lower Back", "Glutes")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // BICEP EXERCISES
     public static final Exercise BICEP_CURL_BARBELL = new Exercise(
             "Bicep Curl (Barbell)",
             new ArrayList<>(Arrays.asList("Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise BICEP_CURL_DUMBBELL = new Exercise(
             "Bicep Curl (Dumbbell)",
             new ArrayList<>(Arrays.asList("Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise BICEP_CURL_CABLE = new Exercise(
             "Bicep Curl (Cable)",
             new ArrayList<>(Arrays.asList("Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise BICEP_CURL_MACHINE = new Exercise(
             "Bicep Curl (Machine)",
             new ArrayList<>(Arrays.asList("Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise HAMMER_CURL = new Exercise(
-            "Hammer Curl)",
+            "Hammer Curl",
             new ArrayList<>(Arrays.asList("Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise PREACHER_CURL_MACHINE = new Exercise(
             "Preacher Curl (Machine)",
             new ArrayList<>(Arrays.asList("Biceps")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // CORE EXERCISES
     public static final Exercise CABLE_CRUNCH = new Exercise(
             "Crunch (Cable)",
             new ArrayList<>(Arrays.asList("Abs")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise MACHINE_CRUNCH = new Exercise(
             "Crunch (Machine)",
             new ArrayList<>(Arrays.asList("Abs")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     // LEG EXERCISES
     public static final Exercise SQUAT = new Exercise(
             "Squat (Barbell)",
             new ArrayList<>(Arrays.asList("Quads", "Hamstrings", "Glutes")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise LEG_EXTENSION = new Exercise(
             "Seated Leg Extension (Machine)",
             new ArrayList<>(Arrays.asList("Quads")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise LEG_CURL = new Exercise(
             "Seated Leg Curl (Machine)",
             new ArrayList<>(Arrays.asList("Hamstrings")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final Exercise CALF_RAISE = new Exercise(
             "Seated Calf Raise",
             new ArrayList<>(Arrays.asList("Calves")),
-            new ArrayList<>(Arrays.asList(new ExerciseSet(0, 0))));
+            new ArrayList<>());
 
     public static final List<Exercise> LEGS_LIST = new ArrayList<>(
             Arrays.asList(SQUAT, LEG_CURL, LEG_EXTENSION, CALF_RAISE));
