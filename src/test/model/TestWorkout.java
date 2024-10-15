@@ -3,7 +3,6 @@ package model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class TestWorkout {
     void runBefore() {
         List<Exercise> exercises = new ArrayList<>();
         exercises.add(TestData.BENCH_PRESS);
-        testWorkout = new Workout("FBD", exercises, LocalDate.now(), 60);
+        testWorkout = new Workout("FBD", exercises);
     }
 
     @Test

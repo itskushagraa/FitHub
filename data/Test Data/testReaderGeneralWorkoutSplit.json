@@ -9,7 +9,16 @@
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Cable Fly Crossovers",
@@ -17,7 +26,16 @@
                     "Chest",
                     "Front Delts"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Inclined Bench Press (Dumbbell)",
@@ -26,7 +44,16 @@
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Butterfly (Pec Deck)",
@@ -35,28 +62,64 @@
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Skullcrusher (Dumbbell)",
                 "musclesWorked": [
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Tricep Pushdown (Rope)",
                 "musclesWorked": [
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Lateral Raise (Cable)",
                 "musclesWorked": [
                     "Side Delts"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             }
         ]
     },
@@ -72,7 +135,16 @@
                     "Rear Delts",
                     "Biceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Reverse Fly (Cable)",
@@ -81,7 +153,16 @@
                     "Rear Delts",
                     "Traps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Back Extension (Machine)",
@@ -89,21 +170,48 @@
                     "Lower Back",
                     "Glutes"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Bicep Curl (Dumbbell)",
                 "musclesWorked": [
                     "Biceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Hammer Curl",
                 "musclesWorked": [
                     "Biceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Lat Pulldown",
@@ -111,7 +219,16 @@
                     "Lats",
                     "Biceps"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Face Pull (Cable)",
@@ -119,7 +236,16 @@
                     "Rear Delts",
                     "Forearms"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             }
         ]
     },
@@ -133,35 +259,80 @@
                     "Hamstrings",
                     "Glutes"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Seated Leg Extension (Machine)",
                 "musclesWorked": [
                     "Quads"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Seated Leg Curl (Machine)",
                 "musclesWorked": [
                     "Hamstrings"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Seated Calf Raise",
                 "musclesWorked": [
                     "Calves"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             },
             {
                 "name": "Crunch (Machine)",
                 "musclesWorked": [
                     "Abs"
                 ],
-                "sets": []
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    }
+                ]
             }
         ]
     }

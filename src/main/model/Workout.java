@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -24,7 +23,7 @@ public class Workout {
      * EFFECTS:
      * - initializes the workout with a name, list of exercises completed
      */
-    public Workout(String name, List<Exercise> exercises, LocalDate date, int duration) {
+    public Workout(String name, List<Exercise> exercises) {
         this.name = name;
         this.exercises = exercises;
     }

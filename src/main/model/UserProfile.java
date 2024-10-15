@@ -77,7 +77,7 @@ public class UserProfile {
      * chest, front delts, triceps and side delts
      */
     public Workout generatePush() {
-        Workout pushDay = new Workout("Push Day", new ArrayList<>(), null, 0);
+        Workout pushDay = new Workout("Push Day", new ArrayList<>());
 
         List<Exercise> chest = selectRandomExercises(ModelExerciseData.CHEST_LIST, 4);
         List<Exercise> triceps = selectRandomExercises(ModelExerciseData.TRICEP_LIST, 2);
@@ -96,7 +96,7 @@ public class UserProfile {
      * upper back, lower back, biceps, lats, rear delts
      */
     public Workout generatePull() {
-        Workout pullDay = new Workout("Pull Day", new ArrayList<>(), null, 0);
+        Workout pullDay = new Workout("Pull Day", new ArrayList<>());
 
         List<Exercise> upperBack = selectRandomExercises(ModelExerciseData.UPPER_BACK_LIST, 2);
         List<Exercise> lowerBack = selectRandomExercises(ModelExerciseData.LOWER_BACK_LIST, 1);
@@ -119,7 +119,7 @@ public class UserProfile {
      * quads, hams, glutes, calves, abs
      */
     public Workout generateLegs() {
-        Workout legDay = new Workout("Leg Day", new ArrayList<>(), null, 0);
+        Workout legDay = new Workout("Leg Day", new ArrayList<>());
 
         List<Exercise> legs = selectRandomExercises(ModelExerciseData.LEGS_LIST, 4);
         List<Exercise> abs = selectRandomExercises(ModelExerciseData.ABS_LIST, 1);
@@ -211,11 +211,11 @@ public class UserProfile {
         double adjustedBmr = bmr * intensityMultiplier;
 
         if (this.goal.equals("cut")) {
-            return adjustedBmr * 0.85;
+            return Math.round((adjustedBmr * 0.85) * 100.0) / 100.0;
         } else if (this.goal.equals("bulk")) {
-            return adjustedBmr * 1.15;
+            return Math.round((adjustedBmr * 1.15) * 100.0) / 100.0;
         } else {
-            return adjustedBmr;
+            return Math.round(adjustedBmr * 100.0) / 100.0;
         }
     }
 
