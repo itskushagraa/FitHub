@@ -63,8 +63,8 @@ public class TestUserProfile {
     @Test
     void testCalculateTargetCalories() {
         assertEquals(2260.5, maintainUser.calculateCalories());
-        assertEquals(1654.6666666666665, cutUser.calculateCalories());
-        assertEquals(2785.2999999999997, bulkUser.calculateCalories());
+        assertEquals(1654.67, cutUser.calculateCalories());
+        assertEquals(2785.30, bulkUser.calculateCalories());
     }
 
     @Test

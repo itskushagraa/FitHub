@@ -1,0 +1,226 @@
+{
+    "Monday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ],
+    "Thursday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ],
+    "Friday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ],
+    "Sunday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ],
+    "Wednesday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ],
+    "Tuesday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ],
+    "Saturday": [
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Lunch"
+        },
+        {
+            "carb": 0,
+            "quantity": 0,
+            "protein": 0,
+            "name": "",
+            "fat": 0,
+            "ingredients": [],
+            "calories": 0,
+            "type": "Dinner"
+        }
+    ]
+}

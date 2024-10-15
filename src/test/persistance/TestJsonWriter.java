@@ -163,12 +163,12 @@ public class TestJsonWriter {
                 Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
         try {
             testPlan = createEmptyPlan();
-            writer = new JsonWriter("./data/Writer Test Data/testWriterEmptyDietPlan.json");
+            writer = new JsonWriter("./data/Test Data/Writer Test Data/testWriterEmptyDietPlan.json");
             writer.open();
             writer.writeDietPlan(testPlan);
             writer.close();
 
-            reader = new JsonReader("./data/Writer Test Data/testWriterEmptyDietPlan.json");
+            reader = new JsonReader("./data/Test Data/Writer Test Data/testWriterEmptyDietPlan.json");
             DietPlan readPlan = reader.readDietPlan();
             assertEquals(7, readPlan.getCompleteWeeklyPlan().size());
             for (String day : daysOfWeek) {
@@ -191,12 +191,12 @@ public class TestJsonWriter {
                 Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
         try {
             testPlan = createGeneralPlan();
-            writer = new JsonWriter("./data/Writer Test Data/testWriterGeneralDietPlan.json");
+            writer = new JsonWriter("./data/Test Data/Writer Test Data/testWriterGeneralDietPlan.json");
             writer.open();
             writer.writeDietPlan(testPlan);
             writer.close();
 
-            reader = new JsonReader("./data/Writer Test Data/testWriterGeneralDietPlan.json");
+            reader = new JsonReader("./data/Test Data/Writer Test Data/testWriterGeneralDietPlan.json");
             DietPlan readPlan = reader.readDietPlan();
             assertEquals(7, readPlan.getCompleteWeeklyPlan().size());
             for (String day : daysOfWeek) {

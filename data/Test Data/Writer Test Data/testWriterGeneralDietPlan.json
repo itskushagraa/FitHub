@@ -1,0 +1,226 @@
+{
+    "Monday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ],
+    "Thursday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ],
+    "Friday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ],
+    "Sunday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ],
+    "Wednesday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ],
+    "Tuesday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ],
+    "Saturday": [
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Breakfast",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Lunch",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Lunch"
+        },
+        {
+            "carb": 100,
+            "quantity": 250,
+            "protein": 10,
+            "name": "Test Dinner",
+            "fat": 10,
+            "ingredients": [],
+            "calories": 500,
+            "type": "Dinner"
+        }
+    ]
+}
