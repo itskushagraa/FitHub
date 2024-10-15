@@ -1,0 +1,12 @@
+{
+    "name": "",
+    "height": 0.0,
+    "weight": 0.0,
+    "bmi": 0.0,
+    "age": 0,
+    "intensity": 0,
+    "goal": "",
+    "targetCalories": 0.0,
+    "userWorkoutSplit": [],
+    "userDietPlan": {}
+}
