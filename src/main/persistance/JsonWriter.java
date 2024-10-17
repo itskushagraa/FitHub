@@ -93,11 +93,11 @@ public class JsonWriter {
     public void writeDietPlan(DietPlan dietPlan) {
         JSONObject jsonDietPlan = new JSONObject();
 
-        for(String day : dietPlan.getCompleteWeeklyPlan().keySet()) {
+        for (String day : dietPlan.getCompleteWeeklyPlan().keySet()) {
             JSONArray jsonMeals = new JSONArray();
             List<Meal> meals = dietPlan.getCompleteWeeklyPlan().get(day);
-            
-            for(Meal meal : meals) {
+
+            for (Meal meal : meals) {
                 JSONObject jsonMeal = new JSONObject();
                 jsonMeal.put("name", meal.getName());
                 jsonMeal.put("type", meal.getType());

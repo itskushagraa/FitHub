@@ -153,7 +153,7 @@ public class JsonReader {
 
     /*
      * EFFECTS: parses exercise sets from a JSON array and returns a list of
-     *          ExerciseSet objects
+     * ExerciseSet objects
      */
     private List<ExerciseSet> parseExerciseSets(JSONArray jsonArray) {
         List<ExerciseSet> sets = new ArrayList<>();
@@ -180,7 +180,7 @@ public class JsonReader {
     private DietPlan parseDietPlan(JSONObject jsonObject) {
         Map<String, List<Meal>> dietPlanMap = new HashMap<>();
 
-        for(String day : jsonObject.keySet()) {
+        for (String day : jsonObject.keySet()) {
             JSONArray jsonMeals = jsonObject.getJSONArray(day);
             List<Meal> meals = new ArrayList<>();
 
@@ -202,7 +202,7 @@ public class JsonReader {
 
         JSONArray jsonIngredients = jsonObject.getJSONArray("ingredients");
         List<String> ingredients = new ArrayList<>();
-        for(int i = 0; i < jsonIngredients.length(); i++) {
+        for (int i = 0; i < jsonIngredients.length(); i++) {
             ingredients.add(jsonIngredients.getString(i));
         }
 
