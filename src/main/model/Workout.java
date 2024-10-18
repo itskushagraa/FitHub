@@ -5,13 +5,18 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+import persistance.Writable;
+
 /**
  * Represents the workout session for a day
  * Stores the workout name, list of exercises completed, the date of completion,
  * duration (in minutes), and completion status
  **/
 
-public class Workout {
+public class Workout implements Writable {
     private String name;
     private List<Exercise> exercises;
 
@@ -26,6 +31,20 @@ public class Workout {
     public Workout(String name, List<Exercise> exercises) {
         this.name = name;
         this.exercises = exercises;
+    }
+
+    // EFFECTS: returns Workout as a JSONObject 
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+
+        JSONArray jsonExercises = new JSONArray();
+        for (Exercise exercise : this.exercises) {
+            jsonExercises.put(exercise.toJson());
+        }
+        json.put("exercises", jsonExercises);
+
+        return json;
     }
 
     /*

@@ -88,7 +88,7 @@ public class JsonReader {
      * REQUIRES: JSONObject must represent a valid user profile
      * EFFECTS: parse UserProfile from JSONObject and returns it
      */
-    private UserProfile parseUserProfile(JSONObject jsonObject) {
+    private UserProfile parseUserProfile(JSONObject jsonObject) throws IOException {
         String name = jsonObject.getString("name");
         double height = jsonObject.getDouble("height");
         double weight = jsonObject.getDouble("weight");

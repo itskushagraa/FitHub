@@ -2,13 +2,18 @@ package model;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistance.Writable;
+
 /**
  * Represents an Exercise at the gym
  * Stores information about an exercise such as: name, muscles worked, sets
  * completed
  **/
 
-public class Exercise {
+public class Exercise implements Writable {
     private String name; // name of the exercise
     private List<String> musclesWorked; // list of muscles worked
     private List<ExerciseSet> sets; // sets completed in the exercise
@@ -27,6 +32,25 @@ public class Exercise {
         this.name = name;
         this.musclesWorked = musclesWorked;
         this.sets = sets;
+    }
+
+    // EFFECTS: returns an Exercise as a JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+
+        JSONArray jsonMusclesWorked = new JSONArray();
+        for (String muscle : this.musclesWorked) {
+            jsonMusclesWorked.put(muscle);
+        }
+        json.put("musclesWorked", jsonMusclesWorked);
+
+        JSONArray jsonSets = new JSONArray();
+        for (ExerciseSet set : this.sets) {
+            jsonSets.put(set.toJson());
+        }
+        json.put("sets", jsonSets);
+        return json;
     }
 
     /*

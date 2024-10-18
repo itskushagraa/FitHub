@@ -3,6 +3,12 @@ package model;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+import persistance.Writable;
+
+
 /**
  * Represents a diet plan for a week.
  * Stores information about the meals planned for each day of the week.
@@ -11,7 +17,7 @@ import java.util.Map;
  * nutritional values.
  */
 
-public class DietPlan {
+public class DietPlan implements Writable { 
     private Map<String, List<Meal>> meals; // each day of a week (String) mapped to a list of meals
 
     /*
@@ -26,6 +32,24 @@ public class DietPlan {
         this.meals = meals;
     }
 
+    // EFFECTS: returns DietPlan as a JSON object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        for(Map.Entry<String, List<Meal>> entry : this.meals.entrySet()) {
+            String day = entry.getKey();
+            List<Meal> meals = entry.getValue();
+
+            JSONArray jsonMealsList = new JSONArray();
+            for (Meal meal : meals) {
+                jsonMealsList.put(meal.toJson());
+            }
+
+            json.put(day, jsonMealsList);
+        }
+
+        return json;
+    }
+    
     /*
      * REQUIRES:
      * - day must be a valid day of the week (e.g., "Monday", "Tuesday", etc.)

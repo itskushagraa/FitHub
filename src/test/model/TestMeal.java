@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ public class TestMeal {
                 "Spaghetti Bolognese",
                 "Dinner",
                 ingredients,
-                700,
+                700.0,
                 350.0,
                 25.0,
                 30.0,
@@ -36,11 +37,27 @@ public class TestMeal {
         assertEquals("Dinner", testMeal.getType());
         List<String> testIngredients = Arrays.asList("Spaghetti", "Ground Beef", "Tomato Sauce", "Parmesan Cheese");
         assertEquals(testIngredients, testMeal.getIngredients());
-        assertEquals(700, testMeal.getCalories());
+        assertEquals(700.0, testMeal.getCalories());
         assertEquals(350.0, testMeal.getQuantity());
         assertEquals(25.0, testMeal.getProtein());
         assertEquals(30.0, testMeal.getFat());
         assertEquals(85.0, testMeal.getCarb());
+    }
+
+    @Test 
+    void testToJson() {
+        JSONObject json = testMeal.toJson();
+        assertEquals("Spaghetti Bolognese", json.getString("name"));
+        assertEquals("Dinner", json.getString("type"));
+        assertEquals("Spaghetti", json.getJSONArray("ingredients").getString(0));
+        assertEquals("Ground Beef", json.getJSONArray("ingredients").getString(1));
+        assertEquals("Tomato Sauce", json.getJSONArray("ingredients").getString(2));
+        assertEquals("Parmesan Cheese", json.getJSONArray("ingredients").getString(3));
+        assertEquals(700.0, json.getDouble("calories"));
+        assertEquals(350.0, json.getDouble("quantity"));
+        assertEquals(25.0, json.getDouble("protein"));
+        assertEquals(30.0, json.getDouble("fat"));
+        assertEquals(85.0, json.getDouble("carb"));
     }
 
     @Test

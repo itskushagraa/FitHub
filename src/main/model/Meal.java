@@ -2,6 +2,11 @@ package model;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistance.Writable;
+
 /**
  * Represents a meal consumed in a day.
  * Stores information about the meal:
@@ -12,7 +17,7 @@ import java.util.List;
  * - Macronutrient information (Protein, Fat, Carbohydrates)
  */
 
-public class Meal {
+public class Meal implements Writable {
     private String name;
     private String type;
     private List<String> ingredients;
@@ -41,6 +46,26 @@ public class Meal {
         this.protein = protein;
         this.fat = fat;
         this.carb = carb;
+    }
+
+    // EFFECTS: returns a Meal as a JSON Object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("type", this.type);
+
+        JSONArray jsonIngredients = new JSONArray();
+        for (String ingredient : this.ingredients) {
+            jsonIngredients.put(ingredient);
+        }
+        json.put("ingredients", jsonIngredients);
+        json.put("calories", this.calories);
+        json.put("quantity", this.quantity);
+        json.put("protein", this.protein);
+        json.put("fat", this.fat);
+        json.put("carb", this.carb);
+
+        return json;
     }
 
     /*

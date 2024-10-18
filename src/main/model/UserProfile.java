@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
 
-import data.ModelExerciseData;
-import data.ModelMealData;
+import persistance.JsonReader;
+import persistance.JsonWriter;
 
 /**
  * Represents a user profile in FitHub
@@ -45,7 +45,8 @@ public class UserProfile {
      * - Generates a workout split and diet plan tailored to the aforementioned user
      * attributes
      */
-    public UserProfile(String name, double height, double weight, int age, int intensity, String goal) {
+    public UserProfile(String name, double height, double weight, int age, int intensity, String goal)
+            throws IOException {
         this.name = name;
         this.height = height;
         this.weight = weight;
@@ -60,116 +61,83 @@ public class UserProfile {
 
     /*
      * MODIFIES: this.userWorkoutSplit
-     * EFFECTS: Generates a complete workout split for the user, consisting of
-     * three workouts: Push, Pull, and Legs.
+     * EFFECTS:
+     * - reads a workoutSplit from workoutSplit.json
+     * - randomizes order of exercises in workoutSplit
+     * - writes the new workoutSplit into workoutSplit.json
+     * - sets user's workoutsplit to the new split
+     * - returns workoutSplit
      */
-    public List<Workout> generateWorkoutList() {
-        userWorkoutSplit = new ArrayList<>();
-        userWorkoutSplit.add(generatePush());
-        userWorkoutSplit.add(generatePull());
-        userWorkoutSplit.add(generateLegs());
-        return userWorkoutSplit;
-    }
-
-    /*
-     * HELPER FUNCTION FOR generateWorkout()
-     * EFFECTS: Generates a Push Day workout, consisting of random exercises for the
-     * chest, front delts, triceps and side delts
-     */
-    public Workout generatePush() {
-        Workout pushDay = new Workout("Push Day", new ArrayList<>());
-
-        List<Exercise> chest = selectRandomExercises(ModelExerciseData.CHEST_LIST, 4);
-        List<Exercise> triceps = selectRandomExercises(ModelExerciseData.TRICEP_LIST, 2);
-        List<Exercise> sideDelts = selectRandomExercises(ModelExerciseData.SIDE_DELT_LIST, 1);
-
-        pushDay.getExercises().addAll(chest);
-        pushDay.getExercises().addAll(triceps);
-        pushDay.getExercises().addAll(sideDelts);
-
-        return pushDay;
-    }
-
-    /*
-     * HELPER METHOD FOR generateWorkoutList()
-     * EFFECTS: Generates a Pull Day workout, consisting of random exercises for the
-     * upper back, lower back, biceps, lats, rear delts
-     */
-    public Workout generatePull() {
-        Workout pullDay = new Workout("Pull Day", new ArrayList<>());
-
-        List<Exercise> upperBack = selectRandomExercises(ModelExerciseData.UPPER_BACK_LIST, 2);
-        List<Exercise> lowerBack = selectRandomExercises(ModelExerciseData.LOWER_BACK_LIST, 1);
-        List<Exercise> biceps = selectRandomExercises(ModelExerciseData.BICEP_LIST, 2);
-        List<Exercise> lats = selectRandomExercises(ModelExerciseData.LAT_LIST, 1);
-        List<Exercise> rearDelts = selectRandomExercises(ModelExerciseData.REAR_DELT_LIST, 1);
-
-        pullDay.getExercises().addAll(upperBack);
-        pullDay.getExercises().addAll(lowerBack);
-        pullDay.getExercises().addAll(biceps);
-        pullDay.getExercises().addAll(lats);
-        pullDay.getExercises().addAll(rearDelts);
-
-        return pullDay;
-    }
-
-    /*
-     * HELPER FUNCTION FOR generateWorkoutList()
-     * EFFECTS: Generates a Leg Day workout, consisting of random exercises for the
-     * quads, hams, glutes, calves, abs
-     */
-    public Workout generateLegs() {
-        Workout legDay = new Workout("Leg Day", new ArrayList<>());
-
-        List<Exercise> legs = selectRandomExercises(ModelExerciseData.LEGS_LIST, 4);
-        List<Exercise> abs = selectRandomExercises(ModelExerciseData.ABS_LIST, 1);
-
-        legDay.getExercises().addAll(legs);
-        legDay.getExercises().addAll(abs);
-
-        return legDay;
-    }
-
-    /*
-     * HELPER FUNCTION FOR generatePull(), generatePush() and generateLegs()
-     * REQUIRES: count < muscleGroupList.size()
-     * EFFECTS: picks 'count' amount of random exercises from the exercise list
-     */
-    public List<Exercise> selectRandomExercises(List<Exercise> exercises, int count) {
-        List<Exercise> shuffledExercises = new ArrayList<>(exercises);
-        Collections.shuffle(shuffledExercises);
-        return shuffledExercises.subList(0, count);
+    public List<Workout> generateWorkoutList() throws IOException {
+        JsonReader reader = new JsonReader("./data/User Data/workoutSplit.json");
+        JsonWriter writer = new JsonWriter("./data/User Data/workoutSplit.json");
+        List<Workout> workoutSplit = reader.readWorkoutSplit();
+        for (int i = 0; i < workoutSplit.size(); i++) {
+            Collections.shuffle(workoutSplit.get(i).getExercises());
+        }
+        writer.open();
+        writer.writeWorkoutSplit(workoutSplit);
+        writer.close();
+        this.userWorkoutSplit = workoutSplit;
+        return workoutSplit;
     }
 
     /*
      * MODIFIES: this.userDietPlan
-     * EFFECTS: generates a list of workouts for the user based on user attributes
+     * EFFECTS:
+     * - reads a dietPlan from dietPlan.json
+     * - randomizes order of meals for each day in dietPlan
+     * - adjusts quantites of each meal to match user's calorific goals
+     * - writes back new dietPlan into dietPlan.json
+     * - sets user's dietPlan to the new dietPlan
+     * - returns dietPlan
      */
-    public DietPlan generateDietPlan() {
+    public DietPlan generateDietPlan() throws IOException {
+        JsonReader reader = new JsonReader("./data/User Data/dietPlan.json");
+        JsonWriter writer = new JsonWriter("./data/User Data/dietPlan.json");
         List<String> daysOfWeek = new ArrayList<>(
                 Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
-        Map<String, List<Meal>> dietPlanMap = new HashMap<>();
-
-        List<Meal> randomizedBreakfasts = new ArrayList<>((ModelMealData.BREAKFAST_LIST));
-        List<Meal> randomizedLunches = new ArrayList<>(ModelMealData.LUNCH_LIST);
-        List<Meal> randomizedDinners = new ArrayList<>(ModelMealData.DINNER_LIST);
-
-        Collections.shuffle(randomizedBreakfasts);
-        Collections.shuffle(randomizedLunches);
-        Collections.shuffle(randomizedDinners);
-
-        for (int i = 0; i < daysOfWeek.size(); i++) {
-            List<Meal> dailyMeals = new ArrayList<>(
-                    Arrays.asList(randomizedBreakfasts.get(i), randomizedLunches.get(i), randomizedDinners.get(i)));
-            dietPlanMap.put(daysOfWeek.get(i), dailyMeals);
-        }
+        DietPlan dietPlan = reader.readDietPlan();
+        dietPlan = randomize(dietPlan, daysOfWeek);
 
         for (String day : daysOfWeek) {
-            adjustQuantities(dietPlanMap, day);
+            adjustQuantities(dietPlan.getCompleteWeeklyPlan(), day);
         }
 
-        userDietPlan = new DietPlan(dietPlanMap);
-        return userDietPlan;
+        writer.open();
+        writer.writeDietPlan(dietPlan);
+        writer.close();
+
+        this.userDietPlan = dietPlan;
+        return dietPlan;
+    }
+
+    /*
+     * HELPER FUNCTION FOR generateDietPlan()
+     * REQUIRES: new ArrayList<>(Arrays.asList("Monday", "Tuesday", "Wednesday",
+     * "Thursday", "Friday", "Saturday", "Sunday"));
+     * MODIFIES: dietPlan
+     * EFFECTS: Adjusts the quantities breakfast, lunch and dinner for a given day
+     * in accordance to the user's attributes
+     */
+    private DietPlan randomize(DietPlan dietPlan, List<String> daysOfWeek) {
+        List<Meal> breakfasts = new ArrayList<>();
+        List<Meal> lunches = new ArrayList<>();
+        List<Meal> dinners = new ArrayList<>();
+        for (String day : daysOfWeek) {
+            breakfasts.add(dietPlan.getCompleteWeeklyPlan().get(day).get(0));
+            lunches.add(dietPlan.getCompleteWeeklyPlan().get(day).get(1));
+            dinners.add(dietPlan.getCompleteWeeklyPlan().get(day).get(2));
+        }
+        Collections.shuffle(breakfasts);
+        Collections.shuffle(lunches);
+        Collections.shuffle(dinners);
+
+        for (int i = 0; i < 7; i++) {
+            List<Meal> newMeals = new ArrayList<>(Arrays.asList(breakfasts.get(i), lunches.get(i), dinners.get(i)));
+            dietPlan.getCompleteWeeklyPlan().put(daysOfWeek.get(i), newMeals);
+        }
+        return dietPlan;
     }
 
     /*
@@ -255,7 +223,11 @@ public class UserProfile {
     public void setGoal(String goal) {
         this.goal = goal;
         this.targetCalories = calculateCalories();
-        userDietPlan = generateDietPlan();
+        List<String> daysOfWeek = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+                "Sunday");
+        for (String day : daysOfWeek) {
+            adjustQuantities(userDietPlan.getCompleteWeeklyPlan(), day);
+        }
     }
 
     public void setTargetCalories(double cals) {
