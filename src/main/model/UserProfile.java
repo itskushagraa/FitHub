@@ -5,10 +5,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
-import persistance.JsonReader;
-import persistance.JsonWriter;
+import persistance.*;
 
 /**
  * Represents a user profile in FitHub
@@ -16,7 +19,7 @@ import persistance.JsonWriter;
  * workout intensity, bmi, daily calorie consumption, workout split, diet plan
  **/
 
-public class UserProfile {
+public class UserProfile implements Writable {
     private String name;
     private double height;
     private double weight;
@@ -59,6 +62,26 @@ public class UserProfile {
         generateDietPlan();
     }
 
+    // EFFECTS: returns a UserProfile as a JSON Object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("height", this.height);
+        json.put("weight", this.weight);
+        json.put("bmi", this.bmi);
+        json.put("age", this.age);
+        json.put("intensity", this.intensity);
+        json.put("goal", this.goal);
+        json.put("targetCalories", this.targetCalories);
+        JSONArray jsonWorkoutSplit = new JSONArray();
+        for (Workout workout : this.userWorkoutSplit) {
+            jsonWorkoutSplit.put(workout.toJson());
+        }
+        json.put("userWorkoutSplit", jsonWorkoutSplit);
+        json.put("userDietPlan", this.userDietPlan.toJson());
+        return json;
+    }
+
     /*
      * MODIFIES: this.userWorkoutSplit
      * EFFECTS:
@@ -66,9 +89,8 @@ public class UserProfile {
      * - randomizes order of exercises in workoutSplit
      * - writes the new workoutSplit into workoutSplit.json
      * - sets user's workoutsplit to the new split
-     * - returns workoutSplit
      */
-    public List<Workout> generateWorkoutList() throws IOException {
+    private void generateWorkoutList() throws IOException {
         JsonReader reader = new JsonReader("./data/User Data/workoutSplit.json");
         JsonWriter writer = new JsonWriter("./data/User Data/workoutSplit.json");
         List<Workout> workoutSplit = reader.readWorkoutSplit();
@@ -79,7 +101,6 @@ public class UserProfile {
         writer.writeWorkoutSplit(workoutSplit);
         writer.close();
         this.userWorkoutSplit = workoutSplit;
-        return workoutSplit;
     }
 
     /*
@@ -90,9 +111,8 @@ public class UserProfile {
      * - adjusts quantites of each meal to match user's calorific goals
      * - writes back new dietPlan into dietPlan.json
      * - sets user's dietPlan to the new dietPlan
-     * - returns dietPlan
      */
-    public DietPlan generateDietPlan() throws IOException {
+    private void generateDietPlan() throws IOException {
         JsonReader reader = new JsonReader("./data/User Data/dietPlan.json");
         JsonWriter writer = new JsonWriter("./data/User Data/dietPlan.json");
         List<String> daysOfWeek = new ArrayList<>(
@@ -109,7 +129,6 @@ public class UserProfile {
         writer.close();
 
         this.userDietPlan = dietPlan;
-        return dietPlan;
     }
 
     /*
@@ -146,7 +165,7 @@ public class UserProfile {
      * EFFECTS: Adjusts the quantities breakfast, lunch and dinner for a given day
      * in accordance to the user's attributes
      */
-    public void adjustQuantities(Map<String, List<Meal>> map, String day) {
+    private void adjustQuantities(Map<String, List<Meal>> map, String day) {
         List<Meal> dailyMeals = map.get(day);
 
         Meal breakfast = dailyMeals.get(0);

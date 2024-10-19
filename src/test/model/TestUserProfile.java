@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,19 @@ public class TestUserProfile {
         assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Friday").size());
         assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Saturday").size());
         assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Sunday").size());
+    }
 
+    @Test 
+    void testToJson() {
+        JSONObject json = maintainUser.toJson();
+        assertEquals("Ellie", json.getString("name"));
+        assertEquals(165.0, json.getDouble("height"), 0.001);
+        assertEquals(60.0, json.getDouble("weight"), 0.001);
+        assertEquals(22.0, json.getDouble("bmi"));
+        assertEquals(19, json.getInt("age"));
+        assertEquals(5, json.getInt("intensity"));
+        assertEquals("maintain", json.getString("goal"));
+        assertEquals(2260.5, json.getDouble("targetCalories"));
     }
 
     @Test

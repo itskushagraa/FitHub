@@ -20,8 +20,8 @@ import model.Meal;
 import model.UserProfile;
 import model.Workout;
 
-/* Represents a leader that reads FitHub data (UserProfile, WorkoutSplit, DietPlan)
- * from JSON data stored in file
+/* 
+ * Represents a reader that reads FitHub data (UserProfile, WorkoutSplit, DietPlan) from JSON data stored in file
  */
 
 public class JsonReader {

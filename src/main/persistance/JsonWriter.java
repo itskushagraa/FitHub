@@ -15,7 +15,9 @@ import model.Meal;
 import model.UserProfile;
 import model.Workout;
 
-// Represents a writer that writes JSON representation of workroom to file
+/*
+ * Represents a writer that writes FitHub data (UserProfile, DietPlan, WorkoutSplit) to a JSON file
+ */
 
 public class JsonWriter {
     private static final int INDENTATION = 4;
