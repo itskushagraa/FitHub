@@ -1,6 +1,54 @@
 {
     "Monday": [
         {
+            "carb": 42.384375,
+            "quantity": 339.075,
+            "protein": 33.9075,
+            "name": "Scrambled Eggs with Toast",
+            "fat": 25.430625,
+            "ingredients": [
+                "Eggs",
+                "Toast",
+                "Butter"
+            ],
+            "calories": 678.15,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 108.504,
+            "quantity": 406.89,
+            "protein": 16.2756,
+            "name": "Pasta Primavera",
+            "fat": 20.3445,
+            "ingredients": [
+                "Whole Wheat Pasta",
+                "Broccoli",
+                "Carrot",
+                "Zucchini",
+                "Olive Oil"
+            ],
+            "calories": 678.15,
+            "type": "Lunch"
+        },
+        {
+            "carb": 58.127142857142864,
+            "quantity": 516.6857142857143,
+            "protein": 51.66857142857143,
+            "name": "Grilled Steak with Sweet Potatoes",
+            "fat": 38.751428571428576,
+            "ingredients": [
+                "Beef Steak",
+                "Sweet Potatoes",
+                "Asparagus",
+                "Butter",
+                "Garlic"
+            ],
+            "calories": 904.2,
+            "type": "Dinner"
+        }
+    ],
+    "Thursday": [
+        {
             "carb": 138.7125,
             "quantity": 924.75,
             "protein": 24.66,
@@ -12,105 +60,6 @@
                 "Greek Yogurt",
                 "Almond Milk",
                 "Honey"
-            ],
-            "calories": 678.15,
-            "type": "Breakfast"
-        },
-        {
-            "carb": 101.72250000000001,
-            "quantity": 593.38125,
-            "protein": 20.3445,
-            "name": "Quinoa Bean Bowl",
-            "fat": 30.516750000000002,
-            "ingredients": [
-                "Quinoa",
-                "Bell Peppers",
-                "Corn",
-                "Black Beans",
-                "Avocado"
-            ],
-            "calories": 678.15,
-            "type": "Lunch"
-        },
-        {
-            "carb": 65.75999999999999,
-            "quantity": 411,
-            "protein": 41.099999999999994,
-            "name": "Beef Tacos",
-            "fat": 49.32,
-            "ingredients": [
-                "Ground Beef",
-                "Taco Shells",
-                "Cheddar Cheese",
-                "Lettuce",
-                "Sour Cream"
-            ],
-            "calories": 904.2,
-            "type": "Dinner"
-        }
-    ],
-    "Thursday": [
-        {
-            "carb": 67.815,
-            "quantity": 339.075,
-            "protein": 9.042,
-            "name": "Avocado Toast",
-            "fat": 31.647,
-            "ingredients": [
-                "Bread",
-                "Avocado",
-                "Olive Oil",
-                "Salt",
-                "Pepper"
-            ],
-            "calories": 678.15,
-            "type": "Breakfast"
-        },
-        {
-            "carb": 90.41999999999999,
-            "quantity": 301.4,
-            "protein": 30.139999999999997,
-            "name": "Turkey Sandwich",
-            "fat": 15.069999999999999,
-            "ingredients": [
-                "Whole Wheat Bread",
-                "Turkey Breast",
-                "Lettuce",
-                "Tomato",
-                "Mustard"
-            ],
-            "calories": 678.15,
-            "type": "Lunch"
-        },
-        {
-            "carb": 109.7957142857143,
-            "quantity": 452.1,
-            "protein": 32.292857142857144,
-            "name": "Spaghetti Bolognese",
-            "fat": 38.751428571428576,
-            "ingredients": [
-                "Spaghetti",
-                "Ground Beef",
-                "Tomato Sauce",
-                "Parmesan Cheese"
-            ],
-            "calories": 904.2,
-            "type": "Dinner"
-        }
-    ],
-    "Friday": [
-        {
-            "carb": 84.76875,
-            "quantity": 339.075,
-            "protein": 42.384375,
-            "name": "Protein Pancakes",
-            "fat": 13.562999999999999,
-            "ingredients": [
-                "Whole Wheat Flour",
-                "Egg",
-                "Milk",
-                "Baking Powder",
-                "Protein Powder"
             ],
             "calories": 678.15,
             "type": "Breakfast"
@@ -148,17 +97,17 @@
             "type": "Dinner"
         }
     ],
-    "Sunday": [
+    "Friday": [
         {
-            "carb": 42.384375,
-            "quantity": 339.075,
-            "protein": 33.9075,
-            "name": "Scrambled Eggs with Toast",
-            "fat": 25.430625,
+            "carb": 58.12714285714285,
+            "quantity": 290.63571428571424,
+            "protein": 23.25085714285714,
+            "name": "Peanut Butter and Jelly Sandwich",
+            "fat": 31.001142857142852,
             "ingredients": [
-                "Eggs",
-                "Toast",
-                "Butter"
+                "Bread",
+                "Peanut Butter",
+                "Strawberry Jam"
             ],
             "calories": 678.15,
             "type": "Breakfast"
@@ -178,17 +127,66 @@
             "type": "Lunch"
         },
         {
-            "carb": 58.127142857142864,
-            "quantity": 516.6857142857143,
-            "protein": 51.66857142857143,
-            "name": "Grilled Steak with Sweet Potatoes",
+            "carb": 90.42000000000002,
+            "quantity": 602.8000000000001,
+            "protein": 70.32666666666668,
+            "name": "Shrimp Stir Fry",
+            "fat": 20.093333333333337,
+            "ingredients": [
+                "Shrimp",
+                "Bell Peppers",
+                "Carrot",
+                "Soy Sauce",
+                "Ginger"
+            ],
+            "calories": 904.2,
+            "type": "Dinner"
+        }
+    ],
+    "Sunday": [
+        {
+            "carb": 77.50285714285715,
+            "quantity": 484.39285714285717,
+            "protein": 29.063571428571432,
+            "name": "Greek Yogurt Parfait",
+            "fat": 19.375714285714288,
+            "ingredients": [
+                "Greek Yogurt",
+                "Strawberries",
+                "Honey",
+                "Granola",
+                "Chia Seeds"
+            ],
+            "calories": 678.15,
+            "type": "Breakfast"
+        },
+        {
+            "carb": 101.72250000000001,
+            "quantity": 593.38125,
+            "protein": 20.3445,
+            "name": "Quinoa Bean Bowl",
+            "fat": 30.516750000000002,
+            "ingredients": [
+                "Quinoa",
+                "Bell Peppers",
+                "Corn",
+                "Black Beans",
+                "Avocado"
+            ],
+            "calories": 678.15,
+            "type": "Lunch"
+        },
+        {
+            "carb": 109.7957142857143,
+            "quantity": 452.1,
+            "protein": 32.292857142857144,
+            "name": "Spaghetti Bolognese",
             "fat": 38.751428571428576,
             "ingredients": [
-                "Beef Steak",
-                "Sweet Potatoes",
-                "Asparagus",
-                "Butter",
-                "Garlic"
+                "Spaghetti",
+                "Ground Beef",
+                "Tomato Sauce",
+                "Parmesan Cheese"
             ],
             "calories": 904.2,
             "type": "Dinner"
@@ -196,31 +194,33 @@
     ],
     "Wednesday": [
         {
-            "carb": 116.25428571428573,
-            "quantity": 484.39285714285717,
-            "protein": 19.375714285714288,
-            "name": "Oatmeal with Banana",
-            "fat": 9.687857142857144,
+            "carb": 67.815,
+            "quantity": 339.075,
+            "protein": 9.042,
+            "name": "Avocado Toast",
+            "fat": 31.647,
             "ingredients": [
-                "Oats",
-                "Banana",
-                "Milk"
+                "Bread",
+                "Avocado",
+                "Olive Oil",
+                "Salt",
+                "Pepper"
             ],
             "calories": 678.15,
             "type": "Breakfast"
         },
         {
-            "carb": 108.504,
-            "quantity": 406.89,
-            "protein": 16.2756,
-            "name": "Pasta Primavera",
-            "fat": 20.3445,
+            "carb": 90.41999999999999,
+            "quantity": 301.4,
+            "protein": 30.139999999999997,
+            "name": "Turkey Sandwich",
+            "fat": 15.069999999999999,
             "ingredients": [
-                "Whole Wheat Pasta",
-                "Broccoli",
-                "Carrot",
-                "Zucchini",
-                "Olive Oil"
+                "Whole Wheat Bread",
+                "Turkey Breast",
+                "Lettuce",
+                "Tomato",
+                "Mustard"
             ],
             "calories": 678.15,
             "type": "Lunch"
@@ -243,15 +243,17 @@
     ],
     "Tuesday": [
         {
-            "carb": 58.12714285714285,
-            "quantity": 290.63571428571424,
-            "protein": 23.25085714285714,
-            "name": "Peanut Butter and Jelly Sandwich",
-            "fat": 31.001142857142852,
+            "carb": 84.76875,
+            "quantity": 339.075,
+            "protein": 42.384375,
+            "name": "Protein Pancakes",
+            "fat": 13.562999999999999,
             "ingredients": [
-                "Bread",
-                "Peanut Butter",
-                "Strawberry Jam"
+                "Whole Wheat Flour",
+                "Egg",
+                "Milk",
+                "Baking Powder",
+                "Protein Powder"
             ],
             "calories": 678.15,
             "type": "Breakfast"
@@ -273,17 +275,17 @@
             "type": "Lunch"
         },
         {
-            "carb": 146.9325,
-            "quantity": 904.2,
-            "protein": 18.084,
-            "name": "Vegetable Stew",
-            "fat": 33.9075,
+            "carb": 65.75999999999999,
+            "quantity": 411,
+            "protein": 41.099999999999994,
+            "name": "Beef Tacos",
+            "fat": 49.32,
             "ingredients": [
-                "Potatoes",
-                "Carrot",
-                "Celery",
-                "Tomato Paste",
-                "Olive Oil"
+                "Ground Beef",
+                "Taco Shells",
+                "Cheddar Cheese",
+                "Lettuce",
+                "Sour Cream"
             ],
             "calories": 904.2,
             "type": "Dinner"
@@ -291,17 +293,15 @@
     ],
     "Saturday": [
         {
-            "carb": 77.50285714285715,
+            "carb": 116.25428571428573,
             "quantity": 484.39285714285717,
-            "protein": 29.063571428571432,
-            "name": "Greek Yogurt Parfait",
-            "fat": 19.375714285714288,
+            "protein": 19.375714285714288,
+            "name": "Oatmeal with Banana",
+            "fat": 9.687857142857144,
             "ingredients": [
-                "Greek Yogurt",
-                "Strawberries",
-                "Honey",
-                "Granola",
-                "Chia Seeds"
+                "Oats",
+                "Banana",
+                "Milk"
             ],
             "calories": 678.15,
             "type": "Breakfast"
@@ -323,17 +323,17 @@
             "type": "Lunch"
         },
         {
-            "carb": 90.42000000000002,
-            "quantity": 602.8000000000001,
-            "protein": 70.32666666666668,
-            "name": "Shrimp Stir Fry",
-            "fat": 20.093333333333337,
+            "carb": 146.9325,
+            "quantity": 904.2,
+            "protein": 18.084,
+            "name": "Vegetable Stew",
+            "fat": 33.9075,
             "ingredients": [
-                "Shrimp",
-                "Bell Peppers",
+                "Potatoes",
                 "Carrot",
-                "Soy Sauce",
-                "Ginger"
+                "Celery",
+                "Tomato Paste",
+                "Olive Oil"
             ],
             "calories": 904.2,
             "type": "Dinner"

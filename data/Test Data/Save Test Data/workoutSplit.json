@@ -2,9 +2,9 @@
     {
         "exercises": [
             {
-                "musclesWorked": ["Triceps"],
+                "musclesWorked": ["Side Delts"],
                 "sets": [],
-                "name": "Skullcrusher (Dumbbell)"
+                "name": "Lateral Raise (Cable)"
             },
             {
                 "musclesWorked": [
@@ -16,13 +16,9 @@
                 "name": "Butterfly (Pec Deck)"
             },
             {
-                "musclesWorked": [
-                    "Chest",
-                    "Front Delts",
-                    "Triceps"
-                ],
+                "musclesWorked": ["Triceps"],
                 "sets": [],
-                "name": "Bench Press (Barbell)"
+                "name": "Tricep Pushdown (Rope)"
             },
             {
                 "musclesWorked": [
@@ -35,12 +31,7 @@
             {
                 "musclesWorked": ["Triceps"],
                 "sets": [],
-                "name": "Tricep Pushdown (Rope)"
-            },
-            {
-                "musclesWorked": ["Side Delts"],
-                "sets": [],
-                "name": "Lateral Raise (Cable)"
+                "name": "Skullcrusher (Dumbbell)"
             },
             {
                 "musclesWorked": [
@@ -50,6 +41,15 @@
                 ],
                 "sets": [],
                 "name": "Inclined Bench Press (Dumbbell)"
+            },
+            {
+                "musclesWorked": [
+                    "Chest",
+                    "Front Delts",
+                    "Triceps"
+                ],
+                "sets": [],
+                "name": "Bench Press (Barbell)"
             }
         ],
         "name": "Push Day"
@@ -71,19 +71,14 @@
             },
             {
                 "musclesWorked": [
-                    "Rear Delts",
-                    "Forearms"
-                ],
-                "sets": [],
-                "name": "Face Pull (Cable)"
-            },
-            {
-                "musclesWorked": [
+                    "Upper Back",
                     "Lats",
+                    "Traps",
+                    "Rear Delts",
                     "Biceps"
                 ],
                 "sets": [],
-                "name": "Lat Pulldown"
+                "name": "Bent Over Row (Barbell)"
             },
             {
                 "musclesWorked": ["Biceps"],
@@ -101,14 +96,19 @@
             },
             {
                 "musclesWorked": [
-                    "Upper Back",
                     "Lats",
-                    "Traps",
-                    "Rear Delts",
                     "Biceps"
                 ],
                 "sets": [],
-                "name": "Bent Over Row (Barbell)"
+                "name": "Lat Pulldown"
+            },
+            {
+                "musclesWorked": [
+                    "Rear Delts",
+                    "Forearms"
+                ],
+                "sets": [],
+                "name": "Face Pull (Cable)"
             }
         ],
         "name": "Pull Day"
@@ -121,14 +121,14 @@
                 "name": "Seated Calf Raise"
             },
             {
-                "musclesWorked": ["Quads"],
-                "sets": [],
-                "name": "Seated Leg Extension (Machine)"
-            },
-            {
                 "musclesWorked": ["Abs"],
                 "sets": [],
                 "name": "Crunch (Machine)"
+            },
+            {
+                "musclesWorked": ["Quads"],
+                "sets": [],
+                "name": "Seated Leg Extension (Machine)"
             },
             {
                 "musclesWorked": ["Hamstrings"],

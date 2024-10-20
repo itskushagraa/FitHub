@@ -64,17 +64,27 @@ public class FitHubCommandUI {
     }
 
     // EFFECTS: displays WELCOME screen for the user
-    private void displayWelcomeScreen() {
-        System.out.println("Welcome to FitHub! Press any key to get started!");
-
-        try {
-            reader.readLine();
-            clearConsole();
-        } catch (IOException e) {
-            System.out.println("IOException occured");
-        }
-
-        currentState = AppState.USER_SETUP;
+    private void displayWelcomeScreen() throws IOException {
+        System.out.println("Welcome to FitHub!");
+        System.out.println("l -> Load Previously Saved Profile");
+        System.out.println("n -> Create New Profile");
+        Set<String> validInputs = new HashSet<>(Arrays.asList("l", "n"));
+        String input = "";
+        do {
+            input = reader.readLine();
+            if (input.equals("l")) {
+                mainUser = new UserProfile("", 0.0, 0.0, 0, 0, "");
+                mainUser.load("./data/User Data/userProfile.json", "./data/User Data/workoutSplit.json",
+                        "./data/User Data/dietPlan.json");
+                clearConsole();
+                currentState = AppState.MAIN_MENU;
+            } else if (input.equals("n")) {
+                clearConsole();
+                currentState = AppState.USER_SETUP;
+            } else {
+                System.out.println("Invalid Input. Please pick l/n");
+            }
+        } while (!validInputs.contains(input));
     }
 
     // EFFECTS: configures the USER_SETUP portion of FitHub
@@ -108,26 +118,36 @@ public class FitHubCommandUI {
     private void displayMenu() throws IOException {
         System.out.println("Welcome to your FitHub dashboard!");
         System.out.println("1 -> Access Workout Planner\n2 -> Access Diet Planner\n3 -> Access User Profile");
-        System.out.println("4 -> Exit FitHub\nEnter a number to choose:");
+        System.out.println("4 -> Save To File\n5 -> Load From File\n6 -> Exit FitHub\nEnter a number to choose:");
         int input = 0;
         do {
             try {
                 input = Integer.parseInt(reader.readLine());
-                if (input < 1 || input > 4) {
-                    System.out.println("Please choose from the given options: ");
-                } else if (input == 1) {
-                    currentState = AppState.WORKOUT_PLANNER;
-                } else if (input == 2) {
-                    currentState = AppState.DIET_PLANNER;
-                } else if (input == 3) {
-                    currentState = AppState.USER_PROFILE;
-                } else if (input == 4) {
-                    exitApp();
-                }
+                performSpecifiedMainMenuOperation(input);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid Input. Please enter a number: ");
             }
         } while (input < 1 || input > 4);
+    }
+
+    private void performSpecifiedMainMenuOperation(int input) throws IOException {
+        if (input < 1 || input > 4) {
+            System.out.println("Please choose from the given options: ");
+        } else if (input == 1) {
+            currentState = AppState.WORKOUT_PLANNER;
+        } else if (input == 2) {
+            currentState = AppState.DIET_PLANNER;
+        } else if (input == 3) {
+            currentState = AppState.USER_PROFILE;
+        } else if (input == 4) {
+            mainUser.save("./data/User Data/userProfile.json", "./data/User Data/workoutSplit.json",
+                    "./data/User Data/dietPlan.json");
+        } else if (input == 5) {
+            mainUser.load("./data/User Data/userProfile.json", "./data/User Data/workoutSplit.json",
+                    "./data/User Data/dietPlan.json");
+        } else if (input == 6) {
+            exitApp();
+        }
     }
 
     // EFFECTS: displays and executes the USER_PROFILE portion of FitHub
@@ -954,8 +974,26 @@ public class FitHubCommandUI {
     }
 
     // EFFECTS: closes the app
-    private void exitApp() {
-        clearConsole();
-        System.exit(0);
+    private void exitApp() throws IOException {
+        System.out.println("Would you like to save any changes you may have made before exiting the app?");
+        System.out.println("y -> Yes (saves your information then exits app)");
+        System.out.println("n -> No (exits app)");
+        Set<String> validInputs = new HashSet<>(Arrays.asList("y", "n"));
+        String input = "";
+        do {
+            input = reader.readLine();
+            if (input.equalsIgnoreCase("y")) {
+                mainUser.save("./data/User Data/userProfile.json",
+                        "./data/User Data/workoutSplit.json",
+                        "./data/User Data/dietPlan.json");
+                clearConsole();
+                System.exit(0);
+            } else if (input.equalsIgnoreCase("n")) {
+                clearConsole();
+                System.exit(0);
+            } else {
+                System.out.println("Invalid Input. Please enter y/n");
+            }
+        } while (!validInputs.contains(input));
     }
 }
