@@ -1,5 +1,7 @@
 package ui;
 
+import ui.console.FitHubCommandUI;
+
 /*
  * Runs the FitHub app
  * (by calling onto the FitHubCommandUI app for phase 1)

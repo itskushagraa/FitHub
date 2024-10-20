@@ -8,7 +8,6 @@ import org.json.JSONArray;
 
 import persistance.Writable;
 
-
 /**
  * Represents a diet plan for a week.
  * Stores information about the meals planned for each day of the week.
@@ -17,7 +16,7 @@ import persistance.Writable;
  * nutritional values.
  */
 
-public class DietPlan implements Writable { 
+public class DietPlan implements Writable {
     private Map<String, List<Meal>> meals; // each day of a week (String) mapped to a list of meals
 
     /*
@@ -35,7 +34,7 @@ public class DietPlan implements Writable {
     // EFFECTS: returns DietPlan as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        for(Map.Entry<String, List<Meal>> entry : this.meals.entrySet()) {
+        for (Map.Entry<String, List<Meal>> entry : this.meals.entrySet()) {
             String day = entry.getKey();
             List<Meal> meals = entry.getValue();
 
@@ -49,7 +48,7 @@ public class DietPlan implements Writable {
 
         return json;
     }
-    
+
     /*
      * REQUIRES:
      * - day must be a valid day of the week (e.g., "Monday", "Tuesday", etc.)
