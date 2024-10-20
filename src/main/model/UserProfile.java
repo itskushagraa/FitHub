@@ -137,7 +137,7 @@ public class UserProfile implements Writable {
      * - sets user's workoutsplit to the new split
      */
     private void generateWorkoutList() throws IOException {
-        JsonReader reader = new JsonReader("./data/User Data/workoutSplit.json");
+        JsonReader reader = new JsonReader("./data/Generation Dataset/workoutSplit.json");
         List<Workout> workoutSplit = reader.readWorkoutSplit();
         for (int i = 0; i < workoutSplit.size(); i++) {
             Collections.shuffle(workoutSplit.get(i).getExercises());
@@ -154,7 +154,7 @@ public class UserProfile implements Writable {
      * - sets user's dietPlan to the new dietPlan
      */
     private void generateDietPlan() throws IOException {
-        JsonReader reader = new JsonReader("./data/User Data/dietPlan.json");
+        JsonReader reader = new JsonReader("./data/Generation Dataset/dietPlan.json");
         List<String> daysOfWeek = new ArrayList<>(
                 Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
         DietPlan dietPlan = reader.readDietPlan();

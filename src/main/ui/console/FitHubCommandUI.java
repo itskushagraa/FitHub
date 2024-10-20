@@ -127,11 +127,11 @@ public class FitHubCommandUI {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid Input. Please enter a number: ");
             }
-        } while (input < 1 || input > 4);
+        } while (input < 1 || input > 6);
     }
 
     private void performSpecifiedMainMenuOperation(int input) throws IOException {
-        if (input < 1 || input > 4) {
+        if (input < 1 || input > 6) {
             System.out.println("Please choose from the given options: ");
         } else if (input == 1) {
             currentState = AppState.WORKOUT_PLANNER;
@@ -140,9 +140,11 @@ public class FitHubCommandUI {
         } else if (input == 3) {
             currentState = AppState.USER_PROFILE;
         } else if (input == 4) {
+            clearConsole();
             mainUser.save("./data/User Data/userProfile.json", "./data/User Data/workoutSplit.json",
                     "./data/User Data/dietPlan.json");
         } else if (input == 5) {
+            clearConsole();
             mainUser.load("./data/User Data/userProfile.json", "./data/User Data/workoutSplit.json",
                     "./data/User Data/dietPlan.json");
         } else if (input == 6) {
