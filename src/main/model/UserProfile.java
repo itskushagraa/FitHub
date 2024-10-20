@@ -69,6 +69,13 @@ public class UserProfile implements Writable {
      * diet plan to their respective JSON files, (overwriting any existing data)
      */
     public void save() throws IOException {
+        save("./data/User Data/userProfile.json",
+                "./data/User Data/workoutSplit.json",
+                "./data/User Data/dietPlan.json");
+    }
+
+    // Overloaded save() method (for testing purposes only)
+    public void save(String userPath, String splitPath, String planPath) throws IOException {
         // TODO
     }
 
@@ -76,10 +83,16 @@ public class UserProfile implements Writable {
      * REQUIRES: userProfile.json, workoutSplit.json and dietPlan.json must exist
      * and be non-empty
      * MODIFIES: this, this.userWorkoutSplit, this.userDietPlan
-     * EFFECTS: updates the current objects with the data from their respective JSON files
+     * EFFECTS: updates the current objects with the data from their respective JSON
+     * files
      */
     public void load() throws IOException {
-         // TODO
+        // TODO
+    }
+
+    // Overloaded load() method (for testing purposes only)
+    public void load(String userPath, String splitPath, String planPath) throws IOException {
+        // TODO
     }
 
     // EFFECTS: returns a UserProfile as a JSON Object

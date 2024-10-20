@@ -1,12 +1,16 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import persistance.JsonReader;
 
 public class TestUserProfile {
     private UserProfile maintainUser;
@@ -43,7 +47,63 @@ public class TestUserProfile {
         assertEquals(3, maintainUser.getDietPlan().getCompleteWeeklyPlan().get("Sunday").size());
     }
 
-    @Test 
+    @Test
+    void testSave() throws IOException {
+        try {
+            UserProfile originalProfile = new UserProfile("Ellie", 165.0, 60.0, 19, 5, "maintain");
+
+            originalProfile.save("./data/Test Data/Save Test Data/userProfile.json",
+                    "./data/Test Data/Save Test Data/workoutSplit.json",
+                    "./data/Test Data/Save Test Data/dietPlan.json");
+
+            JsonReader userReader = new JsonReader("./data/Test Data/Save Test Data/userProfile.json");
+            JsonReader workoutSplitReader = new JsonReader("./data/Test Data/Save Test Data/workoutSplit.json");
+            JsonReader dietPlanReader = new JsonReader("./data/Test Data/Save Test Data/dietPlan.json");
+
+            UserProfile savedProfile = userReader.readUserProfile();
+            List<Workout> savedSplit = workoutSplitReader.readWorkoutSplit();
+            DietPlan savedPlan = dietPlanReader.readDietPlan();
+
+            assertEquals(originalProfile, savedProfile);
+            assertEquals(originalProfile.getWorkoutList(), savedSplit);
+            assertEquals(originalProfile.getDietPlan(), savedPlan);
+
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testLoad() throws IOException {
+        UserProfile testProfile = new UserProfile("", 0.0, 0.0, 0, 0, "");
+
+        testProfile.load("./data/Test Data/Load Test Data/userProfile.json",
+                    "./data/Test Data/Load Test Data/workoutSplit.json",
+                    "./data/Test Data/Load Test Data/dietPlan.json");
+
+        assertEquals("Ellie", testProfile.getName());
+        assertEquals(165.0, testProfile.getHeight());
+        assertEquals(60.0, testProfile.getWeight());
+        assertEquals(19, testProfile.getAge());
+        assertEquals(5, testProfile.getIntensity());
+        assertEquals("maintain", testProfile.getGoal());
+
+        assertEquals(3, testProfile.getWorkoutList().size());
+        assertEquals("Push Day", testProfile.getWorkoutList().get(0).getName());
+        assertEquals("Pull Day", testProfile.getWorkoutList().get(0).getName());
+        assertEquals("Leg Day", testProfile.getWorkoutList().get(0).getName());
+
+
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Monday").size());
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Tuesday").size());
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Wednesday").size());
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Thursday").size());
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Friday").size());
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Saturday").size());
+        assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Sunday").size());
+    }
+
+    @Test
     void testToJson() {
         JSONObject json = maintainUser.toJson();
         assertEquals("Ellie", json.getString("name"));
