@@ -1,9 +1,12 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -50,27 +53,44 @@ public class TestUserProfile {
     @Test
     void testSave() throws IOException {
         try {
-            UserProfile originalProfile = new UserProfile("Ellie", 165.0, 60.0, 19, 5, "maintain");
+            UserProfile originalProfile = new UserProfile("Ellie Williams", 165.0, 60.0, 19, 5, "maintain");
 
             originalProfile.save("./data/Test Data/Save Test Data/userProfile.json",
                     "./data/Test Data/Save Test Data/workoutSplit.json",
                     "./data/Test Data/Save Test Data/dietPlan.json");
 
             JsonReader userReader = new JsonReader("./data/Test Data/Save Test Data/userProfile.json");
-            JsonReader workoutSplitReader = new JsonReader("./data/Test Data/Save Test Data/workoutSplit.json");
-            JsonReader dietPlanReader = new JsonReader("./data/Test Data/Save Test Data/dietPlan.json");
-
             UserProfile savedProfile = userReader.readUserProfile();
-            List<Workout> savedSplit = workoutSplitReader.readWorkoutSplit();
-            DietPlan savedPlan = dietPlanReader.readDietPlan();
 
-            assertEquals(originalProfile, savedProfile);
-            assertEquals(originalProfile.getWorkoutList(), savedSplit);
-            assertEquals(originalProfile.getDietPlan(), savedPlan);
+            assertTrue(compareUsers(originalProfile, savedProfile));
+            assertTrue(containsWorkouts(savedProfile));
+            assertTrue(containsMeals(savedProfile));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
+    }
+
+    // EFFECTS: returns true if the data in u1 matches the data in u2
+    private boolean compareUsers(UserProfile u1, UserProfile u2) {
+        return u1.getName().equals(u2.getName())
+                && u1.getHeight() == u2.getHeight()
+                && u1.getWeight() == u2.getWeight()
+                && u1.getAge() == u2.getAge()
+                && u1.getIntensity() == u2.getIntensity()
+                && u1.getGoal().equals(u2.getGoal());
+    }
+
+    // EFFECTS: returns true if the diet plan associated with testProfile contains
+    // the required meals
+    private boolean containsMeals(UserProfile testProfile) {
+        return testProfile.getDietPlan().getCompleteWeeklyPlan().get("Monday").size() == 3
+                && testProfile.getDietPlan().getCompleteWeeklyPlan().get("Tuesday").size() == 3
+                && testProfile.getDietPlan().getCompleteWeeklyPlan().get("Wednesday").size() == 3
+                && testProfile.getDietPlan().getCompleteWeeklyPlan().get("Thursday").size() == 3
+                && testProfile.getDietPlan().getCompleteWeeklyPlan().get("Friday").size() == 3
+                && testProfile.getDietPlan().getCompleteWeeklyPlan().get("Saturday").size() == 3
+                && testProfile.getDietPlan().getCompleteWeeklyPlan().get("Sunday").size() == 3;
     }
 
     @Test
@@ -78,21 +98,20 @@ public class TestUserProfile {
         UserProfile testProfile = new UserProfile("", 0.0, 0.0, 0, 0, "");
 
         testProfile.load("./data/Test Data/Load Test Data/userProfile.json",
-                    "./data/Test Data/Load Test Data/workoutSplit.json",
-                    "./data/Test Data/Load Test Data/dietPlan.json");
+                "./data/Test Data/Load Test Data/workoutSplit.json",
+                "./data/Test Data/Load Test Data/dietPlan.json");
 
-        assertEquals("Ellie", testProfile.getName());
+        assertEquals("Ellie Williams", testProfile.getName());
         assertEquals(165.0, testProfile.getHeight());
         assertEquals(60.0, testProfile.getWeight());
+        assertEquals(22.0, testProfile.getBmi());
         assertEquals(19, testProfile.getAge());
         assertEquals(5, testProfile.getIntensity());
         assertEquals("maintain", testProfile.getGoal());
+        assertEquals(2260.5, testProfile.getTargetCalories());
 
         assertEquals(3, testProfile.getWorkoutList().size());
-        assertEquals("Push Day", testProfile.getWorkoutList().get(0).getName());
-        assertEquals("Pull Day", testProfile.getWorkoutList().get(0).getName());
-        assertEquals("Leg Day", testProfile.getWorkoutList().get(0).getName());
-
+        assertTrue(containsWorkouts(testProfile));
 
         assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Monday").size());
         assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Tuesday").size());
@@ -101,6 +120,18 @@ public class TestUserProfile {
         assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Friday").size());
         assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Saturday").size());
         assertEquals(3, testProfile.getDietPlan().getCompleteWeeklyPlan().get("Sunday").size());
+    }
+
+    // EFFECTS: returns true if the workout split associated with testProfile
+    // contains the required workouts
+    private boolean containsWorkouts(UserProfile testProfile) {
+        List<String> workoutNames = new ArrayList<>(Arrays.asList(testProfile.getWorkoutList().get(0).getName(),
+                testProfile.getWorkoutList().get(1).getName(),
+                testProfile.getWorkoutList().get(2).getName()));
+
+        return workoutNames.contains("Push Day")
+                && workoutNames.contains("Pull Day")
+                && workoutNames.contains("Leg Day");
     }
 
     @Test

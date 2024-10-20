@@ -68,17 +68,24 @@ public class UserProfile implements Writable {
      * EFFECTS: writes the current state of the user profile, workout split, and
      * diet plan to their respective JSON files, (overwriting any existing data)
      */
-    public void save() throws IOException {
-        save("./data/User Data/userProfile.json",
-                "./data/User Data/workoutSplit.json",
-                "./data/User Data/dietPlan.json");
-    }
-
-    // Overloaded save() method (for testing purposes only)
     public void save(String userPath, String splitPath, String planPath) throws IOException {
-        // TODO
-    }
+        JsonWriter userWriter = new JsonWriter(userPath);
+        JsonWriter splitWriter = new JsonWriter(splitPath);
+        JsonWriter planWriter = new JsonWriter(planPath);
 
+        userWriter.open();
+        splitWriter.open();
+        planWriter.open();
+
+        userWriter.writeUserProfile(this);
+        splitWriter.writeWorkoutSplit(this.userWorkoutSplit);
+        planWriter.writeDietPlan(this.userDietPlan);
+
+        userWriter.close();
+        splitWriter.close();
+        planWriter.close();
+    }
+    
     /*
      * REQUIRES: userProfile.json, workoutSplit.json and dietPlan.json must exist
      * and be non-empty
@@ -86,13 +93,20 @@ public class UserProfile implements Writable {
      * EFFECTS: updates the current objects with the data from their respective JSON
      * files
      */
-    public void load() throws IOException {
-        // TODO
-    }
-
-    // Overloaded load() method (for testing purposes only)
     public void load(String userPath, String splitPath, String planPath) throws IOException {
-        // TODO
+        JsonReader userReader = new JsonReader(userPath);
+        JsonReader splitReader = new JsonReader(splitPath);
+        JsonReader planReader = new JsonReader(planPath);
+        this.name = userReader.readUserProfile().getName();
+        this.height = userReader.readUserProfile().getHeight();
+        this.weight = userReader.readUserProfile().getWeight();
+        this.bmi = userReader.readUserProfile().getBmi();
+        this.age = userReader.readUserProfile().getAge();
+        this.intensity = userReader.readUserProfile().getIntensity();
+        this.goal = userReader.readUserProfile().getGoal();
+        this.targetCalories = userReader.readUserProfile().getTargetCalories();
+        this.userWorkoutSplit = splitReader.readWorkoutSplit();
+        this.userDietPlan = planReader.readDietPlan();
     }
 
     // EFFECTS: returns a UserProfile as a JSON Object
@@ -120,19 +134,14 @@ public class UserProfile implements Writable {
      * EFFECTS:
      * - reads a workoutSplit from workoutSplit.json
      * - randomizes order of exercises in workoutSplit
-     * - writes the new workoutSplit into workoutSplit.json
      * - sets user's workoutsplit to the new split
      */
     private void generateWorkoutList() throws IOException {
         JsonReader reader = new JsonReader("./data/User Data/workoutSplit.json");
-        JsonWriter writer = new JsonWriter("./data/User Data/workoutSplit.json");
         List<Workout> workoutSplit = reader.readWorkoutSplit();
         for (int i = 0; i < workoutSplit.size(); i++) {
             Collections.shuffle(workoutSplit.get(i).getExercises());
         }
-        writer.open();
-        writer.writeWorkoutSplit(workoutSplit);
-        writer.close();
         this.userWorkoutSplit = workoutSplit;
     }
 
@@ -142,12 +151,10 @@ public class UserProfile implements Writable {
      * - reads a dietPlan from dietPlan.json
      * - randomizes order of meals for each day in dietPlan
      * - adjusts quantites of each meal to match user's calorific goals
-     * - writes back new dietPlan into dietPlan.json
      * - sets user's dietPlan to the new dietPlan
      */
     private void generateDietPlan() throws IOException {
         JsonReader reader = new JsonReader("./data/User Data/dietPlan.json");
-        JsonWriter writer = new JsonWriter("./data/User Data/dietPlan.json");
         List<String> daysOfWeek = new ArrayList<>(
                 Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"));
         DietPlan dietPlan = reader.readDietPlan();
@@ -156,11 +163,6 @@ public class UserProfile implements Writable {
         for (String day : daysOfWeek) {
             adjustQuantities(dietPlan.getCompleteWeeklyPlan(), day);
         }
-
-        writer.open();
-        writer.writeDietPlan(dietPlan);
-        writer.close();
-
         this.userDietPlan = dietPlan;
     }
 

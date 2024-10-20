@@ -1,0 +1,150 @@
+[
+    {
+        "exercises": [
+            {
+                "musclesWorked": ["Triceps"],
+                "sets": [],
+                "name": "Skullcrusher (Dumbbell)"
+            },
+            {
+                "musclesWorked": [
+                    "Chest",
+                    "Front Delts",
+                    "Triceps"
+                ],
+                "sets": [],
+                "name": "Butterfly (Pec Deck)"
+            },
+            {
+                "musclesWorked": [
+                    "Chest",
+                    "Front Delts",
+                    "Triceps"
+                ],
+                "sets": [],
+                "name": "Bench Press (Barbell)"
+            },
+            {
+                "musclesWorked": [
+                    "Chest",
+                    "Front Delts"
+                ],
+                "sets": [],
+                "name": "Cable Fly Crossovers"
+            },
+            {
+                "musclesWorked": ["Triceps"],
+                "sets": [],
+                "name": "Tricep Pushdown (Rope)"
+            },
+            {
+                "musclesWorked": ["Side Delts"],
+                "sets": [],
+                "name": "Lateral Raise (Cable)"
+            },
+            {
+                "musclesWorked": [
+                    "Chest",
+                    "Front Delts",
+                    "Triceps"
+                ],
+                "sets": [],
+                "name": "Inclined Bench Press (Dumbbell)"
+            }
+        ],
+        "name": "Push Day"
+    },
+    {
+        "exercises": [
+            {
+                "musclesWorked": ["Biceps"],
+                "sets": [],
+                "name": "Hammer Curl"
+            },
+            {
+                "musclesWorked": [
+                    "Lower Back",
+                    "Glutes"
+                ],
+                "sets": [],
+                "name": "Back Extension (Machine)"
+            },
+            {
+                "musclesWorked": [
+                    "Rear Delts",
+                    "Forearms"
+                ],
+                "sets": [],
+                "name": "Face Pull (Cable)"
+            },
+            {
+                "musclesWorked": [
+                    "Lats",
+                    "Biceps"
+                ],
+                "sets": [],
+                "name": "Lat Pulldown"
+            },
+            {
+                "musclesWorked": ["Biceps"],
+                "sets": [],
+                "name": "Bicep Curl (Dumbbell)"
+            },
+            {
+                "musclesWorked": [
+                    "Upper Back",
+                    "Rear Delts",
+                    "Traps"
+                ],
+                "sets": [],
+                "name": "Reverse Fly (Cable)"
+            },
+            {
+                "musclesWorked": [
+                    "Upper Back",
+                    "Lats",
+                    "Traps",
+                    "Rear Delts",
+                    "Biceps"
+                ],
+                "sets": [],
+                "name": "Bent Over Row (Barbell)"
+            }
+        ],
+        "name": "Pull Day"
+    },
+    {
+        "exercises": [
+            {
+                "musclesWorked": ["Calves"],
+                "sets": [],
+                "name": "Seated Calf Raise"
+            },
+            {
+                "musclesWorked": ["Quads"],
+                "sets": [],
+                "name": "Seated Leg Extension (Machine)"
+            },
+            {
+                "musclesWorked": ["Abs"],
+                "sets": [],
+                "name": "Crunch (Machine)"
+            },
+            {
+                "musclesWorked": ["Hamstrings"],
+                "sets": [],
+                "name": "Seated Leg Curl (Machine)"
+            },
+            {
+                "musclesWorked": [
+                    "Quads",
+                    "Hamstrings",
+                    "Glutes"
+                ],
+                "sets": [],
+                "name": "Squat (Barbell)"
+            }
+        ],
+        "name": "Leg Day"
+    }
+]
