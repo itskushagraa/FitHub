@@ -1,6 +1,6 @@
 package ui;
 
-import ui.console.FitHubCommandUI;
+import ui.graphical.FitHubGraphicalUI;
 
 /*
  * Runs the FitHub app
@@ -8,6 +8,6 @@ import ui.console.FitHubCommandUI;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        new FitHubCommandUI();
+        new FitHubGraphicalUI();
     }
 }
