@@ -1,19 +1,31 @@
 package ui.graphical;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
+
+/*
+ * Represents State Machine Component: AppState.SPLASH_SCREEN
+ * It displays an image with a progress bar that updates until it reaches 100%,
+ * after which the splash screen closes automatically.
+ */
 
 public class SplashScreen extends JFrame {
-    private JProgressBar progressBar;
+    JProgressBar progressBar;
     private int progress = 0;
 
+    // EFFECTS: initializes and displays the splash screen
     public SplashScreen() {
         run();
     }
 
-    private void run() {
+    /*
+     * MODIFIES: this
+     * EFFECTS: sets up the splash screen window, adds the progress bar, and starts
+     * it
+     */
+    public void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/splashScreen.png");
         JLabel splashLabel = new JLabel(splashIcon);
+        this.setTitle("FitHub");
         this.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,6 +36,10 @@ public class SplashScreen extends JFrame {
         this.setVisible(true);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: adds a progress bar to the splash screen
+     */
     private void addProgressBar(JLabel splashLabel) {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setSize(this.getSize());
@@ -34,16 +50,21 @@ public class SplashScreen extends JFrame {
         progressBar = new JProgressBar();
         progressBar.setStringPainted(false);
         progressBar.setOpaque(false);
-        UIManager.put("ProgressBar.foreground", new ColorUIResource(0, 0, 0));
-
         progressBar.setBounds(200, this.getHeight() - 80, this.getWidth() - 400, 5);
-        layeredPane.add(progressBar, JLayeredPane.PALETTE_LAYER);
 
+        layeredPane.add(progressBar, JLayeredPane.PALETTE_LAYER);
+        System.out.println(UIManager.getLookAndFeel().getName());
         setContentPane(layeredPane);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS:
+     * - starts a timer to load the progress bar
+     * - disposes the splash screen once progress bar reaches 100%
+     */
     private void startProgressBar() {
-        Timer timer = new Timer(15, e -> {
+        Timer timer = new Timer(1, e -> {
             progress += 1;
             progressBar.setValue(progress);
             if (progress >= 100) {
