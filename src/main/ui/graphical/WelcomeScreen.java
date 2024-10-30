@@ -65,7 +65,10 @@ public class WelcomeScreen extends JFrame {
     }
 
     private void configureButtons() {
-        create.addActionListener(e -> new ConfigureUser());
+        create.addActionListener(e -> {
+            new ConfigureUser();
+            this.dispose();
+        });
         load.addActionListener(e -> loadAction());
         exit.addActionListener(e -> System.exit(0));
     }
@@ -77,8 +80,8 @@ public class WelcomeScreen extends JFrame {
                     "./data/User Data/workoutSplit.json",
                     "./data/User Data/dietPlan.json");
 
-            this.dispose();
             new MainMenu(mainUser);
+            this.dispose();
         } catch (IOException e) {
             System.out.println("Unexpected IOException");
         }

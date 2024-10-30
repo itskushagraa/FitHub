@@ -53,7 +53,6 @@ public class SplashScreen extends JFrame {
         progressBar.setBounds(200, this.getHeight() - 80, this.getWidth() - 400, 5);
 
         layeredPane.add(progressBar, JLayeredPane.PALETTE_LAYER);
-        System.out.println(UIManager.getLookAndFeel().getName());
         setContentPane(layeredPane);
     }
 
