@@ -63,7 +63,7 @@ public class SplashScreen extends JFrame {
      * - disposes the splash screen once progress bar reaches 100%
      */
     private void startProgressBar() {
-        Timer timer = new Timer(1, e -> {
+        Timer timer = new Timer(15, e -> {
             progress += 1;
             progressBar.setValue(progress);
             if (progress >= 100) {
