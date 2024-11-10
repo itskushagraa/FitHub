@@ -132,6 +132,26 @@ public class Meal implements Writable {
         this.type = type;
     }
 
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public void setCarb(double carb) {
+        this.carb = carb;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     /*
      * MODIFIES:
      * - this.quantity
@@ -172,18 +192,18 @@ public class Meal implements Writable {
     }
 
     public double getQuantity() {
-        return this.quantity;
+        return Math.round(this.quantity * 100.0) / 100.0;
     }
 
     public double getProtein() {
-        return this.protein;
+        return Math.round(this.protein * 100.0) / 100.0;
     }
 
     public double getFat() {
-        return this.fat;
+        return Math.round(this.fat * 100.0) / 100.0;
     }
 
     public double getCarb() {
-        return this.carb;
+        return Math.round(this.carb * 100.0) / 100.0;
     }
 }

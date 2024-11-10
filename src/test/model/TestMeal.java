@@ -44,7 +44,7 @@ public class TestMeal {
         assertEquals(85.0, testMeal.getCarb());
     }
 
-    @Test 
+    @Test
     void testToJson() {
         JSONObject json = testMeal.toJson();
         assertEquals("Spaghetti Bolognese", json.getString("name"));
@@ -122,5 +122,18 @@ public class TestMeal {
         assertEquals("Omelette", testMeal.getName());
         testMeal.setType("Breakfast");
         assertEquals("Breakfast", testMeal.getType());
+        testMeal.setCalories(10.0);
+        assertEquals(10.0, testMeal.getCalories());
+        testMeal.setProtein(10.0);
+        assertEquals(10.0, testMeal.getProtein());
+        testMeal.setFat(20.0);
+        assertEquals(20.0, testMeal.getFat());
+        testMeal.setCarb(30.0);
+        assertEquals(30.0, testMeal.getCarb());
+        testMeal.setIngredients(new ArrayList<>(Arrays.asList("A", "B", "C")));
+        assertEquals(3, testMeal.getIngredients().size());
+        assertEquals("A", testMeal.getIngredients().get(0));
+        assertEquals("B", testMeal.getIngredients().get(1));
+        assertEquals("C", testMeal.getIngredients().get(2));
     }
 }

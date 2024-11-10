@@ -18,6 +18,7 @@ public class UserSettings extends JFrame {
     private JLabel intensityValueLabel;
     private JLabel goalValueLabel;
     private JButton backButton;
+    private JButton editButton;
 
     public UserSettings(UserProfile user) {
         this.mainUser = user;
@@ -56,6 +57,7 @@ public class UserSettings extends JFrame {
         initIntensityLabel();
         initGoalLabel();
         initBackButton();
+        initEditButton();
     }
 
     private void initNameLabel() {
@@ -131,5 +133,19 @@ public class UserSettings extends JFrame {
         backButton.setOpaque(false);
         layeredPane.add(backButton, JLayeredPane.PALETTE_LAYER);
         backButton.addActionListener(e -> this.dispose());
+    }
+
+    private void initEditButton() {
+        editButton = new JButton();
+        editButton.setBounds(730, 375, 155, 45);
+        editButton.setContentAreaFilled(false);
+        editButton.setBorderPainted(false);
+        editButton.setFocusPainted(false);
+        editButton.setOpaque(false);
+        layeredPane.add(editButton, JLayeredPane.PALETTE_LAYER);
+        editButton.addActionListener(e -> {
+            new ConfigureUser(mainUser);
+            this.dispose();
+        });
     }
 }

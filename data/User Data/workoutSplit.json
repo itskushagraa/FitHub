@@ -1,70 +1,62 @@
 [
     {
-        "name": "Push Day",
         "exercises": [
             {
-                "name": "Bench Press (Barbell)",
                 "musclesWorked": [
                     "Chest",
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Bench Press (Barbell)"
             },
             {
-                "name": "Cable Fly Crossovers",
                 "musclesWorked": [
                     "Chest",
                     "Front Delts"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Cable Fly Crossovers"
             },
             {
-                "name": "Inclined Bench Press (Dumbbell)",
                 "musclesWorked": [
                     "Chest",
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Inclined Bench Press (Dumbbell)"
             },
             {
-                "name": "Butterfly (Pec Deck)",
                 "musclesWorked": [
                     "Chest",
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Butterfly (Pec Deck)"
             },
             {
-                "name": "Skullcrusher (Dumbbell)",
-                "musclesWorked": [
-                    "Triceps"
-                ],
-                "sets": []
+                "musclesWorked": ["Triceps"],
+                "sets": [],
+                "name": "Skullcrusher (Dumbbell)"
             },
             {
-                "name": "Tricep Pushdown (Rope)",
-                "musclesWorked": [
-                    "Triceps"
-                ],
-                "sets": []
+                "musclesWorked": ["Triceps"],
+                "sets": [],
+                "name": "Tricep Pushdown (Rope)"
             },
             {
-                "name": "Lateral Raise (Cable)",
-                "musclesWorked": [
-                    "Side Delts"
-                ],
-                "sets": []
+                "musclesWorked": ["Side Delts"],
+                "sets": [],
+                "name": "Lateral Raise (Cable)"
             }
-        ]
+        ],
+        "name": "Push Day"
     },
     {
-        "name": "Pull Day",
         "exercises": [
             {
-                "name": "Bent Over Row (Barbell)",
                 "musclesWorked": [
                     "Upper Back",
                     "Lats",
@@ -72,97 +64,87 @@
                     "Rear Delts",
                     "Biceps"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Bent Over Row (Barbell)"
             },
             {
-                "name": "Reverse Fly (Cable)",
                 "musclesWorked": [
                     "Upper Back",
                     "Rear Delts",
                     "Traps"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Reverse Fly (Cable)"
             },
             {
-                "name": "Back Extension (Machine)",
                 "musclesWorked": [
                     "Lower Back",
                     "Glutes"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Back Extension (Machine)"
             },
             {
-                "name": "Bicep Curl (Dumbbell)",
-                "musclesWorked": [
-                    "Biceps"
-                ],
-                "sets": []
+                "musclesWorked": ["Biceps"],
+                "sets": [],
+                "name": "Bicep Curl (Dumbbell)"
             },
             {
-                "name": "Hammer Curl",
-                "musclesWorked": [
-                    "Biceps"
-                ],
-                "sets": []
+                "musclesWorked": ["Biceps"],
+                "sets": [],
+                "name": "Hammer Curl"
             },
             {
-                "name": "Lat Pulldown",
                 "musclesWorked": [
                     "Lats",
                     "Biceps"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Lat Pulldown"
             },
             {
-                "name": "Face Pull (Cable)",
                 "musclesWorked": [
                     "Rear Delts",
                     "Forearms"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Face Pull (Cable)"
             }
-        ]
+        ],
+        "name": "Pull Day"
     },
     {
-        "name": "Leg Day",
         "exercises": [
             {
-                "name": "Squat (Barbell)",
                 "musclesWorked": [
                     "Quads",
                     "Hamstrings",
                     "Glutes"
                 ],
-                "sets": []
+                "sets": [],
+                "name": "Squat (Barbell)"
             },
             {
-                "name": "Seated Leg Extension (Machine)",
-                "musclesWorked": [
-                    "Quads"
-                ],
-                "sets": []
+                "musclesWorked": ["Quads"],
+                "sets": [],
+                "name": "Seated Leg Extension (Machine)"
             },
             {
-                "name": "Seated Leg Curl (Machine)",
-                "musclesWorked": [
-                    "Hamstrings"
-                ],
-                "sets": []
+                "musclesWorked": ["Hamstrings"],
+                "sets": [],
+                "name": "Seated Leg Curl (Machine)"
             },
             {
-                "name": "Seated Calf Raise",
-                "musclesWorked": [
-                    "Calves"
-                ],
-                "sets": []
+                "musclesWorked": ["Calves"],
+                "sets": [],
+                "name": "Seated Calf Raise"
             },
             {
-                "name": "Crunch (Machine)",
-                "musclesWorked": [
-                    "Abs"
-                ],
-                "sets": []
+                "musclesWorked": ["Abs"],
+                "sets": [],
+                "name": "Crunch (Machine)"
             }
-        ]
+        ],
+        "name": "Leg Day"
     }
 ]

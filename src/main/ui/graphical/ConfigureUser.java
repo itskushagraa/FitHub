@@ -14,6 +14,7 @@ import javax.swing.text.DocumentFilter;
 import model.UserProfile;
 
 public class ConfigureUser extends JFrame {
+    private UserProfile mainUser;
     private JLayeredPane layeredPane;
     private JTextField nameTextField;
     private JTextField heightTextField;
@@ -26,6 +27,12 @@ public class ConfigureUser extends JFrame {
     private JButton continueButton;
 
     public ConfigureUser() {
+        run();
+    }
+
+    // OVERLOADED CONSTRUCTOR
+    public ConfigureUser(UserProfile user) {
+        this.mainUser = user;
         run();
     }
 
@@ -62,7 +69,7 @@ public class ConfigureUser extends JFrame {
     }
 
     private void initNameField() {
-        nameTextField = new JTextField();
+        nameTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getName());
         constrainTextFieldToString(nameTextField);
         nameTextField.setBounds(270, 119, 354, 45);
 
@@ -76,7 +83,7 @@ public class ConfigureUser extends JFrame {
     }
 
     private void initHeightField() {
-        heightTextField = new JTextField();
+        heightTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getHeight() + "");
         constrainTextFieldToDouble(heightTextField);
         heightTextField.setBounds(300, 172, 85, 45);
 
@@ -90,7 +97,7 @@ public class ConfigureUser extends JFrame {
     }
 
     private void initWeightField() {
-        weightTextField = new JTextField();
+        weightTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getWeight() + "");
         constrainTextFieldToDouble(weightTextField);
         weightTextField.setBounds(310, 225, 85, 45);
 
@@ -104,7 +111,7 @@ public class ConfigureUser extends JFrame {
     }
 
     private void initAgeField() {
-        ageTextField = new JTextField();
+        ageTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getAge() + "");
         constrainTextFieldToInt(ageTextField);
         ageTextField.setBounds(245, 278, 40, 45);
 
@@ -118,7 +125,7 @@ public class ConfigureUser extends JFrame {
     }
 
     private void initSlider() {
-        intensitySlider = new JSlider(JSlider.HORIZONTAL, 1, 7, 1);
+        intensitySlider = new JSlider(JSlider.HORIZONTAL, 1, 7, (mainUser == null) ? 1 : mainUser.getIntensity());
         intensitySlider.setMajorTickSpacing(1);
         intensitySlider.setPaintTicks(true);
         intensitySlider.setSnapToTicks(true);
@@ -151,6 +158,7 @@ public class ConfigureUser extends JFrame {
         bulkButton.setBounds(43, 480, 150, 60);
         cutButton.setBounds(200, 480, 150, 60);
         maintainButton.setBounds(357, 480, 250, 60);
+        selectButtonForExistingUser();
         layeredPane.add(bulkButton, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(cutButton, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(maintainButton, JLayeredPane.PALETTE_LAYER);
@@ -166,16 +174,65 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(continueButton, JLayeredPane.PALETTE_LAYER);
     }
 
+    private void selectButtonForExistingUser() {
+        if (mainUser != null) {
+            switch (mainUser.getGoal()) {
+                case "bulk":
+                    bulkButton.setSelected(true);
+                    break;
+                case "cut":
+                    cutButton.setSelected(true);
+                    break;
+                case "maintain":
+                    maintainButton.setSelected(true);
+                    break;
+            }
+        }
+    }
+
     private void processInputs() {
         if (!checkInputs()) {
             JOptionPane.showMessageDialog(this, "One or more fields is empty", "Input Error",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            createUser();
+            if (mainUser == null) {
+                createNewUser();
+            } else {
+                editExistingUser();
+            }
         }
     }
 
-    private void createUser() {
+    private void editExistingUser() {
+        String name = nameTextField.getText().trim();
+        double height = Double.parseDouble(heightTextField.getText().trim());
+        double weight = Double.parseDouble(weightTextField.getText().trim());
+        int age = Integer.parseInt(ageTextField.getText().trim());
+        int intensity = intensitySlider.getValue();
+        String goal;
+        if (bulkButton.isSelected()) {
+            goal = "bulk";
+        } else if (cutButton.isSelected()) {
+            goal = "cut";
+        } else {
+            goal = "maintain";
+        }
+
+        updateUser(name, height, weight, age, intensity, goal);
+        new UserSettings(mainUser);
+        this.dispose();
+    }
+
+    private void updateUser(String name, double height, double weight, int age, int intensity, String goal) {
+        mainUser.setName(name);
+        mainUser.setHeight(height);
+        mainUser.setWeight(weight);
+        mainUser.setAge(age);
+        mainUser.setIntensity(intensity);
+        mainUser.setGoal(goal);
+    }
+
+    private void createNewUser() {
         String name = nameTextField.getText().trim();
         double height = Double.parseDouble(heightTextField.getText().trim());
         double weight = Double.parseDouble(weightTextField.getText().trim());

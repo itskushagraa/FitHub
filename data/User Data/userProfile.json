@@ -1,8 +1,8 @@
 {
-    "name": "Joel Miller",
-    "height": 191.0,
-    "weight": 74.0, 
-    "age": 56,
     "intensity": 6,
-    "goal": "maintain"
+    "goal": "maintain",
+    "name": "Joel Miller",
+    "weight": 74,
+    "age": 56,
+    "height": 191
 }
