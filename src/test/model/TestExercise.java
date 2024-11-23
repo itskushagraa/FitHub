@@ -138,9 +138,17 @@ public class TestExercise {
         musclesWorked.add("Calves");
         musclesWorked.add("Lower Back");
 
+        List<ExerciseSet> sets = new ArrayList<>();
+        sets.add(new ExerciseSet(100, 100));
+        sets.add(new ExerciseSet(50, 50));
+        sets.add(new ExerciseSet(10, 10));
+
+        testExercise.setSets(sets);
         testExercise.setName("Barbell Squat");
         testExercise.setMusclesWorked(musclesWorked);
+
         assertEquals("Barbell Squat", testExercise.getName());
         assertEquals(musclesWorked, testExercise.getMusclesWorked());
+        assertEquals(sets, testExercise.getSets());
     }
 }

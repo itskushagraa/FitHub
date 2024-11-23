@@ -116,6 +116,10 @@ public class Exercise implements Writable {
         this.musclesWorked = musclesWorked;
     }
 
+    public void setSets(List<ExerciseSet> sets) {
+        this.sets = sets;
+    }
+
     /*
      * GETTER METHODS:
      */

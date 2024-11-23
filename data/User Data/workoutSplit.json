@@ -7,16 +7,105 @@
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": [],
-                "name": "Bench Press (Barbell)"
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 65
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 70
+                    },
+                    {
+                        "reps": 6,
+                        "weight": 75
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 70
+                    }
+                ],
+                "name": "Survivor's Chest Press"
             },
             {
                 "musclesWorked": [
                     "Chest",
-                    "Front Delts"
+                    "Triceps",
+                    "Abs"
                 ],
-                "sets": [],
-                "name": "Cable Fly Crossovers"
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 40
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 45
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 45
+                    }
+                ],
+                "name": "Barricade Push"
+            },
+            {
+                "musclesWorked": [
+                    "Chest",
+                    "Front Delts",
+                    "Triceps",
+                    "Side Delts",
+                    "Rear Delts"
+                ],
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 25
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    }
+                ],
+                "name": "Molotov Throw"
+            },
+            {
+                "musclesWorked": [
+                    "Front Delts",
+                    "Triceps",
+                    "Side Delts"
+                ],
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    },
+                    {
+                        "reps": 6,
+                        "weight": 40
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    }
+                ],
+                "name": "Ladder Boost"
             },
             {
                 "musclesWorked": [
@@ -24,32 +113,54 @@
                     "Front Delts",
                     "Triceps"
                 ],
-                "sets": [],
-                "name": "Inclined Bench Press (Dumbbell)"
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    },
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    },
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    },
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    }
+                ],
+                "name": "Escape Route Dips"
             },
             {
                 "musclesWorked": [
                     "Chest",
                     "Front Delts",
-                    "Triceps"
+                    "Forearms",
+                    "Abs",
+                    "Side Delts",
+                    "Rear Delts"
                 ],
-                "sets": [],
-                "name": "Butterfly (Pec Deck)"
-            },
-            {
-                "musclesWorked": ["Triceps"],
-                "sets": [],
-                "name": "Skullcrusher (Dumbbell)"
-            },
-            {
-                "musclesWorked": ["Triceps"],
-                "sets": [],
-                "name": "Tricep Pushdown (Rope)"
-            },
-            {
-                "musclesWorked": ["Side Delts"],
-                "sets": [],
-                "name": "Lateral Raise (Cable)"
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 20
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 25
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 30
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 25
+                    }
+                ],
+                "name": "Axe Swings"
             }
         ],
         "name": "Push Day"
@@ -59,56 +170,150 @@
             {
                 "musclesWorked": [
                     "Upper Back",
-                    "Lats",
-                    "Traps",
+                    "Biceps",
                     "Rear Delts",
-                    "Biceps"
+                    "Lats"
                 ],
-                "sets": [],
-                "name": "Bent Over Row (Barbell)"
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    },
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    },
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    },
+                    {
+                        "reps": 12,
+                        "weight": 74
+                    }
+                ],
+                "name": "Firefly Pull-ups"
+            },
+            {
+                "musclesWorked": [
+                    "Biceps",
+                    "Lats"
+                ],
+                "sets": [
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 40
+                    },
+                    {
+                        "reps": 6,
+                        "weight": 45
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 40
+                    }
+                ],
+                "name": "WLF Pulldown"
             },
             {
                 "musclesWorked": [
                     "Upper Back",
-                    "Rear Delts",
-                    "Traps"
+                    "Biceps",
+                    "Lats"
                 ],
-                "sets": [],
-                "name": "Reverse Fly (Cable)"
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 25
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    }
+                ],
+                "name": "Runner Grapple Rows"
             },
             {
                 "musclesWorked": [
-                    "Lower Back",
-                    "Glutes"
-                ],
-                "sets": [],
-                "name": "Back Extension (Machine)"
-            },
-            {
-                "musclesWorked": ["Biceps"],
-                "sets": [],
-                "name": "Bicep Curl (Dumbbell)"
-            },
-            {
-                "musclesWorked": ["Biceps"],
-                "sets": [],
-                "name": "Hammer Curl"
-            },
-            {
-                "musclesWorked": [
+                    "Hamstrings",
+                    "Upper Back",
                     "Lats",
-                    "Biceps"
+                    "Lower Back"
                 ],
-                "sets": [],
-                "name": "Lat Pulldown"
+                "sets": [
+                    {
+                        "reps": 5,
+                        "weight": 200
+                    },
+                    {
+                        "reps": 3,
+                        "weight": 210
+                    },
+                    {
+                        "reps": 4,
+                        "weight": 200
+                    }
+                ],
+                "name": "Bloater Deadlifts"
             },
             {
                 "musclesWorked": [
-                    "Rear Delts",
-                    "Forearms"
+                    "Forearms",
+                    "Rear Delts"
                 ],
-                "sets": [],
-                "name": "Face Pull (Cable)"
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 15
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 20
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 25
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 20
+                    }
+                ],
+                "name": "Clicker Face Pulls"
+            },
+            {
+                "musclesWorked": ["Biceps"],
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 10
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 13
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 15
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 13
+                    }
+                ],
+                "name": "Pipe Bomb Curls"
             }
         ],
         "name": "Pull Day"
@@ -121,28 +326,165 @@
                     "Hamstrings",
                     "Glutes"
                 ],
-                "sets": [],
-                "name": "Squat (Barbell)"
+                "sets": [
+                    {
+                        "reps": 5,
+                        "weight": 100
+                    },
+                    {
+                        "reps": 4,
+                        "weight": 120
+                    },
+                    {
+                        "reps": 1,
+                        "weight": 150
+                    },
+                    {
+                        "reps": 3,
+                        "weight": 120
+                    }
+                ],
+                "name": "Outbreak Squats"
+            },
+            {
+                "musclesWorked": [
+                    "Quads",
+                    "Glutes",
+                    "Abs"
+                ],
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 25
+                    },
+                    {
+                        "reps": 15,
+                        "weight": 30
+                    },
+                    {
+                        "reps": 15,
+                        "weight": 35
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    }
+                ],
+                "name": "Stalker Strides"
             },
             {
                 "musclesWorked": ["Quads"],
-                "sets": [],
-                "name": "Seated Leg Extension (Machine)"
-            },
-            {
-                "musclesWorked": ["Hamstrings"],
-                "sets": [],
-                "name": "Seated Leg Curl (Machine)"
+                "sets": [
+                    {
+                        "reps": 20,
+                        "weight": 60
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 70
+                    },
+                    {
+                        "reps": 5,
+                        "weight": 80
+                    },
+                    {
+                        "reps": 20,
+                        "weight": 50
+                    }
+                ],
+                "name": "Shiv Extensions"
             },
             {
                 "musclesWorked": ["Calves"],
-                "sets": [],
-                "name": "Seated Calf Raise"
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 61
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 61
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 61
+                    }
+                ],
+                "name": "Cordycep Calf Raises"
             },
             {
-                "musclesWorked": ["Abs"],
-                "sets": [],
-                "name": "Crunch (Machine)"
+                "musclesWorked": [
+                    "Quads",
+                    "Hamstrings",
+                    "Glutes",
+                    "Abs"
+                ],
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 30
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    },
+                    {
+                        "reps": 6,
+                        "weight": 40
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 35
+                    }
+                ],
+                "name": "Rat King Lunges"
+            },
+            {
+                "musclesWorked": [
+                    "Glutes",
+                    "Abs"
+                ],
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 60
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 70
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 60
+                    }
+                ],
+                "name": "Grounded Thrusts"
+            },
+            {
+                "musclesWorked": ["Hamstrings"],
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 50
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 60
+                    },
+                    {
+                        "reps": 6,
+                        "weight": 60
+                    },
+                    {
+                        "reps": 8,
+                        "weight": 50
+                    }
+                ],
+                "name": "Permadeath Curls"
             }
         ],
         "name": "Leg Day"
