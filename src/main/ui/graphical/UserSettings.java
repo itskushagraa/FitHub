@@ -20,11 +20,16 @@ public class UserSettings extends JFrame {
     private JButton backButton;
     private JButton editButton;
 
+    // EFFECTS: runs the user settings screen with the given user
     public UserSettings(UserProfile user) {
         this.mainUser = user;
         run();
     }
 
+    /* 
+     * MODIFIES: this
+     * EFFECTS: creates the user profile screen and all elements in it
+     */
     private void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/viewprofile.png");
         JLabel splashLabel = new JLabel(splashIcon);
@@ -47,6 +52,7 @@ public class UserSettings extends JFrame {
         this.setVisible(true);
     }
 
+    // EFFECTS: initialies all elements on the user settings screen
     private void configureScreen() {
         initNameLabel();
         initHeightLabel();
@@ -60,6 +66,7 @@ public class UserSettings extends JFrame {
         initEditButton();
     }
 
+    // EFFECTS: creates a label to show user name
     private void initNameLabel() {
         nameValueLabel = new JLabel(mainUser.getName());
         nameValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -68,6 +75,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(nameValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a label to show user height
     private void initHeightLabel() {
         heightValueLabel = new JLabel(mainUser.getHeight() + " cm");
         heightValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -75,7 +83,8 @@ public class UserSettings extends JFrame {
         heightValueLabel.setBounds(180, 181, 400, 30);
         layeredPane.add(heightValueLabel, JLayeredPane.PALETTE_LAYER);
     }
-
+    
+    // EFFECTS: creates a label to show user weight
     private void initWeightLabel() {
         weightValueLabel = new JLabel(mainUser.getWeight() + " kg");
         weightValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -84,6 +93,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(weightValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a label to show user name bmi
     private void initBmiLabel() {
         bmiValueLabel = new JLabel(mainUser.getBmi() + "");
         bmiValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -92,6 +102,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(bmiValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a label to show user age
     private void initAgeLabel() {
         ageValueLabel = new JLabel(mainUser.getAge() + " years");
         ageValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -100,6 +111,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(ageValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a label to show user's daily calorie intake
     private void initCalorieLabel() {
         calorieValueLabel = new JLabel(mainUser.getTargetCalories() + " kcals");
         calorieValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -108,6 +120,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(calorieValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a label to show user's weekly workout intensity
     private void initIntensityLabel() {
         intensityValueLabel = new JLabel(mainUser.getIntensity() + " days/week");
         intensityValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -116,6 +129,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(intensityValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a label to show user's fitness goal
     private void initGoalLabel() {
         goalValueLabel = new JLabel(mainUser.getGoal().substring(0, 1).toUpperCase() + mainUser.getGoal().substring(1));
         goalValueLabel.setFont(new Font("Dialog", Font.PLAIN, 28));
@@ -124,6 +138,7 @@ public class UserSettings extends JFrame {
         layeredPane.add(goalValueLabel, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a back button
     private void initBackButton() {
         backButton = new JButton();
         backButton.setBounds(730, 425, 155, 155);
@@ -135,6 +150,7 @@ public class UserSettings extends JFrame {
         backButton.addActionListener(e -> this.dispose());
     }
 
+    // EFFECTS: creates an edit button
     private void initEditButton() {
         editButton = new JButton();
         editButton.setBounds(730, 375, 155, 45);

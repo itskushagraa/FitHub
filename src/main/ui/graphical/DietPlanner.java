@@ -35,12 +35,15 @@ public class DietPlanner extends JFrame {
     private JTextField mealFat;
     private JTextField mealCarb;
 
+    // EFFECTS: creates a new Diet Planner frame with the user profile and the
+    // corresponding Diet Plan
     public DietPlanner(UserProfile user) {
         this.mainUser = user;
         this.dietPlan = this.mainUser.getDietPlan();
         run();
     }
 
+    // EFFECTS: runs the Diet Planner and creates all elements of the Diet Planner
     private void run() {
         drawBackground();
         drawLogo("./assets/logo.png", 1150, 30, 100, 64);
@@ -56,7 +59,11 @@ public class DietPlanner extends JFrame {
     /*
      * DRAW COMPONENTS
      */
-    
+
+    /*
+     * MODIFIES: this
+     * EFFECTS: creates the background for the diet planner
+     */
     private void drawBackground() {
         this.setTitle("FitHub");
         this.setSize(1280, 720);
@@ -73,6 +80,7 @@ public class DietPlanner extends JFrame {
         this.setVisible(true);
     }
 
+    // EFFECTS: adds the FitHub logo to the frame
     private void drawLogo(String imagePath, int x, int y, int width, int height) {
         JLabel logo = new JLabel();
         ImageIcon icon = new ImageIcon(imagePath);
@@ -84,6 +92,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(logo, Integer.valueOf(1));
     }
 
+    // EFFECTS: creates a curved header label to hold the Diet Planner header label
     private void drawHeaderLabel(String text, int x, int y, int width, int height, Font font) {
         JPanel headerPanel = new JPanel() {
             @Override
@@ -111,6 +120,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(headerPanel, Integer.valueOf(1));
     }
 
+    // EFFECTS: draws a light colored tab to hold the buttons
     private void drawButtonHolderTab(int x, int y, int width, int height) {
         JPanel sideTab = new JPanel();
         sideTab.setBounds(x, y, width, height);
@@ -120,6 +130,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(sideTab, Integer.valueOf(0));
     }
 
+    // EFFECTS: draws the back, stats, meals buttons
     private void drawButtons() {
         drawInteractiveButton("./assets/icons/mealsicon.png", 20, 145, 60, 60,
                 "View Meals", 16, 115, new Font("SansSerif", Font.BOLD, 12), e -> mealsButtonAction());
@@ -129,6 +140,7 @@ public class DietPlanner extends JFrame {
                 "Back", 35, 620, new Font("SansSerif", Font.BOLD, 12), e -> backButtonAction());
     }
 
+    // EFFECTS: creates an interactive button that expands when hovered upon
     private void drawInteractiveButton(String imagePath, int x, int y, int width, int height, String hoverMessage,
             int messageX, int messageY, Font messageFont, ActionListener action) {
         JButton button = new JButton();
@@ -162,6 +174,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(button, Integer.valueOf(1));
     }
 
+    // EFFECTS: draws the meal grid header labels
     private void drawAllMealGridLabels() {
         drawSingleLabel("MONDAY", 0, 60, 190, 50, SwingConstants.RIGHT);
         drawSingleLabel("TUESDAY", 0, 125, 190, 50, SwingConstants.RIGHT);
@@ -176,6 +189,8 @@ public class DietPlanner extends JFrame {
         drawSingleLabel("DINNER", 890, 0, 180, 45, SwingConstants.CENTER);
     }
 
+    // EFFECTS: draws a single label with the given text and size at the given
+    // coordinates
     private void drawSingleLabel(String text, int x, int y, int width, int height, int alignment) {
         JLabel dayLabel = new JLabel(text);
         dayLabel.setBounds(x, y, width, height);
@@ -189,6 +204,7 @@ public class DietPlanner extends JFrame {
         mealsPanel.repaint();
     }
 
+    // EFFECTS: draws a grid of buttons of size 7x3
     private void drawMealButtonGrid(int gridX, int gridY, int gridWidth, int gridHeight) {
         gridContainer = new JPanel();
         gridContainer.setBounds(gridX, gridY, gridWidth, gridHeight);
@@ -218,6 +234,7 @@ public class DietPlanner extends JFrame {
         gridContainer.repaint();
     }
 
+    // EFFECTS: creates a meal button that represents a meal consumed
     private void drawSingleMealButton(Meal meal, int x, int y, int width, int height) {
         JButton mealButton = new JButton(meal.getName().toUpperCase());
         mealButton.setBounds(x, y, width, height);
@@ -247,6 +264,8 @@ public class DietPlanner extends JFrame {
         gridContainer.add(mealButton);
     }
 
+    // EFFECTS: creates an overlay panel and disables all layers underneath in order
+    // to deal with the mealDialog
     private void drawOverlayPanel() {
         JPanel overlay = new JPanel() {
             @Override
@@ -266,6 +285,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
     }
 
+    // EFFECTS: creates a meal dialog showing the meal info
     private void drawMealDialog(Meal meal, JButton mealButton) {
         JDialog mealDialog = new JDialog(this, "Meal Details", true);
         setMealDialogVisibility(mealDialog, 600, 400);
@@ -279,6 +299,7 @@ public class DietPlanner extends JFrame {
         mealDialog.setVisible(true);
     }
 
+    // EFFECTS: shows the meal info in the dialog
     private void drawMealInfo(JDialog mealDialog, Meal meal) {
         drawMealName(mealDialog, meal, 60, 10, 520, 30);
         drawMealType(mealDialog, meal, 60, 50, 150, 30);
@@ -289,6 +310,7 @@ public class DietPlanner extends JFrame {
         setInputConstraints();
     }
 
+    // EFFECTS: draws meal name inside the meal dialog with given parameters
     private void drawMealName(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         mealName = new JTextField(meal.getName().toUpperCase());
         mealName.setFont(new Font("SansSerif", Font.BOLD, 28));
@@ -300,6 +322,7 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealName);
     }
 
+    // EFFECTS: draws meal type inside the meal dialog with given parameters
     private void drawMealType(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         mealType = new JLabel(meal.getType().toUpperCase());
         mealType.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -310,6 +333,8 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealType);
     }
 
+    // EFFECTS: draws calories contained inside the meal dialog with given
+    // parameters
     private void drawMealCalories(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         JLabel calorieLabel = drawInfoLabel("Calories (in kcal): ", x, y, height);
         mealDialog.add(calorieLabel);
@@ -323,6 +348,7 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealCalories);
     }
 
+    // EFFECTS: draws quantity of the meal dialog with given parameters
     private void drawMealQuantity(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         JLabel quantityLabel = drawInfoLabel("Quantity (in g): ", x, y, height);
         mealDialog.add(quantityLabel);
@@ -336,6 +362,8 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealQuantity);
     }
 
+    // EFFECTS: draws macronutrients contained inside the meal dialog with given
+    // parameters
     private void drawMealMacros(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         JLabel proteinLabel = drawInfoLabel("Protein (in g): ", x, y, height);
         JLabel fatLabel = drawInfoLabel("Fat (in g): ", x, y + 40, height);
@@ -348,6 +376,7 @@ public class DietPlanner extends JFrame {
         drawMealCarb(mealDialog, meal, x, y + 80, width, height);
     }
 
+    // EFFECTS: draws protein contained inside the meal dialog with given parameters
     private void drawMealProtein(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         mealProtein = new JTextField(meal.getProtein() + "");
         mealProtein.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -359,6 +388,7 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealProtein);
     }
 
+    // EFFECTS: draws fat contained inside the meal dialog with given parameters
     private void drawMealFat(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         mealFat = new JTextField(meal.getFat() + "");
         mealFat.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -370,6 +400,7 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealFat);
     }
 
+    // EFFECTS: draws carbs contained inside the meal dialog with given parameters
     private void drawMealCarb(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         mealCarb = new JTextField(meal.getCarb() + "");
         mealCarb.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -381,6 +412,8 @@ public class DietPlanner extends JFrame {
         mealDialog.add(mealCarb);
     }
 
+    // EFFECTS: draws ingredients contained inside the meal dialog with given
+    // parameters
     private void drawMealIngredients(JDialog mealDialog, Meal meal, int x, int y, int width, int height) {
         JLabel ingredientsLabel = drawInfoLabel("Ingredients: ", x, y, height);
         mealDialog.add(ingredientsLabel);
@@ -410,6 +443,8 @@ public class DietPlanner extends JFrame {
         mealDialog.add(scrollPane);
     }
 
+    // EFFECTS: draws a panel containing an arbitrary sized list of ingredients with
+    // scrollability
     private JPanel drawIngredientsField(String ingredient, JPanel ingredientPanel) {
         JPanel ingredientRow = new JPanel();
         ingredientRow.setLayout(new BoxLayout(ingredientRow, BoxLayout.X_AXIS));
@@ -439,6 +474,7 @@ public class DietPlanner extends JFrame {
         return ingredientRow;
     }
 
+    // EFFECTS: draws a label to show the given text
     private JLabel drawInfoLabel(String info, int x, int y, int height) {
         JLabel label = new JLabel(info);
         label.setFont(new Font("SansSerif", Font.PLAIN, 20));
@@ -450,6 +486,7 @@ public class DietPlanner extends JFrame {
         return label;
     }
 
+    // EFFECTS: draws a side panel on the mealDialog
     private JPanel drawDialogPanel(JDialog mealDialog) {
         JPanel dialogPanel = new JPanel();
         dialogPanel.setBounds(0, 0, 50, 400);
@@ -460,6 +497,7 @@ public class DietPlanner extends JFrame {
         return dialogPanel;
     }
 
+    // EFFECTS: adds interactive buttons to the side panel on the mealDialog
     private void drawDialogButton(String imagePath, JPanel dialogPanel, int x, int y, int width, int height,
             int hoverX, int hoverY, int hoverWidth, int hoverHeight, String hoverMessage, ActionListener action) {
         JButton button = new JButton();
@@ -490,6 +528,7 @@ public class DietPlanner extends JFrame {
         dialogPanel.add(button);
     }
 
+    // EFFECTS: draws hoverLabels inside the mealDialog that appear upon hovering
     private void drawLabelInDialog(JLabel backHoverLabel, JPanel dialogPanel, int x, int y, int width, int height) {
         backHoverLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
         backHoverLabel.setForeground(Color.WHITE);
@@ -498,6 +537,7 @@ public class DietPlanner extends JFrame {
         dialogPanel.add(backHoverLabel);
     }
 
+    // EFFECTS: draws a panel to show all meal info and adds it to the frame
     private void drawMealsPanel() {
         mealsPanel = new JPanel();
         mealsPanel.setLayout(null);
@@ -507,6 +547,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(mealsPanel, Integer.valueOf(1));
     }
 
+    // EFFECTS: draws a panel to show user statistics and adds it to the frame
     private void drawStatsPanel() {
         statsPanel = new JPanel() {
             @Override
@@ -529,6 +570,7 @@ public class DietPlanner extends JFrame {
         layeredPane.add(statsPanel, Integer.valueOf(1));
     }
 
+    // EFFECTS: draws a stacked bar chart to show weekly macro consumption
     private void drawMacroBarGraph(Graphics2D g2d, int[][] nutrientData, int start, int barWidth, int gap, int base,
             Color[] colors) {
         List<String> daysOfWeek = new ArrayList<>(
@@ -551,6 +593,7 @@ public class DietPlanner extends JFrame {
         drawQuantityBarGraph(g2d, 845, 330);
     }
 
+    // EFFECTS: draws a progressbar to show calorie goals of the week
     private void drawCalorieInfo(Graphics2D g2d, int x, int y) {
         int consumedCalories = dietPlan.calculateWeeklyCalories();
         int totalCalories = (int) mainUser.getTargetCalories() * 7;
@@ -570,6 +613,7 @@ public class DietPlanner extends JFrame {
         g2d.drawRect(x, y + 50, barWidth, barHeight);
     }
 
+    // EFFECTS: draws a small bar graph showing quantity of meals consumed in a week
     private void drawQuantityBarGraph(Graphics2D g2d, int x, int y) {
         int[] quantities = new int[7];
         List<String> daysOfWeek = new ArrayList<>(
@@ -596,6 +640,7 @@ public class DietPlanner extends JFrame {
         }
     }
 
+    // EFFECTS: draws the bar graph legend
     private void drawBarGraphLegend(Graphics2D g2d, int x, int y) {
         Color[] colors = { Color.YELLOW, Color.CYAN, new Color(196, 132, 241) };
         String[] labels = { "Fat", "Carbs", "Protein" };
@@ -615,25 +660,30 @@ public class DietPlanner extends JFrame {
      * BUTTON FUNCTIONALITY
      */
 
+    // EFFECTS: closes the diet planner and goes back to main menu
     private void backButtonAction() {
         this.dispose();
     }
 
+    // EFFECTS: switches between the meals view and stats view
     private void mealsButtonAction() {
         statsPanel.setVisible(false);
         mealsPanel.setVisible(true);
     }
 
+    // EFFECTS: switches between the meals view and stats view
     private void statsButtonAction() {
         mealsPanel.setVisible(false);
         statsPanel.setVisible(true);
     }
 
+    // EFFECTS: when mealButton is clicked, launches a meal Dialog
     private void mealAction(Meal meal, JButton mealButton) {
         drawOverlayPanel();
         drawMealDialog(meal, mealButton);
     }
 
+    // EFFECTS: validates mealDialog inputFields, and closes the dialog if valid
     private void closeDialogAction(JDialog mealDialog, Meal meal, JButton mealButton) {
         if (getScrollPaneValidity(mealDialog)) {
             setMeal(mealDialog, meal);
@@ -647,6 +697,8 @@ public class DietPlanner extends JFrame {
 
     }
 
+    // EFFECTS: makes all input fields in the meal dialog editable for the user,
+    // otherwise, shows error
     private void editDialogAction(JDialog mealDialog, JPanel buttonPanel, Meal meal, JButton mealButton) {
         setMealEditable(mealDialog, true);
 
@@ -671,6 +723,8 @@ public class DietPlanner extends JFrame {
         buttonPanel.repaint();
     }
 
+    // EFFECTS: validates input fields, and makes them uneditable if valid,
+    // otherwise shows error
     private void doneDialogAction(JDialog mealDialog, JPanel buttonPanel, Meal meal, JButton mealButton) {
         for (Component component : mealDialog.getContentPane().getComponents()) {
             if (component instanceof JTextField) {
@@ -699,6 +753,7 @@ public class DietPlanner extends JFrame {
      * GETTERS
      */
 
+    // EFFECTS: returns true if text matches the valid decimal regex pattern
     private boolean getInputValidity(String text) {
         if (text.isEmpty()) {
             return true;
@@ -709,6 +764,7 @@ public class DietPlanner extends JFrame {
         return false;
     }
 
+    // EFFECTS: returns true if all ingredient fields are non-empty, false otherwise
     private boolean getScrollPaneValidity(JDialog mealDialog) {
         JScrollPane scrollPane = getScrollPane(mealDialog);
         if (scrollPane != null) {
@@ -733,6 +789,7 @@ public class DietPlanner extends JFrame {
         return true;
     }
 
+    // EFFECTS: returns the scrollpane contained inside a mealDialog
     private JScrollPane getScrollPane(JDialog mealDialog) {
         for (Component component : mealDialog.getContentPane().getComponents()) {
             if (component instanceof JScrollPane) {
@@ -742,6 +799,8 @@ public class DietPlanner extends JFrame {
         return null;
     }
 
+    // EFFECTS: returns a 2D array of integers containing macro information for each
+    // meal for each day
     private int[][] getMacroData() {
         Map<String, List<Meal>> weeklyPlan = dietPlan.getCompleteWeeklyPlan();
         int[][] nutrientData = new int[7][3];
@@ -773,6 +832,7 @@ public class DietPlanner extends JFrame {
      * SETTERS
      */
 
+    // EFFECTS: constrains input fields
     private void setInputConstraints() {
         setFieldConstraints(mealCalories);
         setFieldConstraints(mealQuantity);
@@ -782,6 +842,8 @@ public class DietPlanner extends JFrame {
         setFieldConstraints(mealCalories);
     }
 
+    // EFFECTS: constrains the textField to text only accepted by
+    // getInputValidity(String text)
     private void setFieldConstraints(JTextField textField) {
         ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
@@ -808,6 +870,7 @@ public class DietPlanner extends JFrame {
         });
     }
 
+    // EFFECTS: sets customized properties for given component
     private void setButtonVisibilty(JButton button, int x, int y, int width, int height) {
         button.setBounds(x, y, width, height);
         button.setFocusPainted(false);
@@ -816,6 +879,7 @@ public class DietPlanner extends JFrame {
         button.setOpaque(false);
     }
 
+    // EFFECTS: sets customized properties for given component
     private void setHoverVisibility(JLabel hoverLabel, int messageX, int messageY, Font messageFont) {
         hoverLabel.setFont(messageFont);
         hoverLabel.setForeground(Color.WHITE);
@@ -824,6 +888,8 @@ public class DietPlanner extends JFrame {
         layeredPane.add(hoverLabel, Integer.valueOf(2));
     }
 
+    // EFFECTS: if canBeEdited is true, makes all components of meal dialogs
+    // editable, otherwise makes them uneditable
     private void setMealEditable(JDialog mealDialog, boolean canBeEdited) {
         if (canBeEdited) {
             for (Component component : mealDialog.getContentPane().getComponents()) {
@@ -844,6 +910,7 @@ public class DietPlanner extends JFrame {
         }
     }
 
+    // EFFECTS: sets customized properties to the given component
     private void setMealDialogVisibility(JDialog mealDialog, int width, int height) {
         mealDialog.setUndecorated(true);
         mealDialog.setSize(width, height);
@@ -852,6 +919,8 @@ public class DietPlanner extends JFrame {
         mealDialog.setLayout(null);
     }
 
+    // EFFECTS: if the user is done making changes, removes the done button and
+    // reverts back to view mode
     private void setViewMode(JPanel buttonPanel) {
         for (Component component : buttonPanel.getComponents()) {
             if (component instanceof JButton) {
@@ -869,6 +938,7 @@ public class DietPlanner extends JFrame {
         }
     }
 
+    // EFFECTS: sets customized properties for given component
     private void setScrollPaneVisibility(JScrollPane scrollPane) {
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
@@ -879,6 +949,8 @@ public class DietPlanner extends JFrame {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
     }
 
+    // EFFECTS: updates meal information based on user input read from the
+    // mealDialog
     private void setMeal(JDialog mealDialog, Meal meal) {
         meal.setName(mealName.getText());
         meal.setCalories(Double.parseDouble(mealCalories.getText()));
@@ -891,6 +963,8 @@ public class DietPlanner extends JFrame {
 
     }
 
+    // EFFECTS: creates a list of ingredients obtained by reading mealDialog and
+    // updates the respective meal
     private void setIngredients(JDialog mealDialog, Meal meal) {
         JScrollPane scrollPane = getScrollPane(mealDialog);
         if (scrollPane != null) {
@@ -906,8 +980,7 @@ public class DietPlanner extends JFrame {
                     }
                 }
             }
-            meal.setIngredients(updatedIngredients); // Set the new ingredients list
+            meal.setIngredients(updatedIngredients);
         }
     }
-
 }

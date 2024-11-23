@@ -67,5 +67,32 @@ FitHub is a fitness partner built for individuals looking to establish a structu
 - As a user, I want to be able to connect the app to a wearable fitness device so that my health metrics are automatically recorded
 - As a user, I want to be able to join a community within the app where I can share my progress
 
+## Instructions for End User
+### User Setup
+- Upon launching the app, you can either load from a previously saved profile or create your own new profile
+- Once you're done with the aforementioned, you will be directed to the main menu. This is your FitHub dashboard
+- The Main Menu will have the following options: Workout Tracker, Diet Planner, User Profile, Save, Load, Exit
+
+## Navigating the app
+### Workout Tracker: 
+Here, you can keep track of your workouts and exercise completed.
+- Actions: You can add exercises to all of your workouts, and you can view/edit/delete exercises that are already in your workouts
+- Visual Component: You can view your workout statistics including muscle groups worked, sets completed, reps completed and total weight lifted
+### Diet Planner: 
+Here, you can keep track of your weekly meals consumed.
+- Notes: You can NOT delete an existing meal OR add a new meal to your Diet Plan. The Diet Plan strictly adheres to 3 meals per day
+- Actions: You can edit every aspect about meals in your diet plan, ranging from Name, Ingredients, Calories, Quantity and Macronutrients
+- Visual Component: You can view your meal statistics including graphs and progress bars representing macronutrient information, calorie and quantity consumption.
+### User Profile: 
+- You can view your user profile, and edit any attribute of your user profile, ranging from Name, Height, Weight, Age, Weekly Workout Intensity and Fitness Goal.
+- You can also view other non-editable information like your Body-Mass Index (BMI) and daily recommended calorie consumption based on your attributes.
+- Actions: Any changes you make to your user attributes, will be reflected in your meal plan, your meal plan will automatically adjust the quantities of each meal to match your calorie goal. Should you want to change this, you can always go the diet planner, but by default, the app carries out adjustments for you.
+### Misc:
+- You can save any changes you made in the Workout Tracker / Diet Planner / User Profile, by coming back to the main menu.
+- You can load any changes you may have made in the past from the main menu. This is particularly useful when you make changes that you didn't intend to
+
 ## References and citations
-- soon to come
+The following resources have been referenced and used to create FitHub:
+- Oracle's open source Java Swing Documentation: https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/package-summary.html
+- Software Construction principles taught in CPSC 210.
+- Prior knowledge of Java gained during High School: ISC (Indian School Certificate) - Computer Science Curriculum

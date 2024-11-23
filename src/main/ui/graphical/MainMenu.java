@@ -16,11 +16,17 @@ public class MainMenu extends JFrame {
     private JButton exit;
     private UserProfile mainUser;
 
+    // EFFECTS: runs the main menu and sets the main UserProfile as the one that was
+    // created during startup
     public MainMenu(UserProfile user) {
         this.mainUser = user;
         run();
     }
 
+    /*
+     * MOFIFIES: this
+     * EFFECTS: runs the main menu, and creates all elements of the main menu
+     */
     private void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/mainmenu.png");
         JLabel splashLabel = new JLabel(splashIcon);
@@ -43,6 +49,7 @@ public class MainMenu extends JFrame {
         this.setVisible(true);
     }
 
+    // EFFECTS: initializes the menu buttons
     private void configureButtons() {
         initWorkoutSplitButton();
         initDietPlanButton();
@@ -52,6 +59,7 @@ public class MainMenu extends JFrame {
         initExitButton();
     }
 
+    // EFFECTS: creates the button responsible for running the FitHub Workout Tracker
     private void initWorkoutSplitButton() {
         workoutSplit = new JButton();
         workoutSplit.setBounds(25, 105, 700, 75);
@@ -62,6 +70,7 @@ public class MainMenu extends JFrame {
         });
     }
 
+    // EFFECTS: creates the button responsible for running the FitHub Diet Planner
     private void initDietPlanButton() {
         dietPlan = new JButton();
         dietPlan.setBounds(25, 180, 700, 75);
@@ -72,6 +81,7 @@ public class MainMenu extends JFrame {
         });
     }
 
+    // EFFECTS: creates the button responsible for running User Config in edit mode
     private void initUserProfileButton() {
         userProfile = new JButton();
         userProfile.setBounds(25, 255, 700, 75);
@@ -82,6 +92,7 @@ public class MainMenu extends JFrame {
         });
     }
 
+    // EFFECTS: creates the button responsible for saving changes to file
     private void initSaveButton() {
         save = new JButton();
         save.setBounds(25, 330, 700, 75);
@@ -99,6 +110,7 @@ public class MainMenu extends JFrame {
         });
     }
 
+    // EFFECTS: creates the button responsible for loading from file
     private void initLoadButton() {
         load = new JButton();
         load.setBounds(25, 406, 700, 75);
@@ -116,6 +128,7 @@ public class MainMenu extends JFrame {
         });
     }
 
+    // EFFECTS: creates the button responsible for exiting the app
     private void initExitButton() {
         exit = new JButton();
         exit.setBounds(25, 480, 700, 75);
@@ -124,6 +137,10 @@ public class MainMenu extends JFrame {
         exit.addActionListener(e -> System.exit(0));
     }
 
+    /* 
+     * MODIFIES: button
+     * EFFECTS: makes button invisible
+     */
     private void makeButtonInvisible(JButton button) {
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);

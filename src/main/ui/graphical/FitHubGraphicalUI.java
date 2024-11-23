@@ -3,11 +3,16 @@ package ui.graphical;
 public class FitHubGraphicalUI {
     private AppState currentState;
 
+    // EFFECTS: runs splash screen and sets currentState to SPLASH_SCREEN
     public FitHubGraphicalUI() {
         currentState = AppState.SPLASH_SCREEN;
         run();
     }
 
+    /* EFFECTS: 
+     * - runs the app by switching app states
+     * - case DEFAULT is never reached
+     */
     public void run() {
         while (true) {
             switch (currentState) {
@@ -23,6 +28,7 @@ public class FitHubGraphicalUI {
         }
     }
 
+    // EFFECTS: runs a while loop to se
     private void showSplashScreen() {
         SplashScreen splashScreen = new SplashScreen();
         while (splashScreen.isDisplayable()) {

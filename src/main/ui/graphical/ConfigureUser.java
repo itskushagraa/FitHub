@@ -13,6 +13,12 @@ import javax.swing.text.DocumentFilter;
 
 import model.UserProfile;
 
+/*
+ * Represents the User Setup screen for new users:
+ * - if called with ConfigureUser(UserProfile user), indicates edit mode
+ * - if called with ConfigureUser(), indicates new profile
+ */
+
 public class ConfigureUser extends JFrame {
     private UserProfile mainUser;
     private JLayeredPane layeredPane;
@@ -26,16 +32,24 @@ public class ConfigureUser extends JFrame {
     private JRadioButton maintainButton;
     private JButton continueButton;
 
+    // EFFECTS: runs the user setup screen
     public ConfigureUser() {
         run();
     }
 
-    // OVERLOADED CONSTRUCTOR
+    /* OVERLOADED CONSTRUCTOR
+     *
+     * EFFECTS: runs the user setup screen in edit mode
+     */
     public ConfigureUser(UserProfile user) {
         this.mainUser = user;
         run();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: initializes the user setup frame and adds all required elements to it
+     */
     private void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/configureuser.png");
         JLabel splashLabel = new JLabel(splashIcon);
@@ -58,6 +72,7 @@ public class ConfigureUser extends JFrame {
         this.setVisible(true);
     }
 
+    // EFFECTS: creates input fields for user info
     private void configureComponents() {
         initNameField();
         initHeightField();
@@ -68,6 +83,7 @@ public class ConfigureUser extends JFrame {
         initContinueButton();
     }
 
+    // EFFECT: creates the name textfield for user name
     private void initNameField() {
         nameTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getName());
         constrainTextFieldToString(nameTextField);
@@ -82,6 +98,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(nameTextField, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECT: creates the heigh textfield for user height
     private void initHeightField() {
         heightTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getHeight() + "");
         constrainTextFieldToDouble(heightTextField);
@@ -96,6 +113,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(heightTextField, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECT: creates the weight textfield for user weight
     private void initWeightField() {
         weightTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getWeight() + "");
         constrainTextFieldToDouble(weightTextField);
@@ -110,6 +128,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(weightTextField, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECT: creates the age textfield for user age
     private void initAgeField() {
         ageTextField = (mainUser == null) ? new JTextField() : new JTextField(mainUser.getAge() + "");
         constrainTextFieldToInt(ageTextField);
@@ -124,6 +143,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(ageTextField, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECT: creates a 7 point slider for user's weekly workout intensity
     private void initSlider() {
         intensitySlider = new JSlider(JSlider.HORIZONTAL, 1, 7, (mainUser == null) ? 1 : mainUser.getIntensity());
         intensitySlider.setMajorTickSpacing(1);
@@ -147,6 +167,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(intensitySlider, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a radiobutton group for user's fitness goal
     private void initRadioButtonGroup() {
         bulkButton = new JRadioButton();
         cutButton = new JRadioButton();
@@ -164,6 +185,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(maintainButton, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: creates a continue button for completing user configuration
     private void initContinueButton() {
         continueButton = new JButton();
         continueButton.setBounds(730, 440, 160, 150);
@@ -174,6 +196,7 @@ public class ConfigureUser extends JFrame {
         layeredPane.add(continueButton, JLayeredPane.PALETTE_LAYER);
     }
 
+    // EFFECTS: adds respective fitness goal to the user based on the corresponding button selected
     private void selectButtonForExistingUser() {
         if (mainUser != null) {
             switch (mainUser.getGoal()) {
@@ -190,6 +213,7 @@ public class ConfigureUser extends JFrame {
         }
     }
 
+    // EFFECTS: if all fields are non-empty, creates/edits the user profile
     private void processInputs() {
         if (!checkInputs()) {
             JOptionPane.showMessageDialog(this, "One or more fields is empty", "Input Error",
@@ -203,6 +227,7 @@ public class ConfigureUser extends JFrame {
         }
     }
 
+    // EFFECTS: if mainUser != null (edit mode), edits existing user's attributes
     private void editExistingUser() {
         String name = nameTextField.getText().trim();
         double height = Double.parseDouble(heightTextField.getText().trim());
@@ -223,6 +248,7 @@ public class ConfigureUser extends JFrame {
         this.dispose();
     }
 
+    // EFFECTS: updates user's attributes regarding of which mode the frame is in
     private void updateUser(String name, double height, double weight, int age, int intensity, String goal) {
         mainUser.setName(name);
         mainUser.setHeight(height);
@@ -232,6 +258,7 @@ public class ConfigureUser extends JFrame {
         mainUser.setGoal(goal);
     }
 
+    // EFFECTS: creates a new user with the attributes read from the field
     private void createNewUser() {
         String name = nameTextField.getText().trim();
         double height = Double.parseDouble(heightTextField.getText().trim());
@@ -256,6 +283,7 @@ public class ConfigureUser extends JFrame {
         }
     }
 
+    // EFFECTS: returns true if all the input fields have been filled, false otherwise
     private boolean checkInputs() {
         if (nameTextField.getText().trim().isEmpty()
                 || heightTextField.getText().trim().isEmpty()
@@ -271,6 +299,7 @@ public class ConfigureUser extends JFrame {
         return true;
     }
 
+    // EFFECTS: constrains text the textField can accept to only integer values without decimals
     private void constrainTextFieldToInt(JTextField textField) {
         ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
@@ -297,6 +326,7 @@ public class ConfigureUser extends JFrame {
         });
     }
 
+    // EFFECTS: constrains text the textField can accept to only double values ranging from 0-250
     private void constrainTextFieldToDouble(JTextField textField) {
         ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
@@ -323,6 +353,7 @@ public class ConfigureUser extends JFrame {
         });
     }
 
+    // EFFECTS: constrains text the textField can accept to only alphabets
     private void constrainTextFieldToString(JTextField textField) {
         ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
@@ -331,7 +362,7 @@ public class ConfigureUser extends JFrame {
                 String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
                 String newText = currentText.substring(0, offset) + string + currentText.substring(offset);
 
-                if (isAlphabetic(newText)) { // Check if input is alphabetic
+                if (isAlphabetic(newText)) {
                     super.insertString(fb, offset, string, attr);
                 }
             }
@@ -342,7 +373,7 @@ public class ConfigureUser extends JFrame {
                 String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
                 String newText = currentText.substring(0, offset) + text + currentText.substring(offset + length);
 
-                if (isAlphabetic(newText)) { // Check if input is alphabetic
+                if (isAlphabetic(newText)) {
                     super.replace(fb, offset, length, text, attrs);
                 }
             }
@@ -350,11 +381,13 @@ public class ConfigureUser extends JFrame {
     }
 
     // HELPER
+    // EFFECTS: using regex, returns true if text contains strictly alphabets, false otherwise
     private boolean isAlphabetic(String text) {
         return text.matches("[a-zA-Z\\s]*") && text.length() <= 20;
     }
 
     // HELPER
+    // EFFECTS: returns true if age is within bounds, false otherwise
     private boolean checkAge(String text) {
         try {
             int age = Integer.parseInt(text);
@@ -365,6 +398,7 @@ public class ConfigureUser extends JFrame {
     }
 
     // HELPER
+    // EFFECTS: returns true if given text is valid AND within range
     private boolean isValidDecimalInRange(String text, double min, double max) {
         if (text.matches("\\d{1,3}(\\.\\d?)?")) {
             try {

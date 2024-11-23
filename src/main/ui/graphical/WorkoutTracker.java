@@ -49,12 +49,16 @@ public class WorkoutTracker extends JFrame {
     private UserProfile mainUser;
     private List<Workout> workoutSplit;
 
+    // EFFECTS: creates a workout tracker screen with the given user profile and
+    // their corresponding workout split
     public WorkoutTracker(UserProfile user) {
         this.mainUser = user;
         this.workoutSplit = mainUser.getWorkoutList();
         run();
     }
 
+    // EFFECTS: runs the workout tracker and creates all elements of the workout
+    // tracker
     private void run() {
         drawBackground();
         drawLogo("./assets/logo.png", 1150, 30, 100, 64);
@@ -66,6 +70,14 @@ public class WorkoutTracker extends JFrame {
         setLabelClientProperty();
     }
 
+    /*
+     * DRAW COMPONENTS
+     */
+
+    /*
+     * MODIFIES: this
+     * EFFECTS: creates the background for the workout tracker
+     */
     private void drawBackground() {
         this.setTitle("FitHub");
         this.setSize(1280, 720);
@@ -82,6 +94,7 @@ public class WorkoutTracker extends JFrame {
         this.setVisible(true);
     }
 
+    // EFFECTS: adds the fithub logo to the frame
     private void drawLogo(String imagePath, int x, int y, int width, int height) {
         JLabel logo = new JLabel();
         ImageIcon icon = new ImageIcon(imagePath);
@@ -93,6 +106,7 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(logo, Integer.valueOf(1));
     }
 
+    // EFFECTS: creates a light colored tab to hold buttons
     private void drawButtonHolderTab(int x, int y, int width, int height) {
         JPanel sideTab = new JPanel();
         sideTab.setBounds(x, y, width, height);
@@ -102,6 +116,8 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(sideTab, Integer.valueOf(0));
     }
 
+    // EFFECTS: creates a curved header label to hold the workout tracker header
+    // text
     private void drawHeaderLabel(String text, int x, int y, int width, int height, Font font) {
         JPanel headerPanel = new JPanel() {
             @Override
@@ -129,6 +145,7 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(headerPanel, Integer.valueOf(1));
     }
 
+    // EFFECTS: creates the back, stats, workouts buttons
     private void drawButtons() {
         drawInteractiveButton("./assets/icons/workouticon.png", 20, 145, 60, 60,
                 "View Workouts", 5, 115, new Font("SansSerif", Font.BOLD, 12), e -> workoutsButtonAction());
@@ -138,6 +155,8 @@ public class WorkoutTracker extends JFrame {
                 "Back", 35, 620, new Font("SansSerif", Font.BOLD, 12), e -> backButtonAction());
     }
 
+    // EFFECTS: draws an interactive button which increases in size when hovered
+    // upon
     private void drawInteractiveButton(String imagePath, int x, int y, int width, int height, String hoverMessage,
             int messageX, int messageY, Font messageFont, ActionListener action) {
         JButton button = new JButton();
@@ -171,6 +190,7 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(button, Integer.valueOf(1));
     }
 
+    // EFFECTS: creates the panel that stores info about all the workouts
     private void drawWorkoutsPanel() {
         workoutsPanel = new JPanel();
         workoutsPanel.setLayout(null);
@@ -189,6 +209,8 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(workoutsPanel, Integer.valueOf(1));
     }
 
+    // EFFECTS: creates a scroll pane for the exercises that a workout contains and
+    // adds it to the frame
     private void drawScrollPane(Workout workout, int x, int y, int width, int height) {
         JPanel exercisesContainer = new JPanel();
         exercisesContainer.setLayout(new BoxLayout(exercisesContainer, BoxLayout.Y_AXIS));
@@ -217,6 +239,7 @@ public class WorkoutTracker extends JFrame {
         workoutsPanel.add(scrollPane);
     }
 
+    // EFFECTS: creates an "Add Exercise" button and adds it to the frame
     private void drawAddExerciseButton(int width, int height, JPanel exercisesContainer, Workout workout) {
         JButton addExerciseButton = new JButton("+ Add Exercise");
         addExerciseButton.setPreferredSize(new Dimension(width, height));
@@ -229,7 +252,7 @@ public class WorkoutTracker extends JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 addExerciseButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
                 addExerciseButton.setBackground(FADED_BG);
-                addExerciseButton.setForeground(PINK); // Assuming PINK is defined somewhere in your code
+                addExerciseButton.setForeground(PINK);
             }
 
             @Override
@@ -245,17 +268,8 @@ public class WorkoutTracker extends JFrame {
         exercisesContainer.add(addExerciseButton);
     }
 
-    private void setAddExerciseButtonProperties(JButton addExerciseButton) {
-        addExerciseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addExerciseButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
-        addExerciseButton.setBackground(BG);
-        addExerciseButton.setForeground(Color.WHITE);
-        addExerciseButton.setOpaque(true);
-        addExerciseButton.setContentAreaFilled(true);
-        addExerciseButton.setBorderPainted(false);
-        addExerciseButton.setFocusPainted(false);
-    }
-
+    // EFFECTS: creates an "Add Exercise" dialog where user's can customize the
+    // exercise to add
     private void drawAddExerciseDialog(Workout workout, Exercise exercise, String purpose) {
         JDialog addExerciseDialog = new JDialog();
         setAddExerciseDialogVisibility(addExerciseDialog, 1140, 720);
@@ -272,6 +286,7 @@ public class WorkoutTracker extends JFrame {
         }
     }
 
+    // EFFECTS: creates input fields for the add exercise dialog
     private void drawInputFields(JDialog addExerciseDialog, Workout workout, Exercise exercise, String purpose) {
         JLabel exerciseNameLabel = new JLabel("EXERCISE NAME: ");
         exerciseNameLabel.setFont(new Font("SansSerif", Font.PLAIN, 24));
@@ -300,17 +315,8 @@ public class WorkoutTracker extends JFrame {
         setCloseOperation(addExerciseDialog, workout, exerciseNameField, buttonsPanel, setsPane);
     }
 
-    private void setExerciseNameFieldProperties(JTextField exerciseNameField) {
-        exerciseNameField.setFont(new Font("SansSerif", Font.PLAIN, 20));
-        exerciseNameField.setForeground(Color.WHITE);
-        exerciseNameField.setBackground(new Color(0, 0, 0, 0));
-        exerciseNameField.setBounds(30, 70, 500, 50);
-        exerciseNameField.setOpaque(false);
-        exerciseNameField.setBorder(BorderFactory.createLineBorder(PINK, 2));
-    }
-
+    // EFFECTS: creates a sets pane designed to display an arbitrary list of sets
     private JScrollPane drawSetsPane(JDialog addExerciseDialog, Exercise exercise) {
-        // Container for the sets
         JPanel setContainer = new JPanel();
         setContainer.setLayout(new BoxLayout(setContainer, BoxLayout.Y_AXIS));
         setContainer.setOpaque(false);
@@ -341,6 +347,7 @@ public class WorkoutTracker extends JFrame {
         return setPane;
     }
 
+    // EFFECTS: fills in the setContainer with the set data from an exercise
     private void drawExerciseSetData(Exercise exercise, JButton addSetButton, JPanel setContainer) {
         if (exercise != null) {
             for (ExerciseSet set : exercise.getSets()) {
@@ -367,6 +374,12 @@ public class WorkoutTracker extends JFrame {
         }
     }
 
+    /*
+     * EFFECTS: creates a set panel with the following elements
+     * - weightFIeld to display weight lifted
+     * - repsField to display reps completed
+     * - deleteSet button to delete the set panel
+     */
     private void drawSetPanel(JPanel setContainer, JButton addSetButton, Exercise exercise) {
         JPanel setPanel = new JPanel();
         setSetPanelProperties(setPanel);
@@ -396,49 +409,8 @@ public class WorkoutTracker extends JFrame {
         setContainer.repaint();
     }
 
-    private void setSetPanelProperties(JPanel setPanel) {
-        setPanel.setLayout(new BoxLayout(setPanel, BoxLayout.X_AXIS));
-        setPanel.setMaximumSize(new Dimension(460, 40));
-        setPanel.setOpaque(false);
-        setPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        setPanel.setBorder(BorderFactory.createEmptyBorder(7, 5, 7, 5));
-    }
-
-    private void setRepsFieldProperties(JTextField repsField) {
-        repsField.putClientProperty("type", "REPS");
-        repsField.setPreferredSize(new Dimension(100, 20));
-        repsField.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        repsField.setForeground(Color.WHITE);
-        repsField.setBackground(new Color(0, 0, 0, 0));
-        repsField.setOpaque(false);
-        repsField.setBorder(BorderFactory.createLineBorder(PINK, 1));
-    }
-
-    private void setDeleteSetButtonProperties(JButton deleteSetButton, JPanel setContainer, JPanel setPanel) {
-        deleteSetButton.setPreferredSize(new Dimension(80, 40));
-        deleteSetButton.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        deleteSetButton.setBackground(BG);
-        deleteSetButton.setForeground(Color.WHITE);
-        deleteSetButton.setAlignmentX(LEFT_ALIGNMENT);
-        deleteSetButton.setBorder(BorderFactory.createLineBorder(PINK, 0));
-        deleteSetButton.setFocusPainted(false);
-        deleteSetButton.addActionListener(e -> {
-            setContainer.remove(setPanel);
-            setContainer.revalidate();
-            setContainer.repaint();
-        });
-    }
-
-    private void setWeightFieldProperties(JTextField weightField) {
-        weightField.putClientProperty("type", "WEIGHT");
-        weightField.setPreferredSize(new Dimension(100, 20));
-        weightField.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        weightField.setForeground(Color.WHITE);
-        weightField.setBackground(new Color(0, 0, 0, 0));
-        weightField.setOpaque(false);
-        weightField.setBorder(BorderFactory.createLineBorder(PINK, 1));
-    }
-
+    // EFFECTS: creates a "Done" button for when the users are done creating/editing
+    // an exercise
     private void drawDoneButton(JDialog addExerciseDialog, Workout workout, Exercise exercise,
             JTextField exerciseNameField,
             JPanel buttonsPanel, JScrollPane setsPane) {
@@ -459,86 +431,8 @@ public class WorkoutTracker extends JFrame {
         addExerciseDialog.add(doneButton);
     }
 
-    private void doneButtonAction(Workout workout, Exercise exercise, JDialog addExerciseDialog,
-            JTextField exerciseNameField, JPanel buttonsPanel, JScrollPane setsPane) {
-        if (getExerciseValidity(exerciseNameField, buttonsPanel, setsPane)) {
-            String exerciseName = exerciseNameField.getText().trim();
-
-            List<String> musclesWorked = new ArrayList<>();
-            for (Component comp : buttonsPanel.getComponents()) {
-                if (comp instanceof JToggleButton) {
-                    JToggleButton button = (JToggleButton) comp;
-                    if (button.isSelected()) {
-                        musclesWorked.add(button.getText());
-                    }
-                }
-            }
-
-            List<ExerciseSet> sets = new ArrayList<>();
-            getExerciseSetsFromPane(setsPane, sets);
-            doneButtonCloseAction(exercise, addExerciseDialog, exerciseName, musclesWorked, sets, workout);
-
-        } else {
-            JOptionPane.showMessageDialog(addExerciseDialog, "One or more fields is empty",
-                    "Validation Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void doneButtonCloseAction(Exercise exercise, JDialog addExerciseDialog, String exerciseName,
-            List<String> musclesWorked, List<ExerciseSet> sets, Workout workout) {
-        if (exercise == null) {
-            Exercise newExercise = new Exercise(exerciseName, musclesWorked, sets);
-            workout.addExercise(newExercise);
-        } else {
-            exercise.setName(exerciseName);
-            exercise.setMusclesWorked(musclesWorked);
-            exercise.setSets(sets);
-        }
-
-        JOptionPane.showMessageDialog(addExerciseDialog,
-                (exercise == null) ? "Exercise added!" : "Changes Saved!", "Success",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        layeredPane.remove(overlay);
-        layeredPane.revalidate();
-        layeredPane.repaint();
-        restartFrameAction();
-        addExerciseDialog.dispose();
-    }
-
-    private void getExerciseSetsFromPane(JScrollPane setsPane, List<ExerciseSet> sets) {
-        JPanel setContainer = (JPanel) setsPane.getViewport().getView();
-        for (Component comp : setContainer.getComponents()) {
-            if (comp instanceof JPanel) {
-                JPanel setPanel = (JPanel) comp;
-                JTextField weightField = null;
-                JTextField repsField = null;
-
-                for (Component innerComp : setPanel.getComponents()) {
-                    if (innerComp instanceof JTextField) {
-                        JTextField field = (JTextField) innerComp;
-                        String type = (String) field.getClientProperty("type");
-                        if ("WEIGHT".equals(type)) {
-                            weightField = field;
-                        } else if ("REPS".equals(type)) {
-                            repsField = field;
-                        }
-                    }
-                }
-
-                getSetPaneFields(weightField, repsField, sets);
-            }
-        }
-    }
-
-    private void getSetPaneFields(JTextField weightField, JTextField repsField, List<ExerciseSet> sets) {
-        if (weightField != null && repsField != null) {
-            int weight = Integer.parseInt(weightField.getText().trim());
-            int reps = Integer.parseInt(repsField.getText().trim());
-            sets.add(new ExerciseSet(reps, weight));
-        }
-    }
-
+    // EFFECTS: creates a group of ToggleButton objects to highlight muscle groups
+    // worked in an exercise
     private JPanel drawSelectableButtons(JDialog addExerciseDialog, String purpose, Exercise exercise) {
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(5, 3, 5, 5));
@@ -556,47 +450,8 @@ public class WorkoutTracker extends JFrame {
         return buttonsPanel;
     }
 
-    private void setMuscleButtonFuntionality(String[] muscleGroups, JPanel buttonsPanel, String purpose,
-            Exercise exercise) {
-        for (String muscle : muscleGroups) {
-            JToggleButton muscleButton = new JToggleButton(muscle);
-            setMuscleButtonProperties(muscleButton);
-            muscleButton.addItemListener(e -> {
-                for (JLabel label : getAllLabels()) {
-                    if (muscle.equals(label.getClientProperty("muscle"))) {
-                        if (muscleButton.isSelected()) {
-                            label.setVisible(true);
-                            muscleButton.setBackground(new Color(76, 74, 100));
-                        } else {
-                            label.setVisible(false);
-                            muscleButton.setBackground(BG);
-                        }
-                    }
-                }
-            });
-
-            buttonsPanel.add(muscleButton);
-            if (purpose.equals("VIEW") && exercise.getMusclesWorked().contains(muscle)) {
-                muscleButton.setSelected(true);
-            }
-        }
-    }
-
-    private void setMuscleButtonProperties(JToggleButton muscleButton) {
-        muscleButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        muscleButton.setForeground(Color.WHITE);
-        muscleButton.setBackground(BG);
-        muscleButton.setBorder(BorderFactory.createLineBorder(PINK, 1));
-        muscleButton.setOpaque(true);
-        muscleButton.setFocusPainted(false);
-    }
-
-    private List<JLabel> getAllLabels() {
-        return Arrays.asList(absLabel, bicepsLabel, chestLabel, forearmsLabel, frontDeltsLabel, quadsLabel,
-                sideDeltsLabel, calvesLabelFront, forearmLabel, glutesLabel, hamstringsLabel, latsLabel, lowerBackLabel,
-                upperBackLabel, rearDeltLabel, tricepLabel, calvesLabelBack);
-    }
-
+    // EFFECTS: draws highlighted versions of muscle components and adds to the
+    // frame
     private void drawHighlightedMuscleLabel(JLayeredPane frontBodyPane, JLayeredPane backBodyPane) {
         frontBodyPane.add(absLabel, Integer.valueOf(1));
         frontBodyPane.add(bicepsLabel, Integer.valueOf(1));
@@ -619,6 +474,7 @@ public class WorkoutTracker extends JFrame {
         setHighlightLabelsInvisible();
     }
 
+    // EFFECTS: creates a button showing workout name
     private void drawWorkoutButton(Workout workout, int x) {
         JButton button = new JButton(workout.getName().toUpperCase());
         button.setFont(new Font("SansSerif", Font.BOLD, 30));
@@ -643,6 +499,8 @@ public class WorkoutTracker extends JFrame {
         workoutsPanel.add(button);
     }
 
+    // EFFECTS: creates an exercisePanel containing the name, delete button, view
+    // button
     private void drawExercise(JPanel exercisePanel, Exercise exercise, JPanel exercisesContainer, Workout workout) {
         exercisePanel.setBackground(BG);
         exercisePanel.setLayout(null);
@@ -665,33 +523,8 @@ public class WorkoutTracker extends JFrame {
         exercisePanel.add(exerciseNameLabel);
     }
 
-    private void setExercisePanelFunctionality(JPanel exercisePanel, JLabel exerciseNameLabel, JButton deleteButton,
-            JButton viewButton) {
-        exercisePanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                if (exercisePanel.contains(evt.getPoint())) {
-                    exercisePanel.setBackground(FADED_BG);
-                    exerciseNameLabel.setForeground(PINK);
-                    deleteButton.setVisible(true);
-                    viewButton.setVisible(true);
-                }
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                if (!exercisePanel.contains(evt.getPoint())) {
-                    exercisePanel.setBackground(BG);
-                    exerciseNameLabel.setForeground(new Color(255, 255, 255, 200));
-                    for (int i = 0; i < 2; i++) {
-                        deleteButton.setVisible(false);
-                        viewButton.setVisible(false);
-                    }
-                }
-            }
-        });
-    }
-
+    // EFFECTS: creates the delete button and view button and adds it to the
+    // exercisePanel
     private JButton drawExerciseFunctionsButton(JPanel exercisePanel, String imagePath, int x, int y, int width,
             int height, String hoverMessage, int messageX, int messageY, ActionListener action) {
         JButton button = new JButton();
@@ -720,21 +553,7 @@ public class WorkoutTracker extends JFrame {
         return button;
     }
 
-    private void setExerciseFunctionButtonHoverability(JButton button, ImageIcon hoverIcon, JLabel hoverLabel,
-            Image scaledImage) {
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setIcon(hoverIcon);
-                hoverLabel.setVisible(true);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setIcon(new ImageIcon(scaledImage));
-                hoverLabel.setVisible(false);
-            }
-        });
-    }
-
+    // EFFECTS: creates a panel to display user statistics and adds it to the frame
     private void drawStatsPanel() {
         statsPanel = new JPanel();
         statsPanel.setLayout(null);
@@ -754,6 +573,8 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(statsPanel, Integer.valueOf(1));
     }
 
+    // EFFECTS: creates a FRONT BODY muscle map by reading images from a file and
+    // placing them on top of each other
     private void drawFrontBodyMap(JLayeredPane pane, List<String> musclesWorked) {
         absLabel = drawMuscleLabel("./assets/musclemap/front/abs.png", 0.25, 95, 116);
         bicepsLabel = drawMuscleLabel("./assets/musclemap/front/biceps.png", 0.25, 72, 112);
@@ -776,14 +597,8 @@ public class WorkoutTracker extends JFrame {
         setFrontMusclesWorkedVisible(musclesWorked);
     }
 
-    private List<String> getMusclesWorked() {
-        Set<String> ret = new HashSet<>();
-        for (Workout workout : workoutSplit) {
-            ret.addAll(workout.calculateMusclesWorked());
-        }
-        return new ArrayList<>(ret);
-    }
-
+    // EFFECTS: creates a FRONT BODY muscle map by reading images from a file and
+    // placing them on top of each other
     private void drawBackBodyMap(JLayeredPane pane, List<String> musclesWorked) {
         forearmLabel = drawMuscleLabel("./assets/musclemap/back/forearms.png", 0.25, 33, 152);
         glutesLabel = drawMuscleLabel("./assets/musclemap/back/glutes.png", 0.19, 103, 190);
@@ -808,6 +623,7 @@ public class WorkoutTracker extends JFrame {
         setBackMusclesWorkedVisible(musclesWorked);
     }
 
+    // EFFECTS: creates a JLabel with the muscle image that imagePath leads to
     private JLabel drawMuscleLabel(String imagePath, double scale, int x, int y) {
         ImageIcon muscleIcon = new ImageIcon(imagePath);
 
@@ -829,9 +645,11 @@ public class WorkoutTracker extends JFrame {
         return muscleLabel;
     }
 
+    // EFFECTS: draws a LayeredPane with background = the image that imagePath leads
+    // to
     private JLayeredPane drawImage(String imagePath, int x, int y, double scale) {
         JLayeredPane muscleMapPane = new JLayeredPane();
-        muscleMapPane.setLayout(null); // Allow manual positioning
+        muscleMapPane.setLayout(null);
         ImageIcon muscleMapIcon = new ImageIcon(imagePath);
 
         int originalWidth = muscleMapIcon.getIconWidth();
@@ -846,12 +664,12 @@ public class WorkoutTracker extends JFrame {
         JLabel backgroundLabel = new JLabel(scaledIcon);
         backgroundLabel.setBounds(0, 0, scaledWidth, scaledHeight);
 
-        // Add background label to the base layer of JLayeredPane
         muscleMapPane.add(backgroundLabel, Integer.valueOf(0));
         muscleMapPane.setBounds(x, y, scaledWidth, scaledHeight);
         return muscleMapPane;
     }
 
+    // EFFECTS: draws the bar graph showing workout statistics
     private void drawWorkoutBarGraph(int x, int y, int width, int height) {
         JPanel graphPanel = new JPanel() {
             @Override
@@ -879,6 +697,7 @@ public class WorkoutTracker extends JFrame {
         drawGraph(graphPanel, x, y, width, height);
     }
 
+    // EFFECTS: adds the bar graph to the frame
     private void drawGraph(JPanel graphPanel, int x, int y, int width, int height) {
         graphPanel.setBounds(x, y, width, height);
         graphPanel.setOpaque(false);
@@ -886,27 +705,7 @@ public class WorkoutTracker extends JFrame {
         statsPanel.repaint();
     }
 
-    private int getMaxVolume(int[] totalSets, int[] totalReps, int[] totalVolume) {
-        int maxVolume = Math.max(Math.max(totalSets[0], totalReps[0]), totalVolume[0]);
-        maxVolume = Math.max(maxVolume, Math.max(Math.max(totalSets[1], totalReps[1]), totalVolume[1]));
-        maxVolume = Math.max(maxVolume, Math.max(Math.max(totalSets[2], totalReps[2]), totalVolume[2]));
-        return maxVolume;
-    }
-
-    private String[] getWorkoutNames() {
-        String[] workoutNames = { workoutSplit.get(0).getName(), workoutSplit.get(1).getName(),
-                workoutSplit.get(2).getName() };
-        return workoutNames;
-    }
-
-    private void setTotalStatArrays(int[] totalSets, int[] totalReps, int[] totalVolume) {
-        for (int i = 0; i < 3; i++) {
-            totalSets[i] = workoutSplit.get(i).calculateTotalSets();
-            totalReps[i] = workoutSplit.get(i).calculateTotalReps();
-            totalVolume[i] = workoutSplit.get(i).calculateTotalVolume();
-        }
-    }
-
+    // EFFECTS: draws individual bars for the bar graph
     private void drawIndividualBars(Graphics2D g2d, int[] totalSets, int[] totalReps, int[] totalVolume,
             String[] workoutNames, int currentX, int height, double scale, Color[] barColors, int barWidth,
             int spacing) {
@@ -930,17 +729,18 @@ public class WorkoutTracker extends JFrame {
         }
     }
 
+    // EFFECTS: draws the legend for the bar graph and adds it to the frame
     private void drawLegend(int x, int y) {
         JPanel legendPanel = new JPanel();
         legendPanel.setLayout(null);
-        legendPanel.setBounds(x, y, 500, 150); // Adjust size as needed
+        legendPanel.setBounds(x, y, 500, 150);
         legendPanel.setOpaque(false);
 
         Font legendFont = new Font("SansSerif", Font.PLAIN, 15);
         Color[] barColors = {
-                new Color(88, 128, 200), // Sets Completed
-                new Color(175, 96, 117), // Reps Completed
-                new Color(113, 88, 143) // Weight Lifted
+                new Color(88, 128, 200),
+                new Color(175, 96, 117),
+                new Color(113, 88, 143)
         };
 
         String[] labels = {
@@ -955,6 +755,7 @@ public class WorkoutTracker extends JFrame {
         statsPanel.repaint();
     }
 
+    // EFFECTS: draws the individual legend elements
     private void drawLegendElements(JPanel legendPanel, String[] labels, Color[] barColors, Font legendFont) {
         for (int i = 0; i < labels.length; i++) {
             JLabel colorBox = new JLabel();
@@ -971,12 +772,15 @@ public class WorkoutTracker extends JFrame {
         }
     }
 
+    // EFFECTS: draws an invisible button for the customized scroll panes
     private JButton drawInvisibleButton() {
         JButton button = new JButton();
         button.setPreferredSize(new Dimension(0, 0));
         return button;
     }
 
+    // EFFECTS: draws an overlay panel that disables the layers underneath, in order
+    // to display a dialog
     private void drawOverlayPanel() {
         overlay = new JPanel() {
             @Override
@@ -996,6 +800,12 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(overlay, JLayeredPane.MODAL_LAYER);
     }
 
+    /*
+     * BUTTON FUNCTIONALITY
+     */
+
+    // EFFECTS: restarts the workout tracker in order to update any changes that may
+    // have been made
     private void restartFrameAction() {
         this.dispose();
 
@@ -1008,20 +818,24 @@ public class WorkoutTracker extends JFrame {
         });
     }
 
+    // EFFECTS: switches between workouts and statistics
     private void workoutsButtonAction() {
         statsPanel.setVisible(false);
         workoutsPanel.setVisible(true);
     }
 
+    // EFFECTS: switches between workouts and statistics
     private void statsButtonAction() {
         statsPanel.setVisible(true);
         workoutsPanel.setVisible(false);
     }
 
+    // EFFECTS: disposes the workout tracker and goes back to main menu
     private void backButtonAction() {
         this.dispose();
     }
 
+    // EFFECTS: deletes the given exercise from the workout
     private void deleteExerciseAction(JPanel exercisePanel, Exercise exercise, JPanel exercisesContainer) {
         exercisesContainer.remove(exercisePanel);
         for (Workout workout : workoutSplit) {
@@ -1033,16 +847,76 @@ public class WorkoutTracker extends JFrame {
         setBackMusclesWorkedVisible(getMusclesWorked());
     }
 
+    // EFFECTS: launches an addExerciseDialog in edit mode with exercise details
+    // filled in
     private void viewExerciseAction(Workout workout, Exercise exercise) {
         drawOverlayPanel();
         drawAddExerciseDialog(workout, exercise, "VIEW");
     }
 
+    // EFFECTS: launches an addExerciseDialog in create mode with no pre-filled
+    // exercise details
     private void addExerciseAction(Workout workout) {
         drawOverlayPanel();
         drawAddExerciseDialog(workout, null, "ADD");
     }
 
+    // EFFECTS: validates input fields, if addExerciseDialog is in view mode,
+    // updates the given exercises, otherwise creates a new exercise
+    private void doneButtonAction(Workout workout, Exercise exercise, JDialog addExerciseDialog,
+            JTextField exerciseNameField, JPanel buttonsPanel, JScrollPane setsPane) {
+        if (getExerciseValidity(exerciseNameField, buttonsPanel, setsPane)) {
+            String exerciseName = exerciseNameField.getText().trim();
+
+            List<String> musclesWorked = new ArrayList<>();
+            for (Component comp : buttonsPanel.getComponents()) {
+                if (comp instanceof JToggleButton) {
+                    JToggleButton button = (JToggleButton) comp;
+                    if (button.isSelected()) {
+                        musclesWorked.add(button.getText());
+                    }
+                }
+            }
+
+            List<ExerciseSet> sets = new ArrayList<>();
+            getExerciseSetsFromPane(setsPane, sets);
+            doneButtonCloseAction(exercise, addExerciseDialog, exerciseName, musclesWorked, sets, workout);
+
+        } else {
+            JOptionPane.showMessageDialog(addExerciseDialog, "One or more fields is empty",
+                    "Validation Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // EFFECTS: closes the addExerciseDialog after creating/updating an exercise,
+    // and restarts the frame
+    private void doneButtonCloseAction(Exercise exercise, JDialog addExerciseDialog, String exerciseName,
+            List<String> musclesWorked, List<ExerciseSet> sets, Workout workout) {
+        if (exercise == null) {
+            Exercise newExercise = new Exercise(exerciseName, musclesWorked, sets);
+            workout.addExercise(newExercise);
+        } else {
+            exercise.setName(exerciseName);
+            exercise.setMusclesWorked(musclesWorked);
+            exercise.setSets(sets);
+        }
+
+        JOptionPane.showMessageDialog(addExerciseDialog,
+                (exercise == null) ? "Exercise added!" : "Changes Saved!", "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        layeredPane.remove(overlay);
+        layeredPane.revalidate();
+        layeredPane.repaint();
+        restartFrameAction();
+        addExerciseDialog.dispose();
+    }
+
+    /*
+     * SETTERS
+     */
+
+    // EFFECTS: makes all highlighted muscle labels invisible
     private void setHighlightLabelsInvisible() {
         absLabel.setVisible(false);
         bicepsLabel.setVisible(false);
@@ -1064,6 +938,8 @@ public class WorkoutTracker extends JFrame {
         calvesLabelBack.setVisible(false);
     }
 
+    // EFFECTS: sets bounds, visibility and background color for the
+    // addExerciseDialog
     private void setAddExerciseDialogVisibility(JDialog dialog, int width, int height) {
         dialog.setBounds(120, 0, width, height);
         dialog.getContentPane().setBackground(BG);
@@ -1072,6 +948,7 @@ public class WorkoutTracker extends JFrame {
         dialog.setLayout(null);
     }
 
+    // EFFECTS: sets bounds and visibility for button
     private void setButtonVisibilty(JButton button, int x, int y, int width, int height) {
         button.setBounds(x, y, width, height);
         button.setFocusPainted(false);
@@ -1080,6 +957,7 @@ public class WorkoutTracker extends JFrame {
         button.setOpaque(false);
     }
 
+    // EFFECTS: sets font and visibility for a label and adds it to the layered pane
     private void setHoverVisibility(JLabel hoverLabel, int messageX, int messageY, Font messageFont) {
         hoverLabel.setFont(messageFont);
         hoverLabel.setForeground(Color.WHITE);
@@ -1088,17 +966,18 @@ public class WorkoutTracker extends JFrame {
         layeredPane.add(hoverLabel, Integer.valueOf(2));
     }
 
+    // EFFECTS: customizes the scrollbar color for a scrollpane
     private void setScrollbarColor(JScrollPane scrollPane) {
         scrollPane.getVerticalScrollBar().setUI(new javax.swing.plaf.basic.BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
-                this.thumbColor = PINK; // Set scrollbar thumb color
-                this.trackColor = new Color(16, 14, 40); // Fully transparent track
+                this.thumbColor = PINK;
+                this.trackColor = new Color(16, 14, 40);
             }
 
             @Override
             protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-                g.setColor(PINK); // Paint the scrollbar thumb in PINK
+                g.setColor(PINK);
                 g.fillRect(thumbBounds.x, thumbBounds.y, 10, thumbBounds.height);
             }
 
@@ -1114,6 +993,8 @@ public class WorkoutTracker extends JFrame {
         });
     }
 
+    // EFFECTS: makes the highglighted BACK BODY muscle labels for the muscles
+    // contained in musclesWorked visible
     private void setBackMusclesWorkedVisible(List<String> musclesWorked) {
         forearmLabel.setVisible(musclesWorked.contains("Forearms"));
         glutesLabel.setVisible(musclesWorked.contains("Glutes"));
@@ -1128,6 +1009,8 @@ public class WorkoutTracker extends JFrame {
         statsPanel.repaint();
     }
 
+    // EFFECTS: makes the highlighted FRONT BODY muscle lables contained in
+    // musclesWorked visible
     private void setFrontMusclesWorkedVisible(List<String> musclesWorked) {
         absLabel.setVisible(musclesWorked.contains("Abs"));
         bicepsLabel.setVisible(musclesWorked.contains("Biceps"));
@@ -1141,6 +1024,7 @@ public class WorkoutTracker extends JFrame {
         statsPanel.repaint();
     }
 
+    // EFFECTS: constrains textfield input to just integers
     private void setFieldConstraints(JTextField field) {
         field.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -1153,6 +1037,8 @@ public class WorkoutTracker extends JFrame {
         });
     }
 
+    // EFFECTS: adds a default text to a textfield for cases when nothing is entered
+    // into the textfield
     private void setDefaultText(JTextField field, String defaultText) {
         field.setText(defaultText);
         field.setForeground(Color.GRAY);
@@ -1176,6 +1062,8 @@ public class WorkoutTracker extends JFrame {
         });
     }
 
+    // EFFECTS: changes the default function of the macOS close button and restarts
+    // frame after closing the dialog to update changes
     private void setCloseOperation(JDialog addExerciseDialog, Workout workout, JTextField exerciseNameField,
             JPanel buttonsPanel, JScrollPane setsPane) {
         addExerciseDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -1189,6 +1077,8 @@ public class WorkoutTracker extends JFrame {
         });
     }
 
+    // EFFECTS: adds a client property of the corresponding muscle to each of the
+    // labels
     private void setLabelClientProperty() {
         absLabel.putClientProperty("muscle", "Abs");
         bicepsLabel.putClientProperty("muscle", "Biceps");
@@ -1209,6 +1099,177 @@ public class WorkoutTracker extends JFrame {
         calvesLabelBack.putClientProperty("muscle", "Calves");
     }
 
+    // EFFECTS: sets customized properties for given component
+    private void setAddExerciseButtonProperties(JButton addExerciseButton) {
+        addExerciseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addExerciseButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        addExerciseButton.setBackground(BG);
+        addExerciseButton.setForeground(Color.WHITE);
+        addExerciseButton.setOpaque(true);
+        addExerciseButton.setContentAreaFilled(true);
+        addExerciseButton.setBorderPainted(false);
+        addExerciseButton.setFocusPainted(false);
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setExerciseNameFieldProperties(JTextField exerciseNameField) {
+        exerciseNameField.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        exerciseNameField.setForeground(Color.WHITE);
+        exerciseNameField.setBackground(new Color(0, 0, 0, 0));
+        exerciseNameField.setBounds(30, 70, 500, 50);
+        exerciseNameField.setOpaque(false);
+        exerciseNameField.setBorder(BorderFactory.createLineBorder(PINK, 2));
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setSetPanelProperties(JPanel setPanel) {
+        setPanel.setLayout(new BoxLayout(setPanel, BoxLayout.X_AXIS));
+        setPanel.setMaximumSize(new Dimension(460, 40));
+        setPanel.setOpaque(false);
+        setPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        setPanel.setBorder(BorderFactory.createEmptyBorder(7, 5, 7, 5));
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setRepsFieldProperties(JTextField repsField) {
+        repsField.putClientProperty("type", "REPS");
+        repsField.setPreferredSize(new Dimension(100, 20));
+        repsField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        repsField.setForeground(Color.WHITE);
+        repsField.setBackground(new Color(0, 0, 0, 0));
+        repsField.setOpaque(false);
+        repsField.setBorder(BorderFactory.createLineBorder(PINK, 1));
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setDeleteSetButtonProperties(JButton deleteSetButton, JPanel setContainer, JPanel setPanel) {
+        deleteSetButton.setPreferredSize(new Dimension(80, 40));
+        deleteSetButton.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        deleteSetButton.setBackground(BG);
+        deleteSetButton.setForeground(Color.WHITE);
+        deleteSetButton.setAlignmentX(LEFT_ALIGNMENT);
+        deleteSetButton.setBorder(BorderFactory.createLineBorder(PINK, 0));
+        deleteSetButton.setFocusPainted(false);
+        deleteSetButton.addActionListener(e -> {
+            setContainer.remove(setPanel);
+            setContainer.revalidate();
+            setContainer.repaint();
+        });
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setWeightFieldProperties(JTextField weightField) {
+        weightField.putClientProperty("type", "WEIGHT");
+        weightField.setPreferredSize(new Dimension(100, 20));
+        weightField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        weightField.setForeground(Color.WHITE);
+        weightField.setBackground(new Color(0, 0, 0, 0));
+        weightField.setOpaque(false);
+        weightField.setBorder(BorderFactory.createLineBorder(PINK, 1));
+    }
+
+    /*
+     * EFFECTS: creates muscleButtons and adds the following functionality to each
+     * muscleButton
+     * - if the button is selected, the muscle group it represents is highlighted
+     * red
+     * - otherwise, the muscle group remains greyed out
+     */
+    private void setMuscleButtonFuntionality(String[] muscleGroups, JPanel buttonsPanel, String purpose,
+            Exercise exercise) {
+        for (String muscle : muscleGroups) {
+            JToggleButton muscleButton = new JToggleButton(muscle);
+            setMuscleButtonProperties(muscleButton);
+            muscleButton.addItemListener(e -> {
+                for (JLabel label : getAllLabels()) {
+                    if (muscle.equals(label.getClientProperty("muscle"))) {
+                        if (muscleButton.isSelected()) {
+                            label.setVisible(true);
+                            muscleButton.setBackground(new Color(76, 74, 100));
+                        } else {
+                            label.setVisible(false);
+                            muscleButton.setBackground(BG);
+                        }
+                    }
+                }
+            });
+
+            buttonsPanel.add(muscleButton);
+            if (purpose.equals("VIEW") && exercise.getMusclesWorked().contains(muscle)) {
+                muscleButton.setSelected(true);
+            }
+        }
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setMuscleButtonProperties(JToggleButton muscleButton) {
+        muscleButton.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        muscleButton.setForeground(Color.WHITE);
+        muscleButton.setBackground(BG);
+        muscleButton.setBorder(BorderFactory.createLineBorder(PINK, 1));
+        muscleButton.setOpaque(true);
+        muscleButton.setFocusPainted(false);
+    }
+
+    // EFFECTS: adds hover functionality to the exercise panel
+    private void setExercisePanelFunctionality(JPanel exercisePanel, JLabel exerciseNameLabel, JButton deleteButton,
+            JButton viewButton) {
+        exercisePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                if (exercisePanel.contains(evt.getPoint())) {
+                    exercisePanel.setBackground(FADED_BG);
+                    exerciseNameLabel.setForeground(PINK);
+                    deleteButton.setVisible(true);
+                    viewButton.setVisible(true);
+                }
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                if (!exercisePanel.contains(evt.getPoint())) {
+                    exercisePanel.setBackground(BG);
+                    exerciseNameLabel.setForeground(new Color(255, 255, 255, 200));
+                    for (int i = 0; i < 2; i++) {
+                        deleteButton.setVisible(false);
+                        viewButton.setVisible(false);
+                    }
+                }
+            }
+        });
+    }
+
+    // EFFECTS: sets customized properties for given component
+    private void setExerciseFunctionButtonHoverability(JButton button, ImageIcon hoverIcon, JLabel hoverLabel,
+            Image scaledImage) {
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setIcon(hoverIcon);
+                hoverLabel.setVisible(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setIcon(new ImageIcon(scaledImage));
+                hoverLabel.setVisible(false);
+            }
+        });
+    }
+
+    // EFFECTS: fills in the given arrays with the user data for the bar graph
+    private void setTotalStatArrays(int[] totalSets, int[] totalReps, int[] totalVolume) {
+        for (int i = 0; i < 3; i++) {
+            totalSets[i] = workoutSplit.get(i).calculateTotalSets();
+            totalReps[i] = workoutSplit.get(i).calculateTotalReps();
+            totalVolume[i] = workoutSplit.get(i).calculateTotalVolume();
+        }
+    }
+
+    /*
+     * GETTERS
+     */
+
+    // EFFECTS: returns true if all fields in the addExerciseDialog are non-empty
+    // and at least one muscle group is selected, false otherwise
     private boolean getExerciseValidity(JTextField exerciseNameField, JPanel buttonsPanel, JScrollPane setsPane) {
         boolean isExerciseNameFilled = !exerciseNameField.getText().trim().isEmpty();
 
@@ -1228,11 +1289,49 @@ public class WorkoutTracker extends JFrame {
         return isExerciseNameFilled && isMuscleSelected && areSetFieldsValid;
     }
 
+    // EFFECTS: reads the set data from the setsPane and adds it to the list of
+    // ExerciseSet
+    private void getExerciseSetsFromPane(JScrollPane setsPane, List<ExerciseSet> sets) {
+        JPanel setContainer = (JPanel) setsPane.getViewport().getView();
+        for (Component comp : setContainer.getComponents()) {
+            if (comp instanceof JPanel) {
+                JPanel setPanel = (JPanel) comp;
+                JTextField weightField = null;
+                JTextField repsField = null;
+
+                for (Component innerComp : setPanel.getComponents()) {
+                    if (innerComp instanceof JTextField) {
+                        JTextField field = (JTextField) innerComp;
+                        String type = (String) field.getClientProperty("type");
+                        if ("WEIGHT".equals(type)) {
+                            weightField = field;
+                        } else if ("REPS".equals(type)) {
+                            repsField = field;
+                        }
+                    }
+                }
+
+                getSetPaneFields(weightField, repsField, sets);
+            }
+        }
+    }
+
+    // EFFECTS: the fields in the setPanel contain valid input, creates an
+    // ExerciseSet object and adds it to the list
+    private void getSetPaneFields(JTextField weightField, JTextField repsField, List<ExerciseSet> sets) {
+        if (weightField != null && repsField != null) {
+            int weight = Integer.parseInt(weightField.getText().trim());
+            int reps = Integer.parseInt(repsField.getText().trim());
+            sets.add(new ExerciseSet(reps, weight));
+        }
+    }
+
+    // EFFECTS: returns true if all fields in the setPane are non-empty
     private boolean getSetPaneValidity(JScrollPane setsPane) {
         boolean areSetFieldsValid = true;
         JPanel setContainer = (JPanel) setsPane.getViewport().getView();
         for (Component comp : setContainer.getComponents()) {
-            if (comp instanceof JPanel) { // Each setPanel
+            if (comp instanceof JPanel) {
                 JPanel setPanel = (JPanel) comp;
                 for (Component innerComp : setPanel.getComponents()) {
                     if (innerComp instanceof JTextField) {
@@ -1246,5 +1345,36 @@ public class WorkoutTracker extends JFrame {
             }
         }
         return areSetFieldsValid;
+    }
+
+    // EFFECTS: creates a list of all muscle group labels and returns it
+    private List<JLabel> getAllLabels() {
+        return Arrays.asList(absLabel, bicepsLabel, chestLabel, forearmsLabel, frontDeltsLabel, quadsLabel,
+                sideDeltsLabel, calvesLabelFront, forearmLabel, glutesLabel, hamstringsLabel, latsLabel, lowerBackLabel,
+                upperBackLabel, rearDeltLabel, tricepLabel, calvesLabelBack);
+    }
+
+    // EFFECTS: creates a UNIQUE list of muscles worked across all 3 workouts
+    private List<String> getMusclesWorked() {
+        Set<String> ret = new HashSet<>();
+        for (Workout workout : workoutSplit) {
+            ret.addAll(workout.calculateMusclesWorked());
+        }
+        return new ArrayList<>(ret);
+    }
+
+    // EFFECTS: returns the highest volume lifted across all 3 workouts
+    private int getMaxVolume(int[] totalSets, int[] totalReps, int[] totalVolume) {
+        int maxVolume = Math.max(Math.max(totalSets[0], totalReps[0]), totalVolume[0]);
+        maxVolume = Math.max(maxVolume, Math.max(Math.max(totalSets[1], totalReps[1]), totalVolume[1]));
+        maxVolume = Math.max(maxVolume, Math.max(Math.max(totalSets[2], totalReps[2]), totalVolume[2]));
+        return maxVolume;
+    }
+
+    // EFFECTS: returns a string array containing all workout names
+    private String[] getWorkoutNames() {
+        String[] workoutNames = { workoutSplit.get(0).getName(), workoutSplit.get(1).getName(),
+                workoutSplit.get(2).getName() };
+        return workoutNames;
     }
 }

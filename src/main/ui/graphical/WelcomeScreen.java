@@ -17,10 +17,15 @@ public class WelcomeScreen extends JFrame {
     JButton load;
     JButton exit;
 
+    // EFFECTS: runs the welcome screen 
     public WelcomeScreen() {
         run();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: creates the welcome screen and adds all elements to it
+     */
     public void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/welcomescreen.png");
         JLabel splashLabel = new JLabel(splashIcon);
@@ -43,6 +48,7 @@ public class WelcomeScreen extends JFrame {
         this.setVisible(true);
     }
 
+    // EFFECTS: adds the create/load/exit buttons to the welcome screen
     private void addButtons() {
         create = new JButton();
         load = new JButton();
@@ -52,7 +58,6 @@ public class WelcomeScreen extends JFrame {
         load.setBounds(240, 274, 240, 42);
         exit.setBounds(240, 314, 240, 42);
 
-        // Add buttons to the layered pane at a higher layer than the splash image
         layeredPane.add(create, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(load, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(exit, JLayeredPane.PALETTE_LAYER);
@@ -64,6 +69,7 @@ public class WelcomeScreen extends JFrame {
         configureButtons();
     }
 
+    // EFFECTS: adds actionListeners for the buttons on the welcome screen
     private void configureButtons() {
         create.addActionListener(e -> {
             new ConfigureUser();
@@ -73,6 +79,7 @@ public class WelcomeScreen extends JFrame {
         exit.addActionListener(e -> System.exit(0));
     }
 
+    // EFFECTS: loads the user profile and creates a main menu with the loaded user profile
     private void loadAction() {
         try {
             UserProfile mainUser = new UserProfile("", 0.0, 0.0, 0, 0, "");
@@ -87,6 +94,7 @@ public class WelcomeScreen extends JFrame {
         }
     }
 
+    // EFFECTS: makes a button invisible
     private void makeButtonInvisible(JButton button) {
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
