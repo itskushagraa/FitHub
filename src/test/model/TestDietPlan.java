@@ -179,6 +179,7 @@ public class TestDietPlan {
 
     @Test
     void testCalculatorMethods() {
+        testPlan.statisticsViewed();
         assertEquals(1400, testPlan.calculateDailyCalories("Saturday"));
         assertEquals(800, testPlan.calculateDailyQuantity("Saturday"));
         assertEquals(52, testPlan.calculateDailyProtein("Saturday"));

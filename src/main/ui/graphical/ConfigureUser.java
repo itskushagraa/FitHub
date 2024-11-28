@@ -276,6 +276,7 @@ public class ConfigureUser extends JFrame {
 
         try {
             UserProfile mainUser = new UserProfile(name, height, weight, age, intensity, goal);
+            mainUser.newUserCreated();
             this.dispose();
             new MainMenu(mainUser);
         } catch (IOException e) {

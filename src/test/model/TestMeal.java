@@ -42,6 +42,7 @@ public class TestMeal {
         assertEquals(25.0, testMeal.getProtein());
         assertEquals(30.0, testMeal.getFat());
         assertEquals(85.0, testMeal.getCarb());
+        testMeal.mealInfoViewed();
     }
 
     @Test
@@ -58,44 +59,6 @@ public class TestMeal {
         assertEquals(25.0, json.getDouble("protein"));
         assertEquals(30.0, json.getDouble("fat"));
         assertEquals(85.0, json.getDouble("carb"));
-    }
-
-    @Test
-    void testAddSingleIngredient() {
-        assertEquals(4, testMeal.getIngredients().size());
-        testMeal.addIngredient("Salt");
-        assertEquals("Salt", testMeal.getIngredients().get(4));
-        assertEquals(5, testMeal.getIngredients().size());
-    }
-
-    @Test
-    void testAddMultipleIngredient() {
-        assertEquals(4, testMeal.getIngredients().size());
-        testMeal.addIngredient("Salt");
-        testMeal.addIngredient("Pepper");
-        testMeal.addIngredient("Thyme");
-        assertEquals("Salt", testMeal.getIngredients().get(4));
-        assertEquals("Pepper", testMeal.getIngredients().get(5));
-        assertEquals("Thyme", testMeal.getIngredients().get(6));
-        assertEquals(7, testMeal.getIngredients().size());
-    }
-
-    @Test
-    void testRemoveSingleIngredient() {
-        assertEquals(4, testMeal.getIngredients().size());
-        testMeal.removeIngredient("Spaghetti");
-        assertEquals(3, testMeal.getIngredients().size());
-        assertEquals("Ground Beef", testMeal.getIngredients().get(0));
-    }
-
-    @Test
-    void testRemoveMultipleIngredient() {
-        assertEquals(4, testMeal.getIngredients().size());
-        testMeal.removeIngredient("Spaghetti");
-        testMeal.removeIngredient("Ground Beef");
-        testMeal.removeIngredient("Tomato Sauce");
-        testMeal.removeIngredient("Parmesan Cheese");
-        assertEquals(0, testMeal.getIngredients().size());
     }
 
     @Test
@@ -120,8 +83,6 @@ public class TestMeal {
     void testSetterMethods() {
         testMeal.setName("Omelette");
         assertEquals("Omelette", testMeal.getName());
-        testMeal.setType("Breakfast");
-        assertEquals("Breakfast", testMeal.getType());
         testMeal.setCalories(10.0);
         assertEquals(10.0, testMeal.getCalories());
         testMeal.setProtein(10.0);
@@ -135,5 +96,58 @@ public class TestMeal {
         assertEquals("A", testMeal.getIngredients().get(0));
         assertEquals("B", testMeal.getIngredients().get(1));
         assertEquals("C", testMeal.getIngredients().get(2));
+    }
+
+    @Test
+    void testSetterMethodsSameValues() {
+        testMeal.setName("Spaghetti Bolognese");
+        assertEquals("Spaghetti Bolognese", testMeal.getName());
+        testMeal.setCalories(700.0);
+        assertEquals(700.0, testMeal.getCalories());
+        testMeal.setQuantity(350.0);
+        assertEquals(350.0, testMeal.getQuantity());
+        testMeal.setProtein(25.0);
+        assertEquals(25.0, testMeal.getProtein());
+        testMeal.setFat(30.0);
+        assertEquals(30.0, testMeal.getFat());
+        testMeal.setCarb(85.0);
+        assertEquals(85.0, testMeal.getCarb());
+    }
+
+    @Test
+    void testSetIngredientsOnlyAdd() {
+        List<String> newIngredients = Arrays.asList("Spaghetti", "Ground Beef", "Tomato Sauce", "Parmesan Cheese",
+                "TESTA");
+        testMeal.setIngredients(newIngredients);
+        assertEquals(5, testMeal.getIngredients().size());
+        assertEquals("TESTA", testMeal.getIngredients().get(4));
+    }
+
+    @Test
+    void testSetIngredientsOnlyRemove() {
+        List<String> newIngredients = Arrays.asList("Spaghetti", "Ground Beef");
+        testMeal.setIngredients(newIngredients);
+        assertEquals(2, testMeal.getIngredients().size());
+        assertEquals("Ground Beef", testMeal.getIngredients().get(1));
+    }
+
+    @Test
+    void testSetIngredientsNoChange() {
+        List<String> newIngredients = Arrays.asList("Spaghetti", "Ground Beef", "Tomato Sauce", "Parmesan Cheese");
+        testMeal.setIngredients(newIngredients);
+        assertEquals(4, testMeal.getIngredients().size());
+        assertEquals("Ground Beef", testMeal.getIngredients().get(1));
+        testMeal.setIngredients(new ArrayList<>());
+        testMeal.setIngredients(Arrays.asList(""));
+    }
+
+    @Test
+    void testRemovedIngredients() {
+        List<String> newIngredients = Arrays.asList("TESTA");
+        List<String> removedIngredients = testMeal.getRemovedIngredients(newIngredients);
+        assertEquals(4, removedIngredients.size());
+        removedIngredients = testMeal
+                .getRemovedIngredients(Arrays.asList("Spaghetti", "Ground Beef", "Tomato Sauce", "Parmesan Cheese"));
+        assertEquals(0, removedIngredients.size());
     }
 }

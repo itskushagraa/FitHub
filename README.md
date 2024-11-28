@@ -96,3 +96,41 @@ The following resources have been referenced and used to create FitHub:
 - Oracle's open source Java Swing Documentation: https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/javax/swing/package-summary.html
 - Software Construction principles taught in CPSC 210.
 - Prior knowledge of Java gained during High School: ISC (Indian School Certificate) - Computer Science Curriculum
+
+## PHASE 4: Task 2
+#### Event Logging: Sample Event Data (logged after runtime)
+*Wed Nov 27 18:02:22 PST 2024*
+Loaded User Data From File
+
+*Wed Nov 27 18:02:32 PST 2024*
+Viewed Meal Info: Grilled Steak with Sweet Potatoes
+
+*Wed Nov 27 18:02:34 PST 2024*
+Viewed Weekly Diet Plan Statistics
+
+*Wed Nov 27 18:02:43 PST 2024*
+Removed Exercise From Leg Day: Bulgarian Split-Squats
+
+*Wed Nov 27 18:02:46 PST 2024*
+Removed Exercise From Pull Day: Pull-ups
+
+*Wed Nov 27 18:03:23 PST 2024*
+Added Exercise To Pull Day: Face Pulls
+
+*Wed Nov 27 18:03:28 PST 2024*
+Viewed Workout Split Statistics
+
+*Wed Nov 27 18:03:31 PST 2024*
+Viewed Exercise: Face Pulls
+
+*Wed Nov 27 18:04:05 PST 2024*
+Updated Exercise Name For Face Pulls To: Back Extensions
+
+*Wed Nov 27 18:04:05 PST 2024*
+Added Lower Back To List Of Muscles Worked in Back Extensions
+
+*Wed Nov 27 18:04:05 PST 2024*
+Removed Forearms From List Of Muscles Worked in Back Extensions
+
+*Wed Nov 27 18:04:05 PST 2024*
+Removed Rear Delts From List Of Muscles Worked in Back Extensions

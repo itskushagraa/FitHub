@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -69,31 +70,6 @@ public class Meal implements Writable {
     }
 
     /*
-     * REQUIRES: ingredient.length() > 0
-     * MODIFIES: this.ingredients
-     * EFFECTS: adds the given ingredient to the list of ingredients
-     */
-    public void addIngredient(String ingredient) {
-        this.ingredients.add(ingredient);
-    }
-
-    /*
-     * REQUIRES:
-     * - ingredient.length() > 0
-     * - ingredient must be in present in this.ingredients
-     * - this.ingredients.size() > 0
-     * MODIFIES: this.ingredients
-     * EFFECTS: removes the given ingredient from the list of ingredients
-     */
-    public void removeIngredient(String ingredient) {
-        for (int i = 0; i < this.ingredients.size(); i++) {
-            if (this.ingredients.get(i).equalsIgnoreCase(ingredient)) {
-                this.ingredients.remove(i);
-            }
-        }
-    }
-
-    /*
      * EFFECTS: returns the number of calories per gram of the meal
      */
     public double calculateCaloriesPerGram() {
@@ -121,34 +97,64 @@ public class Meal implements Writable {
         return this.carb / this.quantity;
     }
 
+    // EFFECTS: logs an event where a meal's information was viewed
+    public void mealInfoViewed() {
+        EventLog.getInstance().logEvent(new Event("Viewed Meal Info: " + this.name));
+    }
+
     /*
      * SETTERS:
      */
     public void setName(String name) {
+        if (!this.name.equalsIgnoreCase(name)) {
+            EventLog.getInstance().logEvent(new Event("Updated Name For " + this.name + " To: " + name));
+        }
         this.name = name;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void setCalories(double calories) {
+        if (this.calories != calories) {
+            EventLog.getInstance().logEvent(new Event("Updated Calories For " + this.name + " To: " + calories));
+        }
         this.calories = calories;
     }
 
     public void setProtein(double protein) {
+        if (this.protein != protein) {
+            EventLog.getInstance().logEvent(new Event("Updated Protein For " + this.name + " To: " + protein));
+        }
         this.protein = protein;
     }
 
     public void setFat(double fat) {
+        if (this.fat != fat) {
+            EventLog.getInstance().logEvent(new Event("Updated Fat For " + this.name + " To: " + fat));
+        }
         this.fat = fat;
     }
 
     public void setCarb(double carb) {
+        if (this.carb != carb) {
+            EventLog.getInstance().logEvent(new Event("Updated Carbs For " + this.name + " To: " + carb));
+        }
         this.carb = carb;
     }
 
     public void setIngredients(List<String> ingredients) {
+        if (!this.ingredients.equals(ingredients)) {
+            List<String> addedIngredients = getAddedIngredients(ingredients);
+            List<String> removedIngredients = getRemovedIngredients(addedIngredients);
+            if (addedIngredients.size() != 0) {
+                for (String ing : addedIngredients) {
+                    EventLog.getInstance().logEvent(new Event("Added Ingredient To " + this.name + ": " + ing));
+                }
+            }
+            if (removedIngredients.size() != 0) {
+                for (String ing : removedIngredients) {
+                    EventLog.getInstance().logEvent(new Event("Removed Ingredient From " + this.name + ": " + ing));
+                }
+            }
+        }
         this.ingredients = ingredients;
     }
 
@@ -164,6 +170,10 @@ public class Meal implements Writable {
      * - updates calories and macro quantities accordingly
      */
     public void setQuantity(double quantity) {
+        if (this.quantity != quantity) {
+            // EventLog.getInstance().logEvent(new Event("Updated Quantity For " + this.name
+            // + " To: " + quantity));
+        }
         double ratio = quantity / this.quantity;
         this.quantity = quantity;
         this.calories = this.calories * ratio;
@@ -205,5 +215,25 @@ public class Meal implements Writable {
 
     public double getCarb() {
         return Math.round(this.carb * 100.0) / 100.0;
+    }
+
+    public List<String> getAddedIngredients(List<String> newIngredients) {
+        List<String> addedIngredients = new ArrayList<>();
+        for (String ingredient : newIngredients) {
+            if (!this.ingredients.contains(ingredient)) {
+                addedIngredients.add(ingredient);
+            }
+        }
+        return addedIngredients;
+    }
+
+    public List<String> getRemovedIngredients(List<String> newIngredients) {
+        List<String> removedIngredients = new ArrayList<>();
+        for (String ingredient : this.ingredients) {
+            if (!newIngredients.contains(ingredient)) {
+                removedIngredients.add(ingredient);
+            }
+        }
+        return removedIngredients;
     }
 }

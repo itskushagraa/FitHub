@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -61,8 +62,10 @@ public class Exercise implements Writable {
      * EFFECTS: adds a set to the list of sets with the given reps and weight
      */
     public void addSet(int reps, int weight) {
-        ExerciseSet setToAdd = new ExerciseSet(reps, weight);
-        this.sets.add(setToAdd);
+        ExerciseSet set = new ExerciseSet(reps, weight);
+        this.sets.add(set);
+        EventLog.getInstance().logEvent(new Event("Added Set: " + set.getWeight() + " for " + set.getReps()
+                + ((set.getReps() == 1) ? " rep" : " reps")));
     }
 
     /*
@@ -73,16 +76,7 @@ public class Exercise implements Writable {
      */
     public void removeSet() {
         this.sets.remove(this.sets.size() - 1);
-    }
-
-    /*
-     * MODIFIES: this.sets
-     * EFFECTS: clears all ExerciseSets from the list of sets
-     */
-    public void clearSets() {
-        while (!this.sets.isEmpty()) {
-            this.sets.remove(0);
-        }
+        EventLog.getInstance().logEvent(new Event("Removed Latest Set"));
     }
 
     // EFFECTS: returns the sum of the total reps completed across all sets
@@ -105,18 +99,61 @@ public class Exercise implements Writable {
         return totalWeight;
     }
 
+    // EFFECTS: Logs an event where an exercise's information was viewed
+    public void exerciseViewed() {
+        EventLog.getInstance().logEvent(new Event("Viewed Exercise: " + this.name));
+    }
+
     /*
      * SETTER METHODS:
      */
     public void setName(String name) {
+        if (!this.name.equalsIgnoreCase(name)) {
+            EventLog.getInstance().logEvent(new Event("Updated Exercise Name For: " + this.name + " To: " + name));
+        }
         this.name = name;
     }
 
     public void setMusclesWorked(List<String> musclesWorked) {
+        if (!this.musclesWorked.equals(musclesWorked)) {
+            List<String> addedMuscles = getAddedMuscles(musclesWorked);
+            List<String> removedMuscles = getRemovedMuscles(musclesWorked);
+
+            if (addedMuscles.size() != 0) {
+                for (String muscle : addedMuscles) {
+                    EventLog.getInstance()
+                            .logEvent(new Event("Added " + muscle + " To List Of Muscles Worked in " + this.name));
+                }
+            }
+
+            if (removedMuscles.size() != 0) {
+                for (String muscle : removedMuscles) {
+                    EventLog.getInstance()
+                            .logEvent(new Event("Removed " + muscle + "  List Of Muscles Worked in " + this.name));
+                }
+            }
+        }
         this.musclesWorked = musclesWorked;
     }
 
     public void setSets(List<ExerciseSet> sets) {
+        if (!this.sets.equals(sets)) {
+            List<ExerciseSet> addedSets = getAddedSets(sets);
+            List<ExerciseSet> removedSets = getRemovedSets(sets);
+            if (addedSets.size() != 0) {
+                for (ExerciseSet set : addedSets) {
+                    EventLog.getInstance().logEvent(new Event("Added Set: " + set.getWeight() + " for " + set.getReps()
+                            + ((set.getReps() == 1) ? " rep" : " reps")));
+                }
+            }
+            if (removedSets.size() != 0) {
+                for (ExerciseSet set : removedSets) {
+                    EventLog.getInstance()
+                            .logEvent(new Event("Removed Set: " + set.getWeight() + " for " + set.getReps()
+                                    + ((set.getReps() == 1) ? " rep" : " reps")));
+                }
+            }
+        }
         this.sets = sets;
     }
 
@@ -133,5 +170,45 @@ public class Exercise implements Writable {
 
     public List<ExerciseSet> getSets() {
         return this.sets;
+    }
+
+    private List<String> getAddedMuscles(List<String> newMuscles) {
+        List<String> addedMuscles = new ArrayList<>();
+        for (String muscle : newMuscles) {
+            if (!this.musclesWorked.contains(muscle)) {
+                addedMuscles.add(muscle);
+            }
+        }
+        return addedMuscles;
+    }
+
+    private List<String> getRemovedMuscles(List<String> newMuscles) {
+        List<String> removedMuscles = new ArrayList<>();
+        for (String muscle : this.musclesWorked) {
+            if (!newMuscles.contains(muscle)) {
+                removedMuscles.add(muscle);
+            }
+        }
+        return removedMuscles;
+    }
+
+    private List<ExerciseSet> getAddedSets(List<ExerciseSet> newSets) {
+        List<ExerciseSet> addedSets = new ArrayList<>();
+        for (ExerciseSet set : newSets) {
+            if (!this.sets.contains(set)) {
+                addedSets.add(set);
+            }
+        }
+        return addedSets;
+    }
+
+    private List<ExerciseSet> getRemovedSets(List<ExerciseSet> newSets) {
+        List<ExerciseSet> removedSets = new ArrayList<>();
+        for (ExerciseSet set : this.sets) {
+            if (!newSets.contains(set)) {
+                removedSets.add(set);
+            }
+        }
+        return removedSets;
     }
 }

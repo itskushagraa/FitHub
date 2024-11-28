@@ -33,7 +33,6 @@ public class UserSettings extends JFrame {
     private void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/viewprofile.png");
         JLabel splashLabel = new JLabel(splashIcon);
-
         this.setTitle("FitHub");
         this.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());
         this.setLocationRelativeTo(null);
@@ -50,6 +49,7 @@ public class UserSettings extends JFrame {
 
         this.setContentPane(layeredPane);
         this.setVisible(true);
+        mainUser.userProfileViewed();
     }
 
     // EFFECTS: initialies all elements on the user settings screen

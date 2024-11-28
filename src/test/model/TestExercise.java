@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestExercise {
     private Exercise testExercise;
@@ -35,7 +36,7 @@ public class TestExercise {
         assertEquals(set1, testExercise.getSets().get(0));
     }
 
-    @Test 
+    @Test
     void testToJson() {
         JSONObject json = testExercise.toJson();
         assertEquals("Barbell Bench Press", json.getString("name"));
@@ -89,23 +90,6 @@ public class TestExercise {
     }
 
     @Test
-    void testClearSetSingle() {
-        assertEquals(1, testExercise.getSets().size());
-        testExercise.clearSets();
-        assertEquals(0, testExercise.getSets().size());
-    }
-
-    @Test
-    void testClearSetMultiple() {
-        assertEquals(1, testExercise.getSets().size());
-        testExercise.addSet(12, 20);
-        testExercise.addSet(1, 120);
-        assertEquals(3, testExercise.getSets().size());
-        testExercise.clearSets();
-        assertEquals(0, testExercise.getSets().size());
-    }
-
-    @Test
     void testCalculateTotalRepsSingle() {
         assertEquals(15, testExercise.calculateTotalReps());
     }
@@ -131,6 +115,7 @@ public class TestExercise {
 
     @Test
     void testSetterMethods() {
+        testExercise.exerciseViewed();
         List<String> musclesWorked = new ArrayList<>();
         musclesWorked.add("Quadriceps");
         musclesWorked.add("Hamstrings");
@@ -150,5 +135,33 @@ public class TestExercise {
         assertEquals("Barbell Squat", testExercise.getName());
         assertEquals(musclesWorked, testExercise.getMusclesWorked());
         assertEquals(sets, testExercise.getSets());
+    }
+
+    @Test
+    void testSetterMethodsSameValues() {
+        testExercise.setName("Barbell Bench Press");
+        assertEquals("Barbell Bench Press", testExercise.getName());
+        testExercise.setMusclesWorked(Arrays.asList("Chest", "Front Delts", "Triceps"));
+        assertEquals(Arrays.asList("Chest", "Front Delts", "Triceps"), testExercise.getMusclesWorked());
+        testExercise.setSets(Arrays.asList(new ExerciseSet(15, 20)));
+        assertEquals(Arrays.asList(new ExerciseSet(15, 20)), testExercise.getSets());
+    }
+
+    @Test
+    void testSetMuscles() {
+        testExercise.setMusclesWorked(Arrays.asList("Chest", "Front Delts", "Triceps"));
+        testExercise.setMusclesWorked(Arrays.asList("Chest", "Front Delts", "Triceps", "Quads"));
+        testExercise.setMusclesWorked(Arrays.asList("Quads"));
+    }
+
+    @Test
+    void testSetExerciseSets() {
+        testExercise.setSets(Arrays.asList(new ExerciseSet(1, 3)));
+        testExercise.setSets(Arrays.asList(new ExerciseSet(2, 3)));
+        testExercise.setSets(Arrays.asList(new ExerciseSet(2, 3), new ExerciseSet(15, 20), new ExerciseSet(30, 50)));
+        sets.add(set1);
+        sets.add(set1);
+        testExercise.setSets(sets);
+        testExercise.setSets(Arrays.asList(new ExerciseSet(15, 20), new ExerciseSet(15, 20), new ExerciseSet(15, 20)));
     }
 }

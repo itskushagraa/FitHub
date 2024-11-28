@@ -828,6 +828,7 @@ public class WorkoutTracker extends JFrame {
     private void statsButtonAction() {
         statsPanel.setVisible(true);
         workoutsPanel.setVisible(false);
+        mainUser.workoutStatisticsViewed();
     }
 
     // EFFECTS: disposes the workout tracker and goes back to main menu
@@ -839,7 +840,7 @@ public class WorkoutTracker extends JFrame {
     private void deleteExerciseAction(JPanel exercisePanel, Exercise exercise, JPanel exercisesContainer) {
         exercisesContainer.remove(exercisePanel);
         for (Workout workout : workoutSplit) {
-            workout.getExercises().remove(exercise);
+            workout.removeExercise(exercise);
         }
         exercisesContainer.revalidate();
         exercisesContainer.repaint();
@@ -852,6 +853,7 @@ public class WorkoutTracker extends JFrame {
     private void viewExerciseAction(Workout workout, Exercise exercise) {
         drawOverlayPanel();
         drawAddExerciseDialog(workout, exercise, "VIEW");
+        exercise.exerciseViewed();
     }
 
     // EFFECTS: launches an addExerciseDialog in create mode with no pre-filled

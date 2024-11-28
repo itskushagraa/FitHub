@@ -168,17 +168,35 @@ public class TestUserProfile {
         maintainUser.setWeight(85);
         maintainUser.setBmi();
         maintainUser.setAge(25);
-        maintainUser.setIntensity(7);
+        maintainUser.setIntensity(1);
         maintainUser.setGoal("bulk");
-        maintainUser.setTargetCalories(3000.0);
 
         assertEquals("Jesse", maintainUser.getName());
         assertEquals(185, maintainUser.getHeight());
         assertEquals(85, maintainUser.getWeight());
         assertEquals(24.8, maintainUser.getBmi());
         assertEquals(25, maintainUser.getAge());
-        assertEquals(7, maintainUser.getIntensity());
+        assertEquals(1, maintainUser.getIntensity());
         assertEquals("bulk", maintainUser.getGoal());
-        assertEquals(3000.0, maintainUser.getTargetCalories());
+        maintainUser.workoutStatisticsViewed();
+        maintainUser.userProfileViewed();
+        maintainUser.newUserCreated();
+    }
+
+    @Test
+    void testSetterMethodsSameValues() {
+        maintainUser.setName("Ellie");
+        maintainUser.setHeight(165.0);
+        maintainUser.setWeight(60.0);
+        maintainUser.setAge(19);
+        maintainUser.setIntensity(5);
+        maintainUser.setIntensity(3);
+        maintainUser.setGoal("maintain");
+        assertEquals("Ellie", maintainUser.getName());
+        assertEquals(165.0, maintainUser.getHeight());
+        assertEquals(60.0, maintainUser.getWeight());
+        assertEquals(19, maintainUser.getAge());
+        assertEquals(3, maintainUser.getIntensity());
+        assertEquals("maintain", maintainUser.getGoal());
     }
 }

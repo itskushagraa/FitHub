@@ -1,6 +1,7 @@
 package ui.graphical;
 
 import model.*;
+
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -675,12 +676,14 @@ public class DietPlanner extends JFrame {
     private void statsButtonAction() {
         mealsPanel.setVisible(false);
         statsPanel.setVisible(true);
+        dietPlan.statisticsViewed();
     }
 
     // EFFECTS: when mealButton is clicked, launches a meal Dialog
     private void mealAction(Meal meal, JButton mealButton) {
         drawOverlayPanel();
         drawMealDialog(meal, mealButton);
+        meal.mealInfoViewed();
     }
 
     // EFFECTS: validates mealDialog inputFields, and closes the dialog if valid

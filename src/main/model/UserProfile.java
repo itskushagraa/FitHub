@@ -84,8 +84,10 @@ public class UserProfile implements Writable {
         userWriter.close();
         splitWriter.close();
         planWriter.close();
+        EventLog.getInstance().logEvent(new Event("Saved User Data To File"));
+
     }
-    
+
     /*
      * REQUIRES: userProfile.json, workoutSplit.json and dietPlan.json must exist
      * and be non-empty
@@ -107,6 +109,7 @@ public class UserProfile implements Writable {
         this.targetCalories = userReader.readUserProfile().getTargetCalories();
         this.userWorkoutSplit = splitReader.readWorkoutSplit();
         this.userDietPlan = planReader.readDietPlan();
+        EventLog.getInstance().logEvent(new Event("Loaded User Data From File"));
     }
 
     // EFFECTS: returns a UserProfile as a JSON Object
@@ -241,20 +244,44 @@ public class UserProfile implements Writable {
         }
     }
 
+    // EFFECTS: logs an event where workout split statistics were viewed
+    public void workoutStatisticsViewed() {
+        EventLog.getInstance().logEvent(new Event("Viewed Workout Split Statistics"));
+    }
+
+    // EFFECTS: logs an event where user profile was viewed
+    public void userProfileViewed() {
+        EventLog.getInstance().logEvent(new Event("Viewed User Profile"));
+    }
+
+    // EFFECTS: logs an event where a new user profile was created
+    public void newUserCreated() {
+        EventLog.getInstance().logEvent(new Event("Created New User Profile with the name: " + this.name));
+    }
+
     /*
      * SETTER METHODS:
      */
     public void setName(String name) {
+        if (!this.name.equalsIgnoreCase(name)) {
+            EventLog.getInstance().logEvent(new Event("Updated User Name To: " + name));
+        }
         this.name = name;
     }
 
     public void setHeight(double height) {
+        if (this.height != height) {
+            EventLog.getInstance().logEvent(new Event("Updated User Height To: " + height + "cm"));
+        }
         this.height = height;
         setBmi();
         this.targetCalories = calculateCalories();
     }
 
     public void setWeight(double weight) {
+        if (this.weight != weight) {
+            EventLog.getInstance().logEvent(new Event("Updated User Weight To: " + weight + "kg"));
+        }
         this.weight = weight;
         setBmi();
         this.targetCalories = calculateCalories();
@@ -265,27 +292,28 @@ public class UserProfile implements Writable {
     }
 
     public void setAge(int age) {
+        if (this.age != age) {
+            EventLog.getInstance().logEvent(new Event("Updated User Age To: " + age + " years"));
+        }
         this.age = age;
         this.targetCalories = calculateCalories();
     }
 
     public void setIntensity(int intensity) {
+        if (this.intensity != intensity) {
+            EventLog.getInstance().logEvent(new Event("Updated Weekly Workout Intensity To: " + intensity
+                    + ((intensity == 1) ? " day a week" : " days a week")));
+        }
         this.intensity = intensity;
         this.targetCalories = calculateCalories();
     }
 
     public void setGoal(String goal) {
+        if (!this.goal.equalsIgnoreCase(goal)) {
+            EventLog.getInstance().logEvent(new Event("Updated Fitness Goal To: " + goal));
+        }
         this.goal = goal;
         this.targetCalories = calculateCalories();
-        List<String> daysOfWeek = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-                "Sunday");
-        for (String day : daysOfWeek) {
-            adjustQuantities(userDietPlan.getCompleteWeeklyPlan(), day);
-        }
-    }
-
-    public void setTargetCalories(double cals) {
-        this.targetCalories = cals;
         List<String> daysOfWeek = Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
                 "Sunday");
         for (String day : daysOfWeek) {

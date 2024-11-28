@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import model.EventLog;
+import model.Event;
 import model.UserProfile;
 
 public class MainMenu extends JFrame {
@@ -30,7 +32,7 @@ public class MainMenu extends JFrame {
     private void run() {
         ImageIcon splashIcon = new ImageIcon("./assets/mainmenu.png");
         JLabel splashLabel = new JLabel(splashIcon);
-
+        registerShutdownHook();
         this.setTitle("FitHub");
         this.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());
         this.setLocationRelativeTo(null);
@@ -49,6 +51,23 @@ public class MainMenu extends JFrame {
         this.setVisible(true);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: ensures that EventLog is printed when the application is quit
+     */
+    private void registerShutdownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            printLog(EventLog.getInstance());
+        }));
+    }
+
+    // EFFECTS: prints the EventLog
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next + "\n");
+        }
+    }
+
     // EFFECTS: initializes the menu buttons
     private void configureButtons() {
         initWorkoutSplitButton();
@@ -59,7 +78,8 @@ public class MainMenu extends JFrame {
         initExitButton();
     }
 
-    // EFFECTS: creates the button responsible for running the FitHub Workout Tracker
+    // EFFECTS: creates the button responsible for running the FitHub Workout
+    // Tracker
     private void initWorkoutSplitButton() {
         workoutSplit = new JButton();
         workoutSplit.setBounds(25, 105, 700, 75);
@@ -134,10 +154,15 @@ public class MainMenu extends JFrame {
         exit.setBounds(25, 480, 700, 75);
         layeredPane.add(exit, JLayeredPane.PALETTE_LAYER);
         makeButtonInvisible(exit);
-        exit.addActionListener(e -> System.exit(0));
+        exit.addActionListener(e -> exitAppAction());
     }
 
-    /* 
+    // EFFECTS: prints the EventLog and quits the app
+    private void exitAppAction() {
+        System.exit(0);
+    }
+
+    /*
      * MODIFIES: button
      * EFFECTS: makes button invisible
      */

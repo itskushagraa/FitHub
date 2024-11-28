@@ -224,7 +224,6 @@ public class DietPlan implements Writable {
                 }
             }
         }
-
         return ret;
     }
 
@@ -245,7 +244,6 @@ public class DietPlan implements Writable {
                 }
             }
         }
-
         return ret;
     }
 
@@ -329,5 +327,10 @@ public class DietPlan implements Writable {
         }
 
         return null;
+    }
+
+    // EFFECTS: Logs an event where diet plan statistics were viewed
+    public void statisticsViewed() {
+        EventLog.getInstance().logEvent(new Event("Viewed Weekly Statistics"));
     }
 }

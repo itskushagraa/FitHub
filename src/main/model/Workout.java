@@ -33,7 +33,7 @@ public class Workout implements Writable {
         this.exercises = exercises;
     }
 
-    // EFFECTS: returns Workout as a JSONObject 
+    // EFFECTS: returns Workout as a JSONObject
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", this.name);
@@ -54,25 +54,20 @@ public class Workout implements Writable {
      */
     public void addExercise(Exercise exercise) {
         this.exercises.add(exercise);
+        EventLog.getInstance().logEvent(new Event("Added Exercise To " + this.name + ": " + exercise.getName()));
     }
 
     /*
      * REQUIRES: exercises.size() > 0
      * MODIFIES: this.exercises
-     * EFFECTS: removes the most recently completed exercise from the list of
-     * exercises
+     * EFFECTS: removes given exercise from the list of exercises
      */
-    public void removeExercise() {
-        this.exercises.remove(this.exercises.size() - 1);
-    }
-
-    /*
-     * REQUIRES: exercises.size() > 0
-     * MODIFIES: this.exercises
-     * EFFECTS: removes all exercises from the workout
-     */
-    public void clearWorkout() {
-        this.exercises.clear();
+    public void removeExercise(Exercise exercise) {
+        if (this.exercises.contains(exercise)) {
+            this.exercises.remove(exercise);
+            EventLog.getInstance()
+                    .logEvent(new Event("Removed Exercise From " + this.name + ": " + exercise.getName()));
+        }
     }
 
     // EFFECTS: returns the total weight lifted across all exercises completed
@@ -117,16 +112,6 @@ public class Workout implements Writable {
         }
 
         return new ArrayList<>(uniqueMuscles);
-    }
-
-    // EFFECTS: returns the given exercise if found in the workout, null otherwise
-    public Exercise findExerciseByName(String name) {
-        for (int i = 0; i < this.exercises.size(); i++) {
-            if (this.exercises.get(i).getName().equalsIgnoreCase(name)) {
-                return this.exercises.get(i);
-            }
-        }
-        return null;
     }
 
     /*

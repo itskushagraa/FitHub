@@ -33,7 +33,7 @@ public class ExerciseSet implements Writable {
         json.put("weight", this.weight);
         return json;
     }
-    
+
     /*
      * SETTER METHODS:
      */
@@ -54,5 +54,37 @@ public class ExerciseSet implements Writable {
 
     public int getWeight() {
         return this.weight;
+    }
+
+    // OVERRIDDEN HASHCODE
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + reps;
+        result = prime * result + weight;
+        return result;
+    }
+
+    // OVERRIDDEN EQUALS
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        ExerciseSet other = (ExerciseSet) obj;
+        if (reps != other.reps) {
+            return false;
+        }
+        if (weight != other.weight) {
+            return false;
+        }
+        return true;
     }
 }

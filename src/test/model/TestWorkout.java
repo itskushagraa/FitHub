@@ -1,7 +1,6 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,33 +67,19 @@ public class TestWorkout {
         assertEquals(LAT_PULLDOWN, testWorkout.getExercises().get(4));
     }
 
-    @Test
+    @Test 
     void testRemoveSingleExercise() {
-        assertEquals(1, testWorkout.getExercises().size());
-        testWorkout.removeExercise();
-        assertEquals(0, testWorkout.getExercises().size());
-    }
-
-    @Test
-    void testRemoveMultipleExercise() {
-        assertEquals(1, testWorkout.getExercises().size());
-        testWorkout.addExercise(SQUAT);
-        testWorkout.addExercise(SQUAT);
-        testWorkout.removeExercise();
-        testWorkout.removeExercise();
-        testWorkout.removeExercise();
-        assertEquals(0, testWorkout.getExercises().size());
-    }
-
-    @Test
-    void testClearWorkout() {
         testWorkout.addExercise(SQUAT);
         testWorkout.addExercise(FACE_PULL);
         testWorkout.addExercise(LATERAL_RAISE);
         testWorkout.addExercise(LAT_PULLDOWN);
         assertEquals(5, testWorkout.getExercises().size());
-        testWorkout.clearWorkout();
-        assertEquals(0, testWorkout.getExercises().size());
+        testWorkout.removeExercise(LAT_PULLDOWN);
+        assertEquals(4, testWorkout.getExercises().size());
+        testWorkout.removeExercise(LAT_PULLDOWN);
+        assertEquals(4, testWorkout.getExercises().size());
+        testWorkout.removeExercise(FACE_PULL);
+        assertEquals(3, testWorkout.getExercises().size());
     }
 
     @Test
@@ -145,13 +130,6 @@ public class TestWorkout {
         assertEquals("Lats", testWorkout.calculateMusclesWorked().get(8));
         assertEquals("Biceps", testWorkout.calculateMusclesWorked().get(9));
         assertEquals(10, testWorkout.calculateMusclesWorked().size());
-    }
-
-    @Test
-    void testFindExerciseByName() {
-        testWorkout.addExercise(FACE_PULL);
-        assertEquals(FACE_PULL, testWorkout.findExerciseByName("Face Pull (Cable)"));
-        assertNull(testWorkout.findExerciseByName("Squat (Barbell)"));
     }
 
     @Test
