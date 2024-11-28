@@ -97,8 +97,9 @@ The following resources have been referenced and used to create FitHub:
 - Software Construction principles taught in CPSC 210.
 - Prior knowledge of Java gained during High School: ISC (Indian School Certificate) - Computer Science Curriculum
 
-## PHASE 4: Task 2
-#### Event Logging: Sample Event Data (logged after runtime)
+## Phase 4
+### Task 2: Event Logging 
+#### Sample Event Data (logged after runtime)
 *Wed Nov 27 18:02:22 PST 2024*
 Loaded User Data From File
 
@@ -134,3 +135,13 @@ Removed Forearms From List Of Muscles Worked in Back Extensions
 
 *Wed Nov 27 18:04:05 PST 2024*
 Removed Rear Delts From List Of Muscles Worked in Back Extensions
+
+### Task 3: Reminiscing
+#### Design Improvement
+If I had more time to complete the project, there are a lot of design changes I would make. I would also add some more features. Here's a comprehensive overview of some thoughts:
+- **Poor Modularity and Duplicated Code:** Due to the 25 line cap on the method length, most of the code in DietPlanner.java and WorkoutTracker.java was first written with huge methods reaching over 500 lines of code per method. I then broke those methods down into smaller methods to meet the 25 line cap. This is a very good example of poor design because the helper methods that were generated as a result of breaking down bigger methods were not helpful *anywhere else* in the code. If I had time, I would completely rebuild the aforementioned classes from scratch, and increase modularity in my code. This would not only reduce method lengths, but more importantly, it would get rid of most if not all of the duplication. Currently, the aforementioned classes share a lot of duplicated code: Making interactive buttons, adding hover functionality to buttons, creating the base backgrounds and panels for the frame, etc. I would make an abstract class called Organizer.java to layout the basic structure of both the Diet Planner and the Workout Tracker. I would then have the two classes extend Organizer.java. According to my calculations, this would bring down the length of DietPlanner.java from 1100 lines to about 600, and WorkoutTracker.java form 1600 to approximately 900 lines of code.
+- **Singleton Design Pattern:** UserProfile.java is a perfect fit for the Singleton Design Pattern because there is always one user. If I had the time, I would refactor my UserProfile class to use the Singleton Design Pattern and this would make the job of the UI classes way easier. Let me elaborate: The UI uses a state machine. The UserProfile (which also contains the Diet Plan and Workout Split) is the only variable thats passed between these states. For example, the main menu has a class-level variable mainUser. It then calls on to DietPlanner/WorkoutTracker/ConfigureUser with mainUser as the parameter. Instead of having to pass this UserProfile between states, I could simply follow the Singleton Design Pattern and have each of my UI states call on the getInstance() method in UserProfile.java. 
+- **Efficiency:** Instead of using Strings and then manually making sure only a certain set of values is used for certain variables like musclesWorked, or fitnessGoal, I would've used enums for these attributes like I did for the State Machine that the UI utilizes.
+
+- **Final Thoughts:** I realized everything I've mentioned so far while working on Phase 4 Task 2. I realized that in some places, I had relied on the UI to perform some operations that should be performed in the model package. That is why I started refactoring some code in the UI package and realized how much simplicity, modularity and efficiency I could've had in my code if during Phase 1, I was familiar with the concepts taught in the Design Module.
+With that said, I still am quite happy with how the app turned out. The code, while having the aforementioned flaws, is still very efficient and incredibly easy to understand from a third-person perspective. I had a lot of fun working on this project, it will always carry a special place in my heart.
